@@ -1,0 +1,18 @@
+body {
+  background-color: black;
+  h1{
+    color: hotpink;
+    font-family: cursive;
+  }
+}
+
+.test {
+  text-decoration: overline;
+  &-1{
+    width: 40px;
+    height: 40px;
+    background-color: purple;
+  }
+}
+
+/* в scss мне нужны модули, вложенность, переменные, миксины можно */

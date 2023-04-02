@@ -1,0 +1,29 @@
+{
+  "name": "space-chat",
+  "version": "1.0.0",
+  "description": "Мессенжджер в космической тематике",
+  "scripts": {
+    "start": "parcel ./src/index.hbs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./src/index.hbs",
+    "build": "parcel build ./src/index.hbs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MYiLA/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "Дюбанова Мария Борисовна",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MYiLA/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/MYiLA/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-sass": "^2.8.3",
+    "express": "^4.18.2",
+    "parcel": "^2.8.3",
+    "sass": "^1.60.0"
+  }
+}

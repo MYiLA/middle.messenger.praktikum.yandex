@@ -1,3 +1,102 @@
+### **Макет**
+
+https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?node-id=0-1&t=VKKGHCbh8ahh2rgy-0
+
+### **Используемые технологии:**
+
+parsel          https://parceljs.org
+PostCSS         https://postcss.org
+плагины PostCSS https://www.postcss.parts
+
+### **Структура проекта:**
+
+```
+src/
+├── components/
+│   └── button/
+│       ├── button.*css
+│       ├── button.js
+│       ├── button.tmpl.js
+│       └── index.js
+├── layout/
+│   └── main/
+│       ├── main.*css
+│       ├── main.js
+│       ├── main.tmpl.js
+│       └── index.js
+├── modules/
+│   └── chats/
+│       ├── utils
+│       │   └── getFullname.js
+│       │   └── getIsOnline.js
+│       ├── components/
+│       │   └── message/
+│       │       ├── message.*css
+│       │       ├── message.js
+│       │       ├── message.tmpl.js
+│       │       └── index.js
+│       ├── chats.*css
+│       ├── chats.js
+│       ├── chats.tmpl.js
+│       └── index.js
+├── pages/
+│   ├── home/   : Список чатов и лента переписки 
+│   │   ├── modules/
+│   │   │   ├── login/
+│   │   │   │   ├── login.*css
+│   │   │   │   ├── login.js
+│   │   │   │   ├── login.tmpl.js
+│   │   │   │   └── index.js
+│   │   │   └── logout/
+│   │   │       ├── logout.*css
+│   │   │       ├── logout.js
+│   │   │       ├── logout.tmpl.js
+│   │   │       └── index.js
+│   │   ├── home.*css
+│   │   ├── home.js
+│   │   ├── home.tmpl.js
+│   │   └── index.js
+│   ├── authorization/
+│   │   ├── authorization.*css
+│   │   ├── authorization.js
+│   │   ├── authorization.tmpl.js
+│   │   └── authorization.js
+│   ├── registration/
+│   │   ├── authorization.*css
+│   │   ├── authorization.js
+│   │   ├── authorization.tmpl.js
+│   │   └── authorization.js
+│   ├── user-setting/
+│   │   ├── authorization.*css
+│   │   ├── authorization.js
+│   │   ├── authorization.tmpl.js
+│   │   └── authorization.js
+│   ├── 404/
+│   │   ├── authorization.*css
+│   │   ├── authorization.js
+│   │   ├── authorization.tmpl.js
+│   │   └── authorization.js
+│   └── 500/
+│       ├── authorization.*css
+│       ├── authorization.js
+│       ├── authorization.tmpl.js
+│       └── authorization.js
+└── utils/
+    ├── get.js
+    ├── http.js
+    ├── isEmpty.js
+    └── templator.js 
+
+```
+
+### .
+### ├── build/
+### ├── static/
+### ├── src/
+### ├── README.md
+### ├── tsconfig.js
+### └── webpack.config.js
+
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
