@@ -1,2 +1,9 @@
-@import "./styles/styles-test-1.scss";
-@import "./styles/styles-test.scss";
+@import "./styles/colors";
+@import "./styles/common";
+
+@import "./styles/components/start-nav";
+
+@import "./styles/pages/authorization";
+@import "./styles/pages/error";
+@import "./styles/pages/home";
+@import "./styles/pages/user-settings";

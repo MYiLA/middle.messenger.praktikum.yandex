@@ -5,42 +5,20 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 ### **Используемые технологии:**
 
 parsel          https://parceljs.org
-PostCSS         https://postcss.org
-плагины PostCSS https://www.postcss.parts
+SCSS            
+handlebars    
+express-server
+
+### **Команды**
+
+Запустить сервер: node ./src/server.js
 
 ### **Структура проекта:**
 
 ```
 src/
-├── components/
-│   └── button/
-│       ├── button.*css
-│       ├── button.js
-│       ├── button.tmpl.js
-│       └── index.js
-├── layout/
-│   └── main/
-│       ├── main.*css
-│       ├── main.js
-│       ├── main.tmpl.js
-│       └── index.js
-├── modules/
-│   └── chats/
-│       ├── utils
-│       │   └── getFullname.js
-│       │   └── getIsOnline.js
-│       ├── components/
-│       │   └── message/
-│       │       ├── message.*css
-│       │       ├── message.js
-│       │       ├── message.tmpl.js
-│       │       └── index.js
-│       ├── chats.*css
-│       ├── chats.js
-│       ├── chats.tmpl.js
-│       └── index.js
 ├── pages/
-│   ├── home/   : Список чатов и лента переписки 
+│   ├── home/                     : Список чатов и лента переписки (поле для ввода сообщения: message)
 │   │   ├── modules/
 │   │   │   ├── login/
 │   │   │   │   ├── login.*css
@@ -56,47 +34,39 @@ src/
 │   │   ├── home.js
 │   │   ├── home.tmpl.js
 │   │   └── index.js
-│   ├── authorization/
+│   ├── authorization/           : Авторизация (login, password)
 │   │   ├── authorization.*css
 │   │   ├── authorization.js
 │   │   ├── authorization.tmpl.js
 │   │   └── authorization.js
-│   ├── registration/
+│   ├── registration/            : Регистрация (first_name, second_name, login, email, password, phone)
 │   │   ├── authorization.*css
 │   │   ├── authorization.js
 │   │   ├── authorization.tmpl.js
 │   │   └── authorization.js
-│   ├── user-setting/
+│   ├── user-setting/            : Настройки пользователя (first_name, second_name, display_name, login,
+│   │   │                                                  email, phone, avatar, oldPassword, newPassword)
 │   │   ├── authorization.*css
 │   │   ├── authorization.js
 │   │   ├── authorization.tmpl.js
 │   │   └── authorization.js
-│   ├── 404/
+│   ├── 404/                     : Страница 404
 │   │   ├── authorization.*css
 │   │   ├── authorization.js
 │   │   ├── authorization.tmpl.js
 │   │   └── authorization.js
-│   └── 500/
+│   └── 500/                     : Страница 5**
 │       ├── authorization.*css
 │       ├── authorization.js
 │       ├── authorization.tmpl.js
 │       └── authorization.js
-└── utils/
+└── utils/                       : Утилиты
     ├── get.js
     ├── http.js
     ├── isEmpty.js
     └── templator.js 
 
 ```
-
-### .
-### ├── build/
-### ├── static/
-### ├── src/
-### ├── README.md
-### ├── tsconfig.js
-### └── webpack.config.js
-
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
