@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9e3de672-4504-4c7d-ba7a-1b99c623d48d/deploy-status)](https://app.netlify.com/sites/space-messenger/deploys)
 
-### **Космический чат**
+# **Космический чат**
 
 Космический чат для общения на космические темы
 
