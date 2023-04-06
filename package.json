@@ -4,7 +4,6 @@
   "description": "Мессенжджер в космической тематике",
   "scripts": {
     "start": "node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel ./src/index.html --no-cache",
     "build": "parcel build ./src/index.html --no-cache"
   },
