@@ -1,9 +1,105 @@
 .form {
-  &__form {};
-  &__item {};
-  &__input-wrap {};
-  &__input {};
-  &__label {};
-  &__message {};
-  &__message-icon {};
+  &__item {
+    margin-bottom: 14px;
+  };
+
+  &__input-wrap {
+    position: relative;
+    margin-bottom: 7px;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: $white-6;
+    }
+  };
+
+  &__input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: none;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 14;
+    font-weight: 500;
+    line-height: 14px;
+    color: $white-1;
+    background-color: $black-1;
+
+    &::placeholder {
+      color: transparent;
+    }
+    &:focus, &:not(:placeholder-shown) {
+      & + .form__label {
+        bottom: 28;
+        font-size: 9px;
+        line-height: 9px;
+      }
+    }
+  };
+
+  &__label {
+    position: absolute;
+    font-size: 14px;
+    line-height: 14px;
+    left: 0;
+    bottom: 7px;
+    color: $white-4;
+    pointer-events: none;
+
+    transition: bottom 0.5s, font-size 0.5s;
+  };
+
+  &__message {
+    position: relative;
+    padding-left: 20px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 10px;
+    line-height: 10px;
+    color: $danger;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background-image: url("../public/images/svg/cross-red.svg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  };
+
+  &--setting {
+    & .form__item {
+      margin-bottom: 0;
+    }
+
+    & .form__input-wrap {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+
+    & .form__label {
+      position: static;
+      flex-shrink: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 20px;
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+
+    & .form__input {
+      padding-top: 8px;
+      padding-bottom: 12px;
+    }
+  }
 }

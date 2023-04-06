@@ -1,7 +1,59 @@
 .chat-list {
-  &__link {};
-  &__link-icon {};
-  &__search {};
+  width: 310px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-right: solid 1px $white-6;
+  background-color: $black-2;
+
+  &__link-wrap {
+    text-align: right;
+  }
+
+  &__link {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+    margin-bottom: 23px;
+    padding-right: 16px;
+    color: $white-4;
+    transition: opacity 0.5s;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background-image: url("../public/images/svg/arrow-small.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: right;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    };
+    &:hover {
+      opacity: 60%;
+    };
+  };
+
+  &__search {
+    display: block;
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 12px;
+    color: $black-1;
+    background-color: $white-6;
+    &::placeholder {
+      color: $white-4;
+    }
+  };
+
   &__list {};
+
   &__chat-brick {};
 }

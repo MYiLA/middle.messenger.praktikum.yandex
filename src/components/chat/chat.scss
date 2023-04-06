@@ -1,3 +1,6 @@
 .chat {
-  &__cap{}
+  @include content-center;
+  &__info {
+    color: $white-4;
+  }
 }

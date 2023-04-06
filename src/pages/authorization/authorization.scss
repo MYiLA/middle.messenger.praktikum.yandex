@@ -1,8 +1,24 @@
 
 .authorization {
-  &__title {};
-  &__form {};
-  &__button-wrap {};
-  &__button {};
-  &__link {};
+  @include popup;
+  min-height: 460px;
+
+  &__title {
+    @include popup-title;
+  };
+
+  &__form {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+  };
+
+  &__button-wrap {
+    width: 100%;
+  };
+
+  &__link {
+    display: block;
+    text-align: center;
+  };
 };

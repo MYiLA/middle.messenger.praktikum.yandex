@@ -7,8 +7,8 @@ const compiledNavTemplate = Handlebars.compile(`
   {{#each .}}
     <div class="form__item">
       <div class="form__input-wrap">
-        <label class="form__input">{{this.label}}</label>
-        <input class="form__label" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}"></input>
+        <input class="form__input" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}" placeholder="{{this.placeholder}}"></input>
+        <label class="form__label">{{this.label}}</label>
       </div>
     </div>
   {{/each}}
@@ -26,18 +26,17 @@ export const Registration = {
            ${compiledNavTemplate(INPUTS)}
             <div class="form__item">
               <div class="form__input-wrap">
-                <label class="form__input" for="password">Пароль(ещё раз)</label>
-                <input class="form__label" value="••••••••••••" type="password" name="password" id="password"></input>
+                <input class="form__input" value="••••••••••••" type="password" name="password" id="password" placeholder="Пароль"></input>
+                <label class="form__label" for="password">Пароль(ещё раз)</label>
               </div>
               <div class="form__message">
-                <i class="form__message-icon"></i>
                 Неверный логин
               </div>
             </div>
           </form>
         </div>
         <div class="registration__button-wrap">
-          <button href="#" class="registration__button button button--light" type="submit" form="registration">Зарегистрироваться</button>
+          <button href="#" class="registration__button button" type="submit" form="registration">Зарегистрироваться</button>
           <a href="#" class="registration__link link">Войти</a>
         </div>
       </div>

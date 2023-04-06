@@ -9,24 +9,23 @@ export const Authorization = {
           <form action="POST" class="form__form">
             <div class="form__item">
               <div class="form__input-wrap">
-                <label class="form__input" for="login">Логин</label>
-                <input class="form__label" type="text" name="login" id="login"></input>
+                <input class="form__input" type="text" name="login" id="login" placeholder="Логин"></input>
+                <label class="form__label" for="login">Логин</label>
               </div>
               <div class="form__message">
-                <i class="form__message-icon"></i>
                 Неверный логин
               </div>
             </div>
             <div class="form__item">
               <div class="form__input-wrap">
+                <input class="form__input" type="password" name="password" id="password" placeholder="Пароль"></input>
                 <label class="form__label" for="password">Пароль</label>
-                <input class="form__input" type="password" name="password" id="password"></input>
               </div>
             </div>
           </form>
         </div>
         <div class="authorization__button-wrap">
-          <button href="#" class="authorization__button button button--light" type="submit">Войти</button>
+          <button href="#" class="authorization__button button" type="submit">Войти</button>
           <a href="#" class="authorization__link link">Нет аккаунта?</a>
         </div>
       </div>

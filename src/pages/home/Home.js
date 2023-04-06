@@ -13,7 +13,7 @@ const compiledNavTemplate = Handlebars.compile(`
       </div>
       <div class="chat-brick__info-wrap">
         <span class="chat-brick__time">{{this.time}}</span>
-        <span class="chat-brick__count">{{this.messageCount}}</span>
+        <span class="chat-brick__count">{{this.messagesCount}}</span>
       </div>
     </li>
   {{/each}}
@@ -26,19 +26,19 @@ export const Home = {
     return `
     <div class="home">
       <div class="home__chat-list chat-list">
-        <a href="#" class="chat-list__link">
-          Профиль
-          <i class="chat-list__link-icon"></i>
-        </a>
+        <div class="chat-list__link-wrap">
+          <a href="#" class="chat-list__link">
+            Профиль
+          </a>
+        </div>
         <input class="chat-list__search" id="search" placeholder="Поиск" type="search">
-
+        ${compiledNavTemplate(CHAT_BRICKS)}
       </div>
     
       <div class="home__chat chat">
-        <div class="chat__cap">
+        <div class="chat__info">
           Выберите чат чтобы отправить сообщение
         </div>
-        ${compiledNavTemplate(CHAT_BRICKS)}
       </div>
     </div>
     `;
