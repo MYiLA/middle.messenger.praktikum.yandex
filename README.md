@@ -27,3 +27,7 @@ express-server  https://expressjs.com
 googlefonts     https://fonts.google.com
 netlify         https://app.netlify.com
 ```
+### **МР-ы**
+```
+спринт-1   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/2
+```
