@@ -5,9 +5,10 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 ### **Используемые технологии:**
 
 parsel          https://parceljs.org
-SCSS            
-handlebars    
-express-server
+SCSS            https://sass-lang.com
+handlebars      https://handlebarsjs.com
+express-server  https://expressjs.com
+googlefonts     https://fonts.google.com
 
 ### **Команды**
 

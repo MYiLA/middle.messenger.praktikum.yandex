@@ -1,9 +1,19 @@
-@import "./styles/colors";
-@import "./styles/common";
+@import "./common/variables.scss";
+@import "./common/common.scss";
 
-@import "./styles/components/start-nav";
+@import "./components/button/button.scss";
+@import "./components/link/link.scss";
+@import "./components/cover-wrap/cover-wrap.scss";
+@import "./components/start-nav/start-nav.scss";
 
-@import "./styles/pages/authorization";
-@import "./styles/pages/error";
-@import "./styles/pages/home";
-@import "./styles/pages/user-settings";
+@import "./components/form/form.scss";
+@import "./components/avatar/avatar.scss";
+@import "./components/chat/chat.scss";
+@import "./components/chat-brick/chat-brick.scss";
+@import "./components/chat-list/chat-list.scss";
+
+@import "./pages/authorization/authorization.scss";
+@import "./pages/registration/registration.scss";
+@import "./pages/page-404/page-error.scss";
+@import "./pages/home/home.scss";
+@import "./pages/user-settings/user-settings.scss";

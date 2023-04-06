@@ -4,12 +4,12 @@ import { PageHome, PageAuthorization, PageRegistration, PageUserSettings, Page40
 const Handlebars = require("handlebars");
 
 const ROUTES = [
-  { path: '/authorization', component: PageAuthorization,  name: 'Авторизация' },
+  { path: '/',              component: PageAuthorization,  name: 'Авторизация' },
   { path: '/registration',  component: PageRegistration,   name: 'Регистрация' },
-  { path: '/',              component: PageHome,           name: 'Список чатов и лента переписки' },
+  { path: '/home',          component: PageHome,           name: 'Список чатов и лента переписки' },
   { path: '/user-settings', component: PageUserSettings,   name: 'Настройки пользователя' },
-  { path: '/404',           component: Page404,        name: 'Страница 404' },
-  { path: '/500',           component: Page500,        name: 'Страница 500' },
+  { path: '/404',           component: Page404,            name: 'Страница 404' },
+  { path: '/500',           component: Page500,            name: 'Страница 500' },
 ];
 
 const parseLocation = () => location.hash.slice(1).toLowerCase() || '/';
@@ -32,7 +32,7 @@ const ready = () => {
     <ul>
       {{#each .}}
         <li>
-          <a href="{{this.path}}">{{this.name}}</a>
+          <a href="/#{{this.path}}">{{this.name}}</a>
         </li>
       {{/each}}
     </ul>

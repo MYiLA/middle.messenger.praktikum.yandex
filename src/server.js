@@ -1,5 +1,5 @@
 'use strict';
-import { commonSettings } from './utils/settings';
+import { commonSettings } from './common/settings';
 
 const express = require('express');
 

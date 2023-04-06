@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Мессенжджер в космической тематике",
   "scripts": {
-    "start": "parcel ./src/index.html",
+    "start": "parcel --no-cache ./src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html"
+    "build": "parcel --no-cache build ./src/index.html"
   },
   "repository": {
     "type": "git",
