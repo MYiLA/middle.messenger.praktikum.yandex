@@ -13,16 +13,17 @@ https://space-messenger.netlify.app
 https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?node-id=0-1&t=VKKGHCbh8ahh2rgy-0
 
 ### **Команды**
-
-Запуск сервера:                     **npm run start**
-Запуск сборки проекта в браузере:   **npm run dev**
-Сборка проекта:                     **npm run build**
-
+```
+Запуск сервера:                       npm run start
+Запуск сборки проекта в браузере:     npm run dev
+Сборка проекта:                       npm run build
+```
 ### **Используемые технологии:**
-
+```
 parsel          https://parceljs.org
 SCSS            https://sass-lang.com
 handlebars      https://handlebarsjs.com
 express-server  https://expressjs.com
 googlefonts     https://fonts.google.com
 netlify         https://app.netlify.com
+```
