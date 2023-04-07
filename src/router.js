@@ -1,7 +1,6 @@
-'use strict';
-import { PageHome, PageAuthorization, PageRegistration, PageUserSettings, Page404, Page500 } from "./pages";
+import Handlebars from "handlebars";
 
-const Handlebars = require("handlebars");
+import { PageHome, PageAuthorization, PageRegistration, PageUserSettings, Page404, Page500 } from "./pages";
 
 const ROUTES = [
   { path: '/',              component: PageAuthorization,  name: 'Авторизация' },

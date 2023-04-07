@@ -1,7 +1,7 @@
-'use strict';
+import Handlebars from "handlebars";
+
 import { CHAT_BRICKS } from "./constants";
 
-const Handlebars = require("handlebars");
 const compiledNavTemplate = Handlebars.compile(`
 <ul class="chat-list__list">
   {{#each .}}

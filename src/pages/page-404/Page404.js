@@ -1,4 +1,3 @@
-'use strict';
 export const Page404 = {
   render: () => {
     return `

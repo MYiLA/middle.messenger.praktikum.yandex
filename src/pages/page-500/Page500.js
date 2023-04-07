@@ -1,4 +1,3 @@
-'use strict';
 export const Page500 = {
   render: () => {
     return `

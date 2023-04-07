@@ -1,7 +1,6 @@
-'use strict';
-import { INPUTS } from "./constants";
+import Handlebars from "handlebars";
 
-const Handlebars = require("handlebars");
+import { INPUTS } from "./constants";
 
 const compiledNavTemplate = Handlebars.compile(`
   {{#each .}}
