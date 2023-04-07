@@ -1,5 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9e3de672-4504-4c7d-ba7a-1b99c623d48d/deploy-status)](https://app.netlify.com/sites/space-messenger/deploys)
 
+[![Tests](https://github.com/MYiLA/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg)](https://github.com/MYiLA/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
+
 # **Космический чат**
 
 Космический чат для общения на космические темы
