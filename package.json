@@ -19,12 +19,13 @@
   },
   "homepage": "https://github.com/MYiLA/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "@parcel/transformer-sass": "^2.8.3",
     "parcel": "^2.8.3",
-    "sass": "^1.60.0"
+    "parcel-transformer-hbs": "^1.0.4",
+    "sass": "^1.60.0",
+    "@parcel/transformer-sass": "^2.8.3"
   }
 }
