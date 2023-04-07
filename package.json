@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Мессенжджер в космической тематике",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "npm run build && node src/server.js",
     "dev": "parcel ./src/index.html --open --no-cache --target default",
     "build": "parcel build ./src/index.html --no-cache"
   },
