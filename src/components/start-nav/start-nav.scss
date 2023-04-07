@@ -1,12 +1,12 @@
-#start-nav {
+.start-nav {
   max-width: 1000px;
   margin: auto;
-  ul {
+  &__list {
     display: flex;
     justify-content: space-around;
-  }
-  a:-webkit-any-link {
+  };
+  &__link:-webkit-any-link {
     color: rgb(228, 202, 122);
     text-decoration: none;
-  }
-}
+  };
+};
