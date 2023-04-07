@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Мессенжджер в космической тематике",
   "scripts": {
-    "start": "node src/server.js --open",
+    "start": "node src/server.js",
     "dev": "parcel ./src/index.html --no-cache",
     "build": "parcel build ./src/index.html --no-cache"
   },
@@ -18,6 +18,9 @@
     "url": "https://github.com/MYiLA/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/MYiLA/middle.messenger.praktikum.yandex#readme",
+  "engines": {
+    "node": ">12.0.0"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "handlebars": "^4.7.7"
