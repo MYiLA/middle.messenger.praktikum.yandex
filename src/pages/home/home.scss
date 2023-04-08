@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+
+  &__chat-list {
+    flex-shrink: 0;
+    overflow-y: scroll;
+  }
+
+  &__chat {
+    flex-grow: 1;
+  }
+}

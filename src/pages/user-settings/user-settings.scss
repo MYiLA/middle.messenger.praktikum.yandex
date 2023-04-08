@@ -1,0 +1,63 @@
+.user-settings {
+  display: flex;
+  justify-content: space-between;
+
+  &__left-wrap {
+    @include content-center;
+    width: 64px;
+    height: 100vh;
+    border-right: solid 1px $white-6;
+    background-color: $black-3;
+  };
+
+  &__link-back {
+    @include background-image;
+    width: 28px;
+    height: 28px;
+    background-image: url("../public/images/svg/arrow.svg");
+    transition: opacity 0.5s;
+    &:hover {
+      opacity: 70%;
+    }
+  };
+
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    padding-top: 60px;
+  };
+
+  &__avatar-wrap {
+    width: 100%;
+    max-width: 550px;
+    padding: 20px;
+  };
+
+  &__avatar {
+    margin-bottom: 21px;
+  };
+
+  &__name {
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+  };
+
+  &__form {
+    margin-bottom: 44px;
+  };
+
+  &__button-wrap {
+   display: flex;
+   justify-content: space-between;
+  };
+
+  &__button {
+    margin-right: 9px;
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+  };
+}
