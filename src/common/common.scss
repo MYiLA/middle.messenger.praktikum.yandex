@@ -67,3 +67,24 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px $black-1 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+// Для Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba($white-4, 0.5);
+}
+
+// Для Chrome, Edge, Safari
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba($white-4, 0.5);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba($white-4, 0.5);
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
