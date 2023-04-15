@@ -7,18 +7,28 @@
     <div class="user-settings__avatar-wrap">
       <div class="user-settings__avatar avatar">
         <form class="avatar__form" action="post" >
-          <input class="avatar__input" type="image" name="avatar"></input>
+          <input class="avatar__input" type="file" name="avatar" accept="image/png, image/jpeg"></input>
         </form>
       </div>
 
       <h1 class="user-settings__name">Иван</h1>
-      <div class="user-settings__form form">
+      <div class="user-settings__form form form--setting">
         <form id="setting-user-data" action="POST" class="form__form">
-          {{#each .}}
+          {{#each dataInputs}}
             <div class="form__item">
               <div class="form__input-wrap">
-                <label class="form__label">{{this.label}}</label>
                 <input class="form__input" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}"></input>
+                <label class="form__label">{{this.label}}</label>
+              </div>
+            </div>
+          {{/each}}
+        </form>
+        <form id="setting-user-password" action="POST" class="form__form">
+          {{#each passwordInputs}}
+            <div class="form__item">
+              <div class="form__input-wrap">
+                <input class="form__input" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}"></input>
+                <label class="form__label">{{this.label}}</label>
               </div>
             </div>
           {{/each}}

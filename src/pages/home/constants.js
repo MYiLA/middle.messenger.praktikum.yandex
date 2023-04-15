@@ -1,4 +1,4 @@
-export const CHAT_BRICKS = [
+export const CHATS = [
   {
     title:'Андрей',
     desc:'Изображение',
@@ -11,7 +11,6 @@ export const CHAT_BRICKS = [
     desc:'стикер',
     avatarColor:'#AB3245',
     time: '12:00',
-    messagesCount: '2',
   },
   {
     title:'Илья',
@@ -25,14 +24,12 @@ export const CHAT_BRICKS = [
     desc:'совсем забыл',
     avatarColor:'#',
     time: '13:77',
-    messagesCount: '3',
   },
   {
     title:'Вадим',
     desc:'круто!',
     avatarColor:'#2917F4',
     time: '14.00',
-    messagesCount: '43',
   },
   {
     title:'1, 2, 3',
@@ -53,62 +50,53 @@ export const CHAT_BRICKS = [
     desc:'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
     avatarColor:'#74C3BF',
     time: 'Ср',
-    messagesCount: '2',
   },
   {
     title:'Стас Рогозин',
     desc:'Можно или сегодня или завтра вечером.',
     avatarColor:'#FFFFFF',
     time: 'Пн',
-    messagesCount: '3',
   },
   {
     title:'тет-а-теты',
     desc:'И Human Interface Guidelines...',
     avatarColor:'#43F417',
     time: 'Пн',
-    messagesCount: '1',
   },
   {
     title:'Группа № 13',
     desc:'стикер',
     avatarColor:'#17F4BF',
     time: '1 Мая 2022',
-    messagesCount: '5',
   },
   {
     title:'Как заработать много...',
     desc:'Учимся на Я.Практикум!',
     avatarColor:'#BE9D26',
     time: '20 Апр 2021',
-    messagesCount: '4',
   },
   {
     title:'###',
     desc:'За что мне это всё?',
     avatarColor:'#FF0000',
     time: '14 Мая 2020',
-    messagesCount: '3',
   },
   {
     title:'Андрей',
     desc:'Изображение',
     avatarColor:'#FFFFFF',
     time: '10:49',
-    messagesCount: '1',
   },
   {
     title:'Киноклуб',
     desc:'стикер',
     avatarColor:'#AB3245',
     time: '12:00',
-    messagesCount: '2',
   },
   {
     title:'Илья',
     desc:'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
     avatarColor:'#7E6C63',
     time: '13:66',
-    messagesCount: '10',
   },
 ]

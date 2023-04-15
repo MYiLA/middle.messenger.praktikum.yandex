@@ -26,7 +26,6 @@ const router = () => {
 // TODO: Временно, пока проект статичен
 const ready = () => {
   const startNavContainer = document.querySelector('.start-nav');
-  console.log('startNavContainer', startNavContainer)
   const compiledNavTemplate = Handlebars.compile(`
     <ul class="start-nav__list">
       {{#each .}}
