@@ -27,7 +27,8 @@
     "handlebars": "^4.7.7",
     "parcel": "^2.8.3",
     "parcel-transformer-hbs": "^1.0.4",
-    "sass": "^1.60.0"
+    "sass": "^1.60.0",
+    "typescript": "^5.0.4"
   },
   "engines": {
     "node": ">14.0.0"

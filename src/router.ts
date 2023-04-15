@@ -1,8 +1,8 @@
-import Handlebars from "handlebars";
-
+import { Rout } from "./common/types";
+import { StartNav } from "./components";
 import { PageHome, PageAuthorization, PageRegistration, PageUserSettings, Page404, Page500 } from "./pages";
 
-const ROUTES = [
+const ROUTES: Rout[] = [
   { path: '/',              component: PageAuthorization,  name: 'Авторизация' },
   { path: '/registration',  component: PageRegistration,   name: 'Регистрация' },
   { path: '/home',          component: PageHome,           name: 'Список чатов и лента переписки' },
@@ -12,33 +12,29 @@ const ROUTES = [
 ];
 
 const parseLocation = () => location.hash.slice(1).toLowerCase() || '/';
-const findComponentByPath = (path, routes) => routes.find(route => route.path.match(new RegExp(`^\\${path}$`, 'gm'))) || undefined;
+const findComponentByPath = (path: string, routes: Rout[]) => routes.find(route => route.path.match(new RegExp(`^\\${path}$`, 'gm'))) || undefined;
 
 const router = () => {
   // Находит компонент по текущему роуту
   const path = parseLocation();
   // Если роут не найден, показывает страницу 404
-  const { component = Page404Component } = findComponentByPath(path, ROUTES) || {};
+  const { component = Page404 } = findComponentByPath(path, ROUTES) || {};
+
+  const appElement = document.getElementById('app');
+
+  if (!appElement) throw new Error('Не найдено элемента на странице с id "app"')
+
   // Рендерит полученный компонент в документ
-  document.getElementById('app').innerHTML = component.render();
+  appElement.innerHTML = component.render();
 };
 
 // TODO: Временно, пока проект статичен
 const ready = () => {
   const startNavContainer = document.querySelector('.start-nav');
-  const compiledNavTemplate = Handlebars.compile(`
-    <ul class="start-nav__list">
-      {{#each .}}
-        <li>
-          <a class="start-nav__link" href="/#{{this.path}}">{{this.name}}</a>
-        </li>
-      {{/each}}
-    </ul>
-  `
-  );
 
-  const result = compiledNavTemplate(ROUTES);
-  startNavContainer.innerHTML = result;
+  if (!startNavContainer) throw new Error('Не найдено элемента на странице с классом "start-nav"')
+
+  startNavContainer.innerHTML = StartNav.render(ROUTES);
 }
 
 document.addEventListener("DOMContentLoaded", ready);
