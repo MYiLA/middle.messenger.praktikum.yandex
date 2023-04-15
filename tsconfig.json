@@ -9,5 +9,26 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+  },
+  "include": [
+    "./src/**/*.ts",
+    "index.d.ts",
+    "index.d.ts"
+, "src/server.js"  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".parcel-cache",
+    ".github",
+    "public"
+  ],
+  "paths": {
+    "@common/*": ["src/common/*"],
+    "@pages/*": ["src/pages/*"],
+    "@components": ["src/components/*"],
+    "@utils/*": ["src/utils/*"],
+    "@router": ["src/router.ts"],
+    "@src/*": ["src/*"],
+    "@packageSrc": ["package.json"],
   }
-} 
+}
