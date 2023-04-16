@@ -8,7 +8,7 @@ export type SomeObject = Record<PropertyKey, any>;
  */
 export type Component = {
   render: (params?:SomeObject) => string;
-}
+};
 
 /**
  * Роут
@@ -17,4 +17,4 @@ export type Rout = {
   path: string,
   component: Component,
   name: string,
-}
+};

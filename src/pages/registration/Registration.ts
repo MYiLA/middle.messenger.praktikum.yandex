@@ -1,6 +1,8 @@
-import { INPUTS } from "./constants";
-import template from "./registration.hbs"
+import INPUTS from './constants';
+import template from './registration.hbs';
 
-export const Registration = {
-  render: () => template({inputs: INPUTS})
-}
+const Registration = {
+  render: () => template({ inputs: INPUTS }),
+};
+
+export default Registration;

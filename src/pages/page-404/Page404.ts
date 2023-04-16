@@ -1,5 +1,7 @@
-import template from "./page-404.hbs"
+import template from './page-404.hbs';
 
-export const Page404 = {
-  render: () => template()
-}
+const Page404 = {
+  render: () => template(),
+};
+
+export default Page404;

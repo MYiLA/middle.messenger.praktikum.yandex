@@ -35,7 +35,7 @@ export const DATA_INPUTS = [
     value: '+7 (909) 967 30 30',
     type: 'tel',
   },
-]
+];
 
 export const PASSWORD_INPUTS = [
   {
@@ -55,5 +55,5 @@ export const PASSWORD_INPUTS = [
     label: 'Повторите новый пароль',
     value: '•••••••••••',
     type: 'password',
-  }
-]
+  },
+];

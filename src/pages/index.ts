@@ -1,6 +1,10 @@
-export { Home as PageHome } from "./home/Home";
-export { Authorization as PageAuthorization } from "./authorization/Authorization";
-export { Registration as PageRegistration } from "./registration/Registration";
-export { UserSettings as PageUserSettings } from "./user-settings/UserSettings";
-export { Page404 } from "./page-404/Page404";
-export { Page500 } from "./page-500/Page500";
+import PageAuthorization from './authorization/Authorization';
+import PageHome from './home/Home';
+import PageRegistration from './registration/Registration';
+import PageUserSettings from './user-settings/UserSettings';
+import Page404 from './page-404/Page404';
+import Page500 from './page-500/Page500';
+
+export {
+  PageAuthorization, Page404, Page500, PageHome, PageRegistration, PageUserSettings,
+};

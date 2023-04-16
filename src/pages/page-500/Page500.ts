@@ -1,5 +1,7 @@
-import template from "./page-500.hbs"
+import template from './page-500.hbs';
 
-export const Page500 = {
-  render: () => template()
-}
+const Page500 = {
+  render: () => template(),
+};
+
+export default Page500;

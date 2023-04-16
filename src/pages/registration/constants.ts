@@ -1,4 +1,4 @@
-export const INPUTS = [
+const INPUTS = [
   {
     name: 'email',
     label: 'Почта',
@@ -40,5 +40,7 @@ export const INPUTS = [
     value: '••••••••••••',
     type: 'password',
     placeholder: 'Пароль',
-  }
-]
+  },
+];
+
+export default INPUTS;

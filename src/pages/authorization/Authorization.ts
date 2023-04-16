@@ -1,5 +1,7 @@
-import template from "./authorization.hbs";
+import template from './authorization.hbs';
 
-export const Authorization = {
+const Authorization = {
   render: () => template(),
-}
+};
+
+export default Authorization;

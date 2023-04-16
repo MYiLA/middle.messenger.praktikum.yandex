@@ -1,9 +1,9 @@
 import { Rout } from '../../common/types';
 
-import template from './start-nav.hbs';
+import template from './link.hbs';
 
-const StartNav = {
+const Link = {
   render: (routes: Rout[]) => template(routes),
 };
 
-export default StartNav;
+export default Link;
