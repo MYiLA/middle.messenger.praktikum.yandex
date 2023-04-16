@@ -7,21 +7,27 @@
   background-color: $black-3;
   cursor: pointer;
   transition: opacity 0.3s;
+
   &::after {
+
     @include background-image;
+
     @include absolute-center;
+
     content: '';
     width: 40px;
     height: 40px;
-    background-image: url(../public/images/svg/picture-white.svg);
+    background-image: url("../public/images/svg/picture-white.svg");
   }
 
   &:hover {
-    opacity: 60%;
+    opacity: 0.6;
   }
 
   &__form {
+
     @include absolute-center;
+
     z-index: 1;
     left: 20%;
     opacity: 0;

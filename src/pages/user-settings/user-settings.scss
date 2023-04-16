@@ -3,7 +3,9 @@
   justify-content: space-between;
 
   &__left-wrap {
+
     @include content-center;
+
     width: 64px;
     height: 100vh;
     border-right: solid 1px $white-6;
@@ -11,13 +13,16 @@
   };
 
   &__link-back {
+
     @include background-image;
+
     width: 28px;
     height: 28px;
     background-image: url("../public/images/svg/arrow.svg");
     transition: opacity 0.5s;
+
     &:hover {
-      opacity: 70%;
+      opacity: 0.7;
     }
   };
 
@@ -56,6 +61,7 @@
 
   &__button {
     margin-right: 9px;
+
     &:nth-last-child(1) {
       margin-right: 0;
     }

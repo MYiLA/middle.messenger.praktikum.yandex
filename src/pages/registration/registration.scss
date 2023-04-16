@@ -1,8 +1,11 @@
 .registration {
+
   @include popup;
+
   min-height: 615px;
 
   &__title {
+
     @include popup-title;
   };
 

@@ -22,12 +22,15 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 ```
 ### **Используемые технологии:**
 ```
-parsel          https://parceljs.org
-SCSS            https://sass-lang.com
-handlebars      https://handlebarsjs.com
-express-server  https://expressjs.com
-googlefonts     https://fonts.google.com
-netlify         https://app.netlify.com
+parsel            https://parceljs.org
+SCSS              https://sass-lang.com
+handlebars        https://handlebarsjs.com
+express-server    https://expressjs.com
+googlefonts       https://fonts.google.com
+netlify           https://app.netlify.com
+stylelint         https://github.com/stylelint
+stylelint plugins https://github.com/stylelint/awesome-stylelint#plugins
+
 ```
 ### **МР-ы**
 ```

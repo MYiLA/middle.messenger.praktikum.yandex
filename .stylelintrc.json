@@ -1,0 +1,25 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": [
+    "dist/*",
+    "node_modules/*",
+    ".parcel-cache/*"
+  ],
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "no-duplicate-selectors": true,
+    "block-no-empty": true,
+    "no-empty-source": true,
+    "color-no-invalid-hex": true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "at-rule-empty-line-before": "always",
+    "import-notation": "string",
+    "plugin/selector-bem-pattern": {
+      "preset": "suit"
+    }
+  }
+}

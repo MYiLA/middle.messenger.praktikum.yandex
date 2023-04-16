@@ -6,8 +6,8 @@
     "start": "npm run build && node src/server.js",
     "dev": "parcel ./src/index.html --open --no-cache --target default",
     "build": "parcel build ./src/index.html --no-cache",
-    "lint": "npx eslint . --ext .js,.ts",
-    "lint-fix": "npx eslint . --fix"
+    "check": "npx eslint . --ext .js,.ts && npx stylelint **/*.scss",
+    "fix": "npx eslint . --fix, npx stylelint **/*.scss --fix"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,10 @@
     "parcel": "^2.8.3",
     "parcel-transformer-hbs": "^1.0.4",
     "sass": "^1.60.0",
+    "stylelint": "^15.4.0",
+    "stylelint-scss": "^4.6.0",
+    "stylelint-config-standard": "^32.0.0",
+    "stylelint-selector-bem-pattern": "^2.1.1",
     "typescript": "^5.0.4"
   },
   "engines": {
