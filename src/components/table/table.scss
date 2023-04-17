@@ -1,0 +1,23 @@
+.table {
+  width: 100%;
+
+ &__head {
+  background-color: $black-1;
+ }
+
+ &__head-row {
+  border-radius: 12px;
+ }
+
+ &__head-item {
+  padding: 10px;
+ }
+
+ &__body-row {
+  background-color: rgba($white-1, 0.05);
+ }
+
+ &__body-item {
+  padding: 10px;
+ }
+}

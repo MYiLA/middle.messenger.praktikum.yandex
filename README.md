@@ -28,7 +28,7 @@ handlebars        https://handlebarsjs.com
 express-server    https://expressjs.com
 googlefonts       https://fonts.google.com
 netlify           https://app.netlify.com
-stylelint         https://github.com/stylelint
+stylelint         https://stylelint.io/
 stylelint plugins https://github.com/stylelint/awesome-stylelint#plugins
 
 ```

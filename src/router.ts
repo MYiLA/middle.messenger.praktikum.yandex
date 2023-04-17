@@ -1,7 +1,7 @@
 import { Rout } from './common/types';
 import { StartNav } from './components';
 import {
-  PageHome, PageAuthorization, PageRegistration, PageUserSettings, Page404, Page500,
+  PageHome, PageAuthorization, PageRegistration, PageUserSettings, Page404, Page500, PageDemo,
 } from './pages';
 
 const ROUTES: Rout[] = [
@@ -11,6 +11,7 @@ const ROUTES: Rout[] = [
   { path: '/user-settings', component: PageUserSettings, name: 'Настройки пользователя' },
   { path: '/404', component: Page404, name: 'Страница 404' },
   { path: '/500', component: Page500, name: 'Страница 500' },
+  { path: '/demo', component: PageDemo, name: 'Компоненты' },
 ];
 
 // eslint-disable-next-line no-restricted-globals

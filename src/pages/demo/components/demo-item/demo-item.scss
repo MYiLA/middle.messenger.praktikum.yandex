@@ -1,0 +1,17 @@
+.demo-item {
+  &__title {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  &__component-wrap {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+}
