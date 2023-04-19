@@ -10,5 +10,24 @@
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-underscore-dangle": ["error", { 
+      "allow": ["_bar"],
+      "allowAfterThis": true
+    }],
+    "no-param-reassign": ["error", { 
+      "props": false
+    }],
+    "class-methods-use-this": ["error", {
+      "exceptMethods": [
+        "_getChildrenAndProps",
+        "render",
+        "componentDidUpdate",
+        "componentDidMount",
+        "_createDocumentElement"
+      ]
+      }],
+      "no-console": "off"
   }
 }

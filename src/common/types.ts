@@ -1,20 +1,10 @@
-/**
- * Базовый тип объекта
- */
-export type SomeObject = Record<PropertyKey, any>;
-
-/**
- * Базовый компонент
- */
-export type Component = {
-  render: (params?:SomeObject) => string;
-};
+import { Page404, PageAuthorization } from '../pages';
 
 /**
  * Роут
  */
 export type Rout = {
   path: string,
-  component: Component,
+  component: PageAuthorization | Page404,
   name: string,
 };
