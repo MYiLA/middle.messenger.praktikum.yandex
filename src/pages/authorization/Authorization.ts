@@ -1,13 +1,16 @@
-import Block from '../../utils/Block';
+import Block, { SomeObject } from '../../utils/Block';
 import template from './authorization.hbs';
 
+type AuthorizationProps = {
+  attr?: SomeObject
+};
+
 class Authorization extends Block {
-  constructor() {
-    super('div');
+  constructor(props: AuthorizationProps) {
+    super('div', props);
   }
 
   render() {
-    console.log('Рендер авторизации');
     return this.compile(template, this);
   }
 }

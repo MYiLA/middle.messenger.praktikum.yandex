@@ -70,8 +70,13 @@ class Block {
   }
 
   private _createDocumentElement(tagName: string) {
+    const documentElement = document.createElement(tagName);
+    // Если передан атрибут класса, вешаем его
+    if (this.props.attr?.class) {
+      documentElement.classList.add(this.props.attr.class);
+    }
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
+    return documentElement;
   }
 
   protected init() {

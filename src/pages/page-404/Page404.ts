@@ -1,13 +1,16 @@
-import Block from '../../utils/Block';
+import Block, { SomeObject } from '../../utils/Block';
 import template from './page-404.hbs';
 
+type Page404Props = {
+  attr?: SomeObject
+};
+
 class Page404 extends Block {
-  constructor() {
-    super('div');
+  constructor(props: Page404Props) {
+    super('div', props);
   }
 
   render() {
-    console.log('Рендер 404');
     return this.compile(template, this);
   }
 }

@@ -1,22 +1,27 @@
 import { Rout } from './common/types';
 import { StartNav } from './components';
 import {
-  PageAuthorization, Page404,
+  PageAuthorization, Page404, PageRegistration, PageHome, PageUserSettings, Page500, PageDemo,
 } from './pages';
 
 // TODO: Временно, пока проект статичен
 const ready = () => {
-  const pageAuthorizationComponent = new PageAuthorization();
-  const page404Component = new Page404();
+  const pageAuthorizationComponent = new PageAuthorization({ attr: { class: 'cover-wrap' } });
+  const PageRegistrationComponent = new PageRegistration({ attr: { class: 'cover-wrap' } });
+  const PageHomeComponent = new PageHome({ attr: { class: 'home' } });
+  const PageUserSettingsComponent = new PageUserSettings({ attr: { class: 'user-settings' } });
+  const page404Component = new Page404({ attr: { class: 'page-error' } });
+  const Page500Component = new Page500({ attr: { class: 'page-error' } });
+  const PageDemoComponent = new PageDemo({ attr: { class: 'demo' } });
 
   const ROUTES: Rout[] = [
     { path: '/', component: pageAuthorizationComponent, name: 'Авторизация' },
-    // { path: '/registration', component: PageRegistration, name: 'Регистрация' },
-    // { path: '/home', component: PageHome, name: 'Список чатов и лента переписки' },
-    // { path: '/user-settings', component: PageUserSettings, name: 'Настройки пользователя' },
+    { path: '/registration', component: PageRegistrationComponent, name: 'Регистрация' },
+    { path: '/home', component: PageHomeComponent, name: 'Список чатов и лента переписки' },
+    { path: '/user-settings', component: PageUserSettingsComponent, name: 'Настройки пользователя' },
     { path: '/404', component: page404Component, name: 'Страница 404' },
-  // { path: '/500', component: Page500, name: 'Страница 500' },
-  // { path: '/demo', component: PageDemo, name: 'Компоненты' },
+    { path: '/500', component: Page500Component, name: 'Страница 500' },
+    { path: '/demo', component: PageDemoComponent, name: 'Компоненты' },
   ];
 
   // eslint-disable-next-line no-restricted-globals
