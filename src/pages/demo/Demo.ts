@@ -1,42 +1,28 @@
-import { Button } from '../../components';
 import Block from '../../utils/Block';
+import {
+  DemoButton, DemoInput, DemoItem, PROPS_BUTTON, PROPS_INPUT,
+} from './components';
 import template from './demo.hbs';
 
-type DemoProps = {};
+const ButtonItem = new DemoButton();
+const inputItem = new DemoInput();
 
-const button = new Button({
-  label: 'Я светлая кнопка',
-  events: {
-    click: (ev: Event) => console.log('Светлая кнопка нажата', ev),
-  },
-  type: 'button',
-  attr: {
-    classes: ['margin-bottom-20'],
-  },
-});
-
-const buttonBlack = new Button({
-  label: 'Я тёмная кнопка',
-  events: {
-    click: (ev: Event) => console.log('Тёмная кнопка нажата', ev),
-  },
-  type: 'button',
-  attr: {
-    classes: ['margin-bottom-20', 'button--dark'],
-  },
-});
+const DemoButtonComponent = new DemoItem({ name: 'Button', itemPropses: PROPS_BUTTON, item: ButtonItem });
+const DemoInputComponent = new DemoItem({ name: 'Input', itemPropses: PROPS_INPUT, item: inputItem });
 
 class Demo extends Block {
-  constructor(props: DemoProps) {
+  constructor() {
     super('section', {
-      ...props, attr: { classes: ['demo'] }, button, buttonBlack,
+      attr: { classes: ['demo'] },
+      buttonItem: DemoButtonComponent,
+      inputItem: DemoInputComponent,
     });
   }
 
   render() {
     return this.compile(template, {
-      button: this.props.button,
-      buttonBlack: this.props.buttonBlack,
+      buttonItem: this.children.DemoButtonComponent,
+      inputItem: this.children.DemoInputComponent,
     });
   }
 }

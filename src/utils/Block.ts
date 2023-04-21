@@ -1,10 +1,13 @@
 import { v4 as uuid4 } from 'uuid';
 import EventBus from './EventBus';
 
-/**
- * Базовый тип объекта
- */
-export type SomeObject = Record<PropertyKey, any>;
+export type BlockProps = {
+  [x: string | symbol | number]: any;
+  attr?: {
+    [x: string]: string | string[] | undefined;
+    classes?: string[];
+  }
+};
 
 class Block {
   static EVENTS = {
@@ -16,7 +19,7 @@ class Block {
 
   public id = uuid4();
 
-  protected props: SomeObject;
+  protected props: BlockProps;
 
   private _eventBus: () => EventBus;
 
@@ -24,10 +27,10 @@ class Block {
 
   private _meta: {
     tagName: string;
-    props: SomeObject;
+    props: BlockProps;
   };
 
-  private children: Record<string, Block>;
+  protected children: Record<string, Block>;
 
   /**
    * @param tagName
@@ -35,7 +38,7 @@ class Block {
    *
    * @returns Void
    */
-  constructor(tagName: string = 'div', propsWithChildren: SomeObject = {}) {
+  constructor(tagName: string = 'div', propsWithChildren: BlockProps = {}) {
     const eventBus = new EventBus();
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
     this._meta = {
@@ -71,16 +74,22 @@ class Block {
 
   private _createDocumentElement(tagName: string) {
     const documentElement = document.createElement(tagName);
-    // Если передан атрибут c классами, вешаем их
-    const classes = this.props.attr?.classes;
-    console.log(this.props.attr.classes);
-    if (classes && classes instanceof Array) {
-      classes.forEach((item) => {
-        if (typeof item === 'string') {
-          documentElement.classList.add(item);
+    const attributes = this.props.attr;
+    if (attributes) {
+      Object.keys(attributes).forEach((key) => {
+        const value = attributes[key];
+        // Если передан атрибут c классами, вешаем их
+        if (key === 'classes' && value instanceof Array) {
+          value.forEach((item) => {
+            documentElement.classList.add(item);
+          });
+          // Если переданы другие атрибуты - переназначаем их
+        } else if (typeof value === 'string') {
+          documentElement.setAttribute(key, value);
         }
       });
     }
+
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return documentElement;
   }
@@ -95,26 +104,24 @@ class Block {
     this.componentDidMount();
   }
 
-  protected componentDidMount() {
-    console.log('componentDidMount');
-  }
+  protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this._eventBus().emit(Block.EVENTS.CDM);
   }
 
-  private _componentDidUpdate(oldProps: SomeObject, newProps: SomeObject) {
+  private _componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this._eventBus().emit(Block.EVENTS.RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: SomeObject, newProps: SomeObject) {
-    console.log('Нужно переопределить функцию componentDidUpdate', oldProps, newProps);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  protected componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
     return true;
   }
 
-  protected setProps = (nextProps: SomeObject): void => {
+  protected setProps = (nextProps: BlockProps): void => {
     if (!nextProps) {
       return;
     }
@@ -137,7 +144,6 @@ class Block {
   }
 
   protected render(): DocumentFragment {
-    console.log('Нужно переопределить функцию render');
     return new DocumentFragment();
   }
 
@@ -145,8 +151,8 @@ class Block {
     return this.element;
   }
 
-  private _getChildrenAndProps(childrenAndProps: SomeObject) {
-    const props: SomeObject = {};
+  private _getChildrenAndProps(childrenAndProps: BlockProps) {
+    const props: BlockProps = {};
     const children: Record<string, Block> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
@@ -160,22 +166,18 @@ class Block {
     return { props, children };
   }
 
-  // TODO: Не получается 2 кнопки уместить в один контейнер
-  // контейнер очищается и кнопка только первая рисуется.
-  // События теряются
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      console.log(component);
       if (Array.isArray(component)) {
+        // TODO: научить компоненты работать со списком чилдренов
         console.log('РАБОТА С АРРЕЕМ');
       }
       contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
     });
 
     const html = template(contextAndStubs);
-
     const temp: HTMLTemplateElement = document.createElement('template');
 
     temp.innerHTML = html;
@@ -193,9 +195,8 @@ class Block {
     return temp.content;
   }
 
-  private _makePropsProxy(props: SomeObject) {
+  private _makePropsProxy(props: BlockProps) {
     const self = this;
-
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];

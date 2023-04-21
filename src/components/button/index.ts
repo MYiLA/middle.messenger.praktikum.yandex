@@ -4,14 +4,16 @@ import template from './button.hbs';
 type ButtonProps = {
   label: string,
   events?: {
-    click: (ev: Event) => void
+    click?: (ev: Event) => void,
+    submit?: (ev: Event) => void
   }
-  isLink?: boolean,
-  /* button | submit */
-  type: string,
   shouldRender?: boolean,
   form?: string[]
-  attr?: { classes: string[] }
+  attr?: {
+    classes?: string[],
+    form?: string,
+    type?: 'button' | 'submit'
+  }
 };
 
 class Button extends Block {
@@ -19,7 +21,8 @@ class Button extends Block {
     super('button', {
       ...props,
       attr: {
-        // Замешиваем классы по-умолчанию с атрибутами
+        ...props.attr,
+        // Замешиваем класc по-умолчанию
         classes: props.attr?.classes ? ['button'].concat(props.attr.classes) : ['button'],
       },
     });

@@ -10,7 +10,6 @@ class Registration extends Block {
   }
 
   render() {
-    console.log('Рендер авторизации');
     return this.compile(template, { inputs: INPUTS });
   }
 }

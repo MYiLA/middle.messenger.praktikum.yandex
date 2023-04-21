@@ -10,7 +10,6 @@ class UserSettings extends Block {
   }
 
   render() {
-    console.log('Рендер авторизации');
     return this.compile(template, { dataInputs: DATA_INPUTS, passwordInputs: PASSWORD_INPUTS });
   }
 }
