@@ -1,14 +1,12 @@
-import Block, { SomeObject } from '../../utils/Block';
+import Block from '../../utils/Block';
 import INPUTS from './constants';
 import template from './registration.hbs';
 
-type RegistrationProps = {
-  attr?: SomeObject
-};
+type RegistrationProps = {};
 
 class Registration extends Block {
   constructor(props: RegistrationProps) {
-    super('div', props);
+    super('div', { ...props, attr: { classes: ['cover-wrap'] } });
   }
 
   render() {

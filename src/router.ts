@@ -1,20 +1,20 @@
-import { Rout } from './common/types';
+import Router from './common/types';
 import { StartNav } from './components';
 import {
-  PageAuthorization, Page404, PageRegistration, PageHome, PageUserSettings, Page500, PageDemo,
+  PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
 } from './pages';
 
 // TODO: Временно, пока проект статичен
 const ready = () => {
-  const pageAuthorizationComponent = new PageAuthorization({ attr: { class: 'cover-wrap' } });
-  const PageRegistrationComponent = new PageRegistration({ attr: { class: 'cover-wrap' } });
-  const PageHomeComponent = new PageHome({ attr: { class: 'home' } });
-  const PageUserSettingsComponent = new PageUserSettings({ attr: { class: 'user-settings' } });
-  const page404Component = new Page404({ attr: { class: 'page-error' } });
-  const Page500Component = new Page500({ attr: { class: 'page-error' } });
-  const PageDemoComponent = new PageDemo({ attr: { class: 'demo' } });
+  const pageAuthorizationComponent = new PageAuthorization({});
+  const PageRegistrationComponent = new PageRegistration({});
+  const PageHomeComponent = new PageHome({});
+  const PageUserSettingsComponent = new PageUserSettings({});
+  const page404Component = new PageError({ code: '404', desc: 'Не туда попали' });
+  const Page500Component = new PageError({ code: '500', desc: 'Мы уже фиксим' });
+  const PageDemoComponent = new PageDemo({});
 
-  const ROUTES: Rout[] = [
+  const ROUTES: Router[] = [
     { path: '/', component: pageAuthorizationComponent, name: 'Авторизация' },
     { path: '/registration', component: PageRegistrationComponent, name: 'Регистрация' },
     { path: '/home', component: PageHomeComponent, name: 'Список чатов и лента переписки' },
@@ -26,7 +26,7 @@ const ready = () => {
 
   // eslint-disable-next-line no-restricted-globals
   const parseLocation = () => location.hash.slice(1).toLowerCase() || '/';
-  const findComponentByPath = (path: string, routes: Rout[]) => routes.find((route) => route.path.match(new RegExp(`^\\${path}$`, 'gm'))) || undefined;
+  const findComponentByPath = (path: string, routes: Router[]) => routes.find((route) => route.path.match(new RegExp(`^\\${path}$`, 'gm'))) || undefined;
 
   const router = () => {
     const appElement = document.getElementById('app');

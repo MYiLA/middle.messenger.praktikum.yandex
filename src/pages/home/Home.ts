@@ -1,14 +1,11 @@
-import Block, { SomeObject } from '../../utils/Block';
+import Block from '../../utils/Block';
 import CHATS from './constants';
 import template from './home.hbs';
 
-type HomeProps = {
-  attr?: SomeObject
-};
-
+type HomeProps = {};
 class Home extends Block {
   constructor(props: HomeProps) {
-    super('div', props);
+    super('div', { ...props, attr: { classes: ['home'] } });
   }
 
   render() {

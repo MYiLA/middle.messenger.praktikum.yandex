@@ -1,10 +1,12 @@
-import { Page404, PageAuthorization } from '../pages';
+import Block from '../utils/Block';
 
 /**
  * Роут
  */
-export type Rout = {
+type Rout = {
   path: string,
-  component: PageAuthorization | Page404,
+  component: Block,
   name: string,
 };
+
+export default Rout;

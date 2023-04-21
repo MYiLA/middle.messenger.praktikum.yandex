@@ -1,13 +1,11 @@
-import Block, { SomeObject } from '../../utils/Block';
+import Block from '../../utils/Block';
 import template from './authorization.hbs';
 
-type AuthorizationProps = {
-  attr?: SomeObject
-};
+type AuthorizationProps = {};
 
 class Authorization extends Block {
   constructor(props: AuthorizationProps) {
-    super('div', props);
+    super('div', { ...props, attr: { classes: ['cover-wrap'] } });
   }
 
   render() {

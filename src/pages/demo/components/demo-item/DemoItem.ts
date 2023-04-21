@@ -1,5 +1,5 @@
-import { Button } from '../../components';
-import Block from '../../utils/Block';
+import { Button } from '../../../../components';
+import Block from '../../../../utils/Block';
 import template from './demo.hbs';
 
 type DemoProps = {};
@@ -26,10 +26,10 @@ const buttonBlack = new Button({
   },
 });
 
-class Demo extends Block {
+class DemoItem extends Block {
   constructor(props: DemoProps) {
-    super('section', {
-      ...props, attr: { classes: ['demo'] }, button, buttonBlack,
+    super('li', {
+      ...props, attr: { classes: ['demo__item', 'demo-item'] }, button, buttonBlack,
     });
   }
 
@@ -41,4 +41,4 @@ class Demo extends Block {
   }
 }
 
-export default Demo;
+export default DemoItem;

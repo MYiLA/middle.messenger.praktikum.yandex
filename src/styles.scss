@@ -30,8 +30,10 @@
 
 @import "./pages/registration/registration.scss";
 
-@import "./pages/page-404/page-error.scss";
+@import "./pages/page-error/page-error.scss";
 
 @import "./pages/home/home.scss";
 
 @import "./pages/user-settings/user-settings.scss";
+
+@import "./common/helpers.scss";

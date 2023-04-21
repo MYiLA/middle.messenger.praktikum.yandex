@@ -71,9 +71,15 @@ class Block {
 
   private _createDocumentElement(tagName: string) {
     const documentElement = document.createElement(tagName);
-    // Если передан атрибут класса, вешаем его
-    if (this.props.attr?.class) {
-      documentElement.classList.add(this.props.attr.class);
+    // Если передан атрибут c классами, вешаем их
+    const classes = this.props.attr?.classes;
+    console.log(this.props.attr.classes);
+    if (classes && classes instanceof Array) {
+      classes.forEach((item) => {
+        if (typeof item === 'string') {
+          documentElement.classList.add(item);
+        }
+      });
     }
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return documentElement;
@@ -154,14 +160,18 @@ class Block {
     return { props, children };
   }
 
+  // TODO: Не получается 2 кнопки уместить в один контейнер
+  // контейнер очищается и кнопка только первая рисуется.
+  // События теряются
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
+      console.log(component);
       if (Array.isArray(component)) {
         console.log('РАБОТА С АРРЕЕМ');
       }
-      contextAndStubs[name] = `<div data-id="${component.id}" />`;
+      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
     });
 
     const html = template(contextAndStubs);

@@ -1,14 +1,12 @@
 import template from './user-settings.hbs';
 import { DATA_INPUTS, PASSWORD_INPUTS } from './constants';
-import Block, { SomeObject } from '../../utils/Block';
+import Block from '../../utils/Block';
 
-type UserSettingsProps = {
-  attr?: SomeObject
-};
+type UserSettingsProps = {};
 
 class UserSettings extends Block {
   constructor(props: UserSettingsProps) {
-    super('div', props);
+    super('div', { ...props, attr: { classes: ['user-settings'] } });
   }
 
   render() {
