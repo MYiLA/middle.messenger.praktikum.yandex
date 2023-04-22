@@ -1,9 +1,6 @@
 .input {
-  margin-bottom: 14px;
-  
   &__wrap {
     position: relative;
-    margin-bottom: 7px;
 
     &::after {
       content: '';
@@ -38,7 +35,7 @@
     font-weight: 500;
     line-height: 14px;
     color: $white-1;
-    background-color: $black-1;
+    background-color: transparent;
 
     &::placeholder {
       color: transparent;
@@ -48,8 +45,8 @@
   &__message {
     position: relative;
     padding-left: 20px;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     font-size: 10px;
     line-height: 10px;
     color: $danger;
@@ -71,70 +68,106 @@
 
 .input.input--right-label {
   margin-bottom: 0;
+  .input {
+    &__wrap {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+  
+    &__label {
+      position: static;
+      flex-shrink: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 20px;
+      font-size: 14px !important;
+      line-height: 14px !important;
+    }
+  
+    &__input {
+      padding-top: 8px;
+      padding-bottom: 12px;
+    }
 
-  &__wrap {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0;
-  }
-
-  &__label {
-    position: static;
-    flex-shrink: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    font-size: 14px !important;
-    line-height: 14px !important;
-  }
-
-  &__input {
-    padding-top: 8px;
-    padding-bottom: 12px;
+    &__message {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
   }
 }
 
 .input.input--search {
-  &__label {
-    display: none;
-  }
+  .input {
+    &__wrap{
+      margin-bottom: 0;
 
-  &__input {
-    display: block;
-    width: 100%;
-    margin-bottom: 14px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 12px;
-    line-height: 12px;
-    color: $black-1;
-    background-color: $white-6;
+      &::after{
+        content: none;
+      }
+    }
 
-    &::placeholder {
-      color: $white-4;
+    &__label {
+      display: none;
+    }
+  
+    &__input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      line-height: 12px;
+      color: $black-1;
+      background-color: $white-6;
+  
+      &::placeholder {
+        color: $white-4;
+      }
+    }
+
+    &__message {
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
   }
 }
 
 .input.input--message {
-  &__label {
-    display: none;
-  }
+  margin-bottom: 0;
+  
+  .input {
+    &__wrap{
+      margin-bottom: 0;
+      &::after{
+        content: none;
+      }
+    }
 
-  &__input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 50%;
-    font-size: 12px;
-    line-height: 12px;
-    color: $black-1;
-    background-color: $white-6;
+    &__label {
+      display: none;
+    }
+  
+    &__input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 12px;
+      line-height: 12px;
+      color: $black-1;
+      background-color: $white-6;
+  
+      &::placeholder {
+        color: $white-4;
+      }
+    }
 
-    &::placeholder {
-      color: $white-4;
+    &__message {
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
   }
 }

@@ -23,8 +23,8 @@ type FormItemProps = {
   placeholder?: string,
   events?: {
     click?: (ev: Event) => void,
+    // TODO: При блуре и сабмите запускать валидацию автоматически
     submit?: (ev: Event) => void,
-    // TODO: При блуре запускать валидацию автоматически
     blur?: (ev: Event) => void,
   }
   attr?: {
