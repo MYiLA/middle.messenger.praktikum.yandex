@@ -52,7 +52,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _addEvents() {
+  protected addEvents() {
     const { events = {} } = this.props as { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
@@ -140,7 +140,7 @@ class Block {
     this._element!.innerHTML = '';
     // Добавляем элемент
     this._element!.append(block);
-    this._addEvents();
+    this.addEvents();
   }
 
   protected render(): DocumentFragment {

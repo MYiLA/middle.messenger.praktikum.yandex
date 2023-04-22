@@ -1,6 +1,5 @@
 import { Button } from '../../../../components';
 import Block from '../../../../utils/Block';
-import PROPSES from './constants';
 import template from './demo-button.hbs';
 
 const button = new Button({
@@ -35,12 +34,9 @@ class DemoButton extends Block {
   }
 
   render() {
-    console.log('рендер бутона');
     return this.compile(template, {
-      name: 'Button',
       button: this.props.button,
       buttonBlack: this.props.buttonBlack,
-      propses: PROPSES,
     });
   }
 }

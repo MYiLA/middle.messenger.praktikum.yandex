@@ -7,14 +7,14 @@ type ButtonProps = {
     click?: (ev: Event) => void,
     submit?: (ev: Event) => void
   }
-  shouldRender?: boolean,
-  form?: string[]
   attr?: {
     classes?: string[],
     form?: string,
     type?: 'button' | 'submit'
   }
 };
+
+const defaultClasses = ['button'];
 
 class Button extends Block {
   constructor(props: ButtonProps) {
@@ -23,7 +23,7 @@ class Button extends Block {
       attr: {
         ...props.attr,
         // Замешиваем класc по-умолчанию
-        classes: props.attr?.classes ? ['button'].concat(props.attr.classes) : ['button'],
+        classes: props.attr?.classes ? defaultClasses.concat(props.attr.classes) : defaultClasses,
       },
     });
   }

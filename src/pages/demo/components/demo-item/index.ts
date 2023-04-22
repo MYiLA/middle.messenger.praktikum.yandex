@@ -22,7 +22,6 @@ class DemoItem extends Block {
   }
 
   render() {
-    console.log('рендер бутона');
     return this.compile(template, {
       name: this.props.name,
       item: this.children.item,

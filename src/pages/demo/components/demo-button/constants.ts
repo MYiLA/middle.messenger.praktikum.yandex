@@ -2,16 +2,19 @@ import ItemProp from '../types';
 
 const PROPSES: ItemProp[] = [
   {
-    name: 'label',
+    name: 'label (обязательный)',
     type: 'string',
     desc: 'Текст внутри кнопки',
   },
   {
-    name: 'events (опционально)',
+    name: 'events',
     type: `
-      {
-        click: (ev: Event) => void
-      }
+<pre>
+{
+  click: (ev: Event) => void,
+  submit: (ev: Event) => void
+}
+</pre>
     `,
     desc: `
       Слушатели действий для кнопки. Схема:
@@ -19,24 +22,29 @@ const PROPSES: ItemProp[] = [
     `,
   },
   {
-    name: 'АТРИБУТЫ (опционально)',
-    type: 'attr: {...}',
-    desc: '',
+    name: '<h3 class="txt-yellow">attr: {...}</h3>',
+    type: '<h3 class="txt-yellow">Object</h3>',
+    desc: '<h3 class="txt-yellow">Атрибуты</h3>',
   },
   {
     name: 'classes',
     type: 'string[]',
-    desc: 'Список классов',
+    desc: `
+    Атрибут: cписок классов
+    <br>
+    <br>
+    <span class="txt-yellow">.button--dark</span>&emsp;&emsp;делает кнопку тёмной
+    `,
   },
   {
     name: 'form',
     type: 'string',
-    desc: 'Имя формы, к которой привязывается кнопка',
+    desc: 'Атрибут: имя формы, к которой привязывается кнопка',
   },
   {
     name: 'type',
     type: '"button" | "submit"',
-    desc: 'Тип кнопки',
+    desc: 'Атрибут: тип кнопки',
   },
 ];
 
