@@ -5,7 +5,6 @@ type ButtonProps = {
   label: string,
   events?: {
     click?: (ev: Event) => void,
-    submit?: (ev: Event) => void
   }
   attr?: {
     classes?: string[],

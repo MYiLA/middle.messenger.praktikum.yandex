@@ -1,7 +1,17 @@
 <div class="input__wrap">
-  <input class="input__input" type="text" name="login" id="login" placeholder="Логин"></input>
-  <label class="input__label" for="login">Логин</label>
+  <input
+    class="input__input"
+    type="{{type}}"
+    name="{{name}}"
+    id="{{name}}"
+    {{#if value}} value="{{value}}" {{/if}}
+    {{#if placeholder}}placeholder="{{placeholder}}" {{/if}}
+    {{#unless placeholder}}placeholder="{{name}}" {{/unless}}
+    ></input>
+  <label class="input__label" for="{{name}}">{{label}}</label>
 </div>
-<div class="input__message">
-  Неверный логин
-</div>
+{{#unless isValid}}
+  <div class="input__message">
+    {{invalidMessage}}
+  </div>
+{{/unless}}

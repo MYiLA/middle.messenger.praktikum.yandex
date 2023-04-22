@@ -30,7 +30,7 @@ class Block {
     props: BlockProps;
   };
 
-  protected children: Record<string, Block>;
+  protected children: Record<string, Block | Block[]>;
 
   /**
    * @param tagName
@@ -79,7 +79,7 @@ class Block {
       Object.keys(attributes).forEach((key) => {
         const value = attributes[key];
         // Если передан атрибут c классами, вешаем их
-        if (key === 'classes' && value instanceof Array) {
+        if (key === 'classes' && Array.isArray(value)) {
           value.forEach((item) => {
             documentElement.classList.add(item);
           });
@@ -121,13 +121,17 @@ class Block {
     return true;
   }
 
-  protected setProps = (nextProps: BlockProps): void => {
+  setProps = (nextProps: BlockProps): void => {
     if (!nextProps) {
       return;
     }
 
     Object.assign(this.props, nextProps);
   };
+
+  getProps(): BlockProps {
+    return this.props;
+  }
 
   get element() {
     return this._element;
@@ -153,10 +157,10 @@ class Block {
 
   private _getChildrenAndProps(childrenAndProps: BlockProps) {
     const props: BlockProps = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (value instanceof Block || (Array.isArray(value) && value[0] instanceof Block)) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -168,31 +172,41 @@ class Block {
 
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
-
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
-        // TODO: научить компоненты работать со списком чилдренов
-        console.log('РАБОТА С АРРЕЕМ');
+        const result: string[] = [];
+        component.forEach((item) => { result.push(`<div data-id="${item.id}"></div>`); });
+        contextAndStubs[name] = result;
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
       }
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
     });
 
     const html = template(contextAndStubs);
     const temp: HTMLTemplateElement = document.createElement('template');
-
     temp.innerHTML = html;
 
     Object.entries(this.children).forEach(([, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
-
-      if (!stub) {
-        return;
+      if (Array.isArray(component)) {
+        component.forEach((item) => {
+          Block.renderStub(item, temp);
+        });
+      } else {
+        Block.renderStub(component, temp);
       }
-
-      stub.replaceWith(component.getContent()!);
     });
 
     return temp.content;
+  }
+
+  static renderStub(component: Block, temp: HTMLTemplateElement) {
+    const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+    if (!stub) {
+      return;
+    }
+
+    stub.replaceWith(component.getContent()!);
   }
 
   private _makePropsProxy(props: BlockProps) {

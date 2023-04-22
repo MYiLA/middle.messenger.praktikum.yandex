@@ -7,6 +7,8 @@ const input = new Input({
   name: 'input',
   type: 'text',
   form: 'form-demo',
+  value: 'Тест value инпута',
+  attr: { classes: ['margin-bottom-20'] },
 });
 
 const inputRighrLabel = new Input({
@@ -14,7 +16,9 @@ const inputRighrLabel = new Input({
   name: 'right-label',
   type: 'text',
   form: 'form-demo',
-  attr: { classes: ['input--right-label'] },
+  invalidMessage: 'Инпут не валиден! ААААА',
+  isValid: false,
+  attr: { classes: ['input--right-label', 'margin-bottom-20'] },
 });
 
 const inputSearch = new Input({
@@ -22,7 +26,7 @@ const inputSearch = new Input({
   name: 'search',
   type: 'text',
   form: 'form-demo',
-  attr: { classes: ['input--search'] },
+  attr: { classes: ['input--search', 'margin-bottom-20'] },
   placeholder: 'Поиск',
 });
 

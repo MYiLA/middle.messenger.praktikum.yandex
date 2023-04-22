@@ -1,28 +1,33 @@
 import Block from '../../utils/Block';
 import {
-  DemoButton, DemoInput, DemoItem, PROPS_BUTTON, PROPS_INPUT,
+  DemoButton, DemoInput, DemoItem, PROPS_BUTTON, PROPS_FORM, PROPS_INPUT,
 } from './components';
+import DemoForm from './components/demo-form';
 import template from './demo.hbs';
 
 const ButtonItem = new DemoButton();
-const inputItem = new DemoInput();
+const InputItem = new DemoInput();
+const FormItem = new DemoForm();
 
 const DemoButtonComponent = new DemoItem({ name: 'Button', itemPropses: PROPS_BUTTON, item: ButtonItem });
-const DemoInputComponent = new DemoItem({ name: 'Input', itemPropses: PROPS_INPUT, item: inputItem });
+const DemoInputComponent = new DemoItem({ name: 'Input', itemPropses: PROPS_INPUT, item: InputItem });
+const DemoFormComponent = new DemoItem({ name: 'Form', itemPropses: PROPS_FORM, item: FormItem });
 
 class Demo extends Block {
   constructor() {
     super('section', {
       attr: { classes: ['demo'] },
-      buttonItem: DemoButtonComponent,
-      inputItem: DemoInputComponent,
+      DemoButtonComponent,
+      DemoInputComponent,
+      DemoFormComponent,
     });
   }
 
   render() {
     return this.compile(template, {
-      buttonItem: this.children.DemoButtonComponent,
-      inputItem: this.children.DemoInputComponent,
+      DemoButtonComponent: this.children.DemoButtonComponent,
+      DemoInputComponent: this.children.DemoInputComponent,
+      DemoFormComponent: this.children.DemoFormComponent,
     });
   }
 }

@@ -9,11 +9,6 @@ import template from './input.hbs';
 // Как я через кнопку получу доступ к валидаторам?
 // Возможно кнопка триггерит событие сабмит у каждого инпута?
 
-type Validator = {
-  validator: (value: string) => boolean,
-  invalidMessage: string,
-};
-
 type FormItemProps = {
   label: string,
   name: string,
@@ -31,14 +26,16 @@ type FormItemProps = {
     classes?: string[],
   }
   invalidMessage?: string,
-  validators?: Validator[]
+  isValid?: boolean,
+  validator?: (value: string) => boolean,
 };
 
-const defaultClasses = ['input'];
+const defaultClasses = ['form__input', 'input'];
 
-class FormItem extends Block {
+class Input extends Block {
   constructor(props: FormItemProps) {
     super('div', {
+      isValid: true,
       ...props,
       attr: {
         ...props.attr,
@@ -62,8 +59,17 @@ class FormItem extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label });
+    return this.compile(template, {
+      label: this.props.label,
+      name: this.props.name,
+      type: this.props.type,
+      form: this.props.form,
+      value: this.props.value,
+      placeholder: this.props.placeholder,
+      invalidMessage: this.props.invalidMessage,
+      isValid: this.props.isValid,
+    });
   }
 }
 
-export default FormItem;
+export default Input;
