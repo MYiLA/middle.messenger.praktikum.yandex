@@ -1,3 +1,15 @@
+@import "./components/chat-header/chat-header.scss";
+
+@import "./components/chat-body/chat-body.scss";
+
+@import "./components/chat-footer/chat-footer.scss";
+
+@import "./components/chat/chat.scss";
+
+@import "./components/chat-brick/chat-brick.scss";
+
+@import "./components/chat-list/chat-list.scss";
+
 .home {
   display: flex;
   justify-content: space-between;

@@ -19,6 +19,8 @@ const inputRighrLabel = new Input({
   invalidMessage: 'Инпут не валиден! ААААА',
   isValid: false,
   attr: { classes: ['input--right-label', 'margin-bottom-20'] },
+  value: 'Просто какой-то текст, который нельзя изменить',
+  isDisabled: true,
 });
 
 const inputSearch = new Input({

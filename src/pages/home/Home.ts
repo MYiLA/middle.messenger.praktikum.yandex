@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import CHATS from './constants';
 import template from './home.hbs';
-
+// Тут я получаю блок данных о чатах, сообщениях в чатах и т. д., из которого всё генерится
 type HomeProps = {};
 class Home extends Block {
   constructor(props: HomeProps) {

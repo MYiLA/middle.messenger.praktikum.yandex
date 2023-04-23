@@ -13,6 +13,7 @@ type FormItemProps = {
   }
   invalidMessage?: string,
   isValid?: boolean,
+  isDisabled?: boolean,
   validator?: (value: string) => boolean,
 };
 
@@ -71,6 +72,7 @@ class Input extends Block {
       placeholder: this.props.placeholder,
       invalidMessage: this.props.invalidMessage,
       isValid: this.props.isValid,
+      isDisabled: this.props.isDisabled,
     });
   }
 }

@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './button.hbs';
-
+// TODO: добавить вид с кнопкой-стрелочкой (кнопка отправить сообщение)
 type ButtonProps = {
   label: string,
   events?: {

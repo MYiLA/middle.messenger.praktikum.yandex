@@ -30,6 +30,7 @@ googlefonts       https://fonts.google.com
 netlify           https://app.netlify.com
 stylelint         https://stylelint.io/
 stylelint plugins https://github.com/stylelint/awesome-stylelint#plugins
+swagger           https://ya-praktikum.tech/api/v2/swagger/#/
 
 ```
 ### **МР-ы**

@@ -10,6 +10,7 @@ const button = new Button({
   attr: {
     type: 'submit',
     form: 'form',
+    classes: ['margin-bottom-20'],
   },
 });
 
@@ -19,8 +20,8 @@ const buttonBlack = new Button({
     click: (ev: Event) => console.log('Тёмная кнопка нажата', ev),
   },
   attr: {
-    classes: ['button--dark', 'optional-class'],
     type: 'button',
+    classes: ['button--dark'],
   },
 });
 

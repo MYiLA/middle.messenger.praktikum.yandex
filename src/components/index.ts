@@ -1,5 +1,5 @@
-import StartNav from './start-nav/StartNav';
-import Link from './link/Link';
+import StartNav from './start-nav';
+import Link from './link';
 import Button from './button';
 import Input from './input';
 

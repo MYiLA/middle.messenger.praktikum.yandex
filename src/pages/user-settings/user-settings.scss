@@ -1,3 +1,5 @@
+@import "./components/form-avatar/form-avatar.scss";
+
 .user-settings {
   display: flex;
   justify-content: space-between;
@@ -19,6 +21,7 @@
     width: 28px;
     height: 28px;
     background-image: url("../public/images/svg/arrow.svg");
+    background-color: $white-4;
     transition: opacity 0.5s;
 
     &:hover {

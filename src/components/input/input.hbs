@@ -7,6 +7,7 @@
     {{#if value}} value="{{value}}" {{/if}}
     {{#if placeholder}}placeholder="{{placeholder}}" {{/if}}
     {{#unless placeholder}}placeholder="{{name}}" {{/unless}}
+    {{#if isDisabled}}disabled{{/if}}
     ></input>
   <label class="input__label" for="{{name}}">{{label}}</label>
 </div>
