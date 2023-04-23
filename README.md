@@ -31,6 +31,7 @@ netlify           https://app.netlify.com
 stylelint         https://stylelint.io/
 stylelint plugins https://github.com/stylelint/awesome-stylelint#plugins
 swagger           https://ya-praktikum.tech/api/v2/swagger/#/
+Тест RegExp       https://regex101.com/
 
 ```
 ### **МР-ы**

@@ -1,4 +1,6 @@
 .input {
+  margin-bottom: 16px;
+
   &__wrap {
     position: relative;
 
@@ -67,6 +69,7 @@
 };
 
 .input.input--right-label {
+  margin-bottom: 0;
   .input__wrap {
     display: flex;
     justify-content: space-between;
@@ -95,6 +98,8 @@
 }
 
 .input.input--search, .input.input--message {
+  margin-bottom: 0;
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -153,6 +158,8 @@
 }
 
 .input.input--avatar {
+  margin-bottom: 0;
+
   .input__input {}
   .input__label {
 

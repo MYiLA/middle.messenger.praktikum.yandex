@@ -20,7 +20,7 @@ const AvatarItem = new DemoAvatar();
 const DemoButtonComponent = new DemoItem({ name: 'Button', itemPropses: PROPS_BUTTON, item: ButtonItem });
 const DemoInputComponent = new DemoItem({ name: 'Input', itemPropses: PROPS_INPUT, item: InputItem });
 const DemoFormComponent = new DemoItem({ name: 'Form', itemPropses: PROPS_FORM, item: FormItem });
-const DemoAvatarComponent = new DemoItem({name: 'Avatar', itemPropses: PROPS_AVATAR, item: AvatarItem });
+const DemoAvatarComponent = new DemoItem({ name: 'Avatar', itemPropses: PROPS_AVATAR, item: AvatarItem });
 
 class Demo extends Block {
   constructor() {

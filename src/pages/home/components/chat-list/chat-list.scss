@@ -5,13 +5,12 @@
   background-color: $black-2;
 
   &__link-wrap {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
   }
 
   &__link {
     position: relative;
-    display: inline-block;
-    margin-left: auto;
     margin-bottom: 23px;
     padding-right: 16px;
     color: $white-4;
@@ -35,6 +34,17 @@
       opacity: 0.6;
     };
   };
+
+  &__link--left {
+    padding-right: 0;
+    padding-left: 16px;
+
+    &::after {
+      right:initial;
+      left: 0;
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
 
   &__search {
     display: block;

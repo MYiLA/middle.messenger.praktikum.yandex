@@ -1,9 +1,9 @@
-import PageAuthorization from './authorization/Authorization';
-import PageHome from './home/Home';
-import PageRegistration from './registration/Registration';
-import PageUserSettings from './user-settings/UserSettings';
-import PageError from './page-error/PageError';
-import PageDemo from './demo/Demo';
+import PageAuthorization from './authorization';
+import PageHome from './home';
+import PageRegistration from './registration';
+import PageUserSettings from './user-settings';
+import PageError from './page-error';
+import PageDemo from './demo';
 
 export {
   PageAuthorization, PageError, PageHome, PageRegistration, PageUserSettings, PageDemo,
