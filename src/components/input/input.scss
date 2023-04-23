@@ -67,32 +67,30 @@
 };
 
 .input.input--right-label {
-  .input {
-    &__wrap {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0;
-    }
-  
-    &__label {
-      position: static;
-      flex-shrink: 0;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 20px;
-      font-size: 14px !important;
-      line-height: 14px !important;
-    }
-  
-    &__input {
-      padding-top: 8px;
-      padding-bottom: 12px;
-    }
+  .input__wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
 
-    &__message {
-      padding-top: 8px;
-      padding-bottom: 8px;
-    }
+  .input__label {
+    position: static;
+    flex-shrink: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-size: 14px !important;
+    line-height: 14px !important;
+  }
+
+  .input__input {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+
+  .input__message {
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 }
 
@@ -109,63 +107,53 @@
     -webkit-text-fill-color: $black-1;
   }
 
-  .input {
-    &__wrap{
-      margin-bottom: 0;
+  .input__wrap{
+    margin-bottom: 0;
 
-      &::after{
-        content: none;
-      }
+    &::after{
+      content: none;
     }
+  }
 
-    &__label {
-      display: none;
-    }
+  .input__label {
+    display: none;
+  }
 
-    &__input {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      border: none;
-      font-size: 12px;
-      line-height: 12px;
-      color: $black-1;
-      background-color: $white-6;
-  
-      &::placeholder {
-        color: $white-4;
-      }
-    }
+  .input__input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    font-size: 12px;
+    line-height: 12px;
+    color: $black-1;
+    background-color: $white-6;
 
-    &__message {
-      padding-top: 8px;
-      padding-bottom: 8px;
+    &::placeholder {
+      color: $white-4;
     }
+  }
+
+  .input__message {
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 }
 
 .input.input--search {
-  .input {
-    &__input {
-      border-radius: 5px;
-    }
+  .input__input {
+    border-radius: 5px;
   }
 }
 
 .input.input--message {
-  .input {
-    &__input {
-      border-radius: 20px;
-    }
+  .input__input {
+    border-radius: 20px;
   }
 }
 
-.input {
-  &__input:focus + &__label, &__input:not(:placeholder-shown) + &__label {
-    bottom: 28;
-    font-size: 9px;
-    line-height: 9px;
-  }
+.input__input:focus + .input__label, .input__input:not(:placeholder-shown) + .input__label {
+  bottom: 28;
+  font-size: 9px;
+  line-height: 9px;
 }
-
-
