@@ -21,7 +21,7 @@ class Block {
 
   protected props: BlockProps;
 
-  private _eventBus: () => EventBus;
+  private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
@@ -47,7 +47,7 @@ class Block {
     };
     this.children = children;
     this.props = this._makePropsProxy(props);
-    this._eventBus = () => eventBus;
+    this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
@@ -97,7 +97,7 @@ class Block {
   protected init() {
     this._createResources();
 
-    this._eventBus().emit(Block.EVENTS.RENDER);
+    this.eventBus().emit(Block.EVENTS.RENDER);
   }
 
   private _componentDidMount() {
@@ -107,12 +107,12 @@ class Block {
   protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
-    this._eventBus().emit(Block.EVENTS.CDM);
+    this.eventBus().emit(Block.EVENTS.CDM);
   }
 
   private _componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
     if (this.componentDidUpdate(oldProps, newProps)) {
-      this._eventBus().emit(Block.EVENTS.RENDER);
+      this.eventBus().emit(Block.EVENTS.RENDER);
     }
   }
 
@@ -219,7 +219,7 @@ class Block {
       set(target, prop, value) {
         const oldTarget = { ...target };
         target[prop] = value;
-        this._eventBus.apply(self).emit(Block.EVENTS.CDU, oldTarget, target);
+        self.eventBus().emit(Block.EVENTS.CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {

@@ -1,14 +1,6 @@
 import Block from '../../utils/Block';
 import template from './input.hbs';
 
-// TODO: форму я найду по id, к форме привязаны инпуты.
-// По событию сабмита надо делать превент дефолт и запускать валидаторы
-// Валидаторы мне передают извне - они забирают текущее вэлью и валидируют
-// Как забрать велью из инпута? В обработчике блюра обратиться к инпуту.
-// По поводу кнопки - обработать надо при сабмите валидацию.
-// Как я через кнопку получу доступ к валидаторам?
-// Возможно кнопка триггерит событие сабмит у каждого инпута?
-
 type FormItemProps = {
   label: string,
   name: string,
@@ -16,12 +8,6 @@ type FormItemProps = {
   form: string,
   value?: string,
   placeholder?: string,
-  events?: {
-    click?: (ev: Event) => void,
-    // TODO: При блуре и сабмите запускать валидацию автоматически
-    submit?: (ev: Event) => void,
-    blur?: (ev: Event) => void,
-  }
   attr?: {
     classes?: string[],
   }
@@ -39,14 +25,17 @@ class Input extends Block {
       ...props,
       attr: {
         ...props.attr,
-        // Замешиваем класc по-умолчанию
+        // Замешиваем класcы по-умолчанию
         classes: props.attr?.classes ? defaultClasses.concat(props.attr.classes) : defaultClasses,
+      },
+      events: {
+        blur: (ev: Event) => this.onBlur(ev),
       },
     });
   }
 
   addEvents() {
-    // события добавляем инпутам, а не обёртке
+    // События добавляем инпутам, а не обёртке
     const { events = {} } = this.props as { events: Record<string, () => void> };
     const inputElement = this.element?.querySelector('input');
     if (inputElement) {
@@ -55,6 +44,20 @@ class Input extends Block {
       });
     } else {
       throw new Error('Компонент Input: Не найдено инпутов, на которые можно навесить событие');
+    }
+  }
+
+  onBlur(ev: Event) {
+    const input = ev.target as HTMLInputElement;
+    const { value } = input;
+    const { validator } = this.getProps();
+
+    // Валидируем введённое значение при Blur
+    if (validator) {
+      this.setProps({ isValid: validator(value), value });
+    } else {
+      // Если валидатора нет, сохраняем введённое пользователем значение в пропсах компонента
+      this.setProps({ value });
     }
   }
 

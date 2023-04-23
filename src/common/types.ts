@@ -3,10 +3,13 @@ import Block from '../utils/Block';
 /**
  * Роут
  */
-type Rout = {
+export type Router = {
   path: string,
   component: Block,
   name: string,
 };
 
-export default Rout;
+/**
+ * Базовый тип объекта
+ */
+export type SomeObject = Record<PropertyKey, any>;

@@ -16,12 +16,9 @@ const Input1 = new Input({
   name: 'input1',
   type: 'text',
   form: 'form',
-  events: {
-    submit: (ev: Event) => {
-      ev.preventDefault();
-      console.log('Сабмит Инпут-1!', ev);
-    },
-  },
+  attr: { classes: ['margin-bottom-20'] },
+  validator: (value) => !!value,
+  invalidMessage: 'Это поле обязательное для заполнения',
 });
 
 const Input2 = new Input({
@@ -29,21 +26,12 @@ const Input2 = new Input({
   name: 'input2',
   type: 'text',
   form: 'form',
-  events: {
-    submit: (ev: Event) => {
-      ev.preventDefault();
-      console.log('Сабмит Инпут-2!!', ev);
-    },
-  },
+  attr: { classes: ['margin-bottom-20'] },
+  validator: (value) => /^([a-z0-9]{5,})$/.test(value),
+  invalidMessage: 'Минимум 5 символов. Символы - цифры и буквы в нижнем регистре',
 });
 
 const FormDemo = new Form({
-  events: {
-    submit: (ev) => {
-      ev.preventDefault();
-      console.log('Сабмит формы form', ev, FormDemo.getProps().inputs);
-    },
-  },
   attr: {
     id: 'form',
     action: 'POST',

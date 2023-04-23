@@ -1,4 +1,4 @@
-import Router from './common/types';
+import { Router } from './common/types';
 import { StartNav } from './components';
 import {
   PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
