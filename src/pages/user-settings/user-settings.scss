@@ -20,8 +20,9 @@
 
     width: 28px;
     height: 28px;
+    border-radius: 50%;
     background-image: url("../public/images/svg/arrow.svg");
-    background-color: $white-4;
+    background-color: rgba($white-4, 0.5);
     transition: opacity 0.5s;
 
     &:hover {
@@ -39,11 +40,8 @@
   &__avatar-wrap {
     width: 100%;
     max-width: 550px;
-    padding: 20px;
-  };
-
-  &__avatar {
     margin-bottom: 21px;
+    padding: 20px;
   };
 
   &__name {

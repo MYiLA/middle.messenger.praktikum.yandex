@@ -1,14 +1,18 @@
 import Block from '../../utils/Block';
 import template from './avatar.hbs';
-// TODO: Аватар встречается сразу в 3 местах. Форма это не аватар. аватар лишь часть формы
-// Аватару нужна ссылка на аватар, размер(класс) состояние по-умолчанию когда ссылка не передана
+import DEFAULT_SETTING from './constants';
+
 type AvatarProps = {
   attr?: {
     classes?: string[],
-  }
+  },
+  /* Ссылка на картинку аватара */
+  image?: string,
+  /* Цвет аватара. Добавляется при регистрации, применяется если не загружена картинка аватара */
+  color?: string,
+  /* Размер аватара в px */
+  size?: string
 };
-
-const defaultClasses = ['avatar'];
 
 class Avatar extends Block {
   constructor(props: AvatarProps) {
@@ -17,7 +21,11 @@ class Avatar extends Block {
       attr: {
         ...props.attr,
         // Замешиваем класc по-умолчанию
-        classes: props.attr?.classes ? defaultClasses.concat(props.attr.classes) : defaultClasses,
+        classes: props.attr?.classes
+          ? DEFAULT_SETTING.classes.concat(props.attr.classes)
+          : DEFAULT_SETTING.classes,
+        // Цвет и размер берётся извне
+        style: `width: ${props.size}px; height: ${props.size}px; background-color:${props.color ? props.color : DEFAULT_SETTING.color}`,
       },
       events: {
         click: (ev: Event) => this.onClick(ev),
@@ -30,7 +38,9 @@ class Avatar extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label });
+    return this.compile(template, {
+      image: this.props.image,
+    });
   }
 }
 

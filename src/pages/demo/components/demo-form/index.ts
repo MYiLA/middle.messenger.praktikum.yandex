@@ -1,15 +1,8 @@
-import { Button, Input } from '../../../../components';
-import Form from '../../../../components/form';
+import {
+  Button, Form, FormProps, Input,
+} from '../../../../components';
 import Block from '../../../../utils/Block';
 import template from './demo-form.hbs';
-
-const Submit = new Button({
-  label: 'Отправить форму',
-  attr: {
-    type: 'submit',
-    form: 'form',
-  },
-});
 
 const Input1 = new Input({
   label: 'Инпут-1',
@@ -39,6 +32,29 @@ const FormDemo = new Form({
   inputs: [Input1, Input2],
 });
 
+const Submit = new Button({
+  label: 'Отправить форму',
+  attr: {
+    type: 'submit',
+    form: 'form',
+    classes: ['margin-bottom-20'],
+  },
+});
+
+const DisabledButton = new Button({
+  label: 'Задизейблить/Раздизейблить форму',
+  attr: {
+    type: 'button',
+  },
+  events: {
+    click: () => {
+      const currentIsDisabled = FormDemo.getProps().isDisabled;
+      const newFormProps = { isDisabled: !currentIsDisabled } as FormProps;
+      FormDemo.setProps(newFormProps);
+    },
+  },
+});
+
 class DemoForm extends Block {
   constructor() {
     super('div', {
@@ -47,6 +63,7 @@ class DemoForm extends Block {
       Input2,
       Submit,
       FormDemo,
+      DisabledButton,
     });
   }
 
@@ -58,6 +75,7 @@ class DemoForm extends Block {
         Input2: this.children.Input2,
         Submit: this.children.Submit,
         FormDemo: this.children.FormDemo,
+        DisabledButton: this.children.DisabledButton,
       },
     );
   }

@@ -1,17 +1,26 @@
 import Block from '../../utils/Block';
 import {
-  DemoButton, DemoInput, DemoItem, PROPS_BUTTON, PROPS_FORM, PROPS_INPUT,
+  DemoAvatar,
+  DemoButton,
+  DemoInput,
+  DemoForm,
+  DemoItem,
+  PROPS_BUTTON,
+  PROPS_FORM,
+  PROPS_INPUT,
+  PROPS_AVATAR,
 } from './components';
-import DemoForm from './components/demo-form';
 import template from './demo.hbs';
 
 const ButtonItem = new DemoButton();
 const InputItem = new DemoInput();
 const FormItem = new DemoForm();
+const AvatarItem = new DemoAvatar();
 
 const DemoButtonComponent = new DemoItem({ name: 'Button', itemPropses: PROPS_BUTTON, item: ButtonItem });
 const DemoInputComponent = new DemoItem({ name: 'Input', itemPropses: PROPS_INPUT, item: InputItem });
 const DemoFormComponent = new DemoItem({ name: 'Form', itemPropses: PROPS_FORM, item: FormItem });
+const DemoAvatarComponent = new DemoItem({name: 'Avatar', itemPropses: PROPS_AVATAR, item: AvatarItem });
 
 class Demo extends Block {
   constructor() {
@@ -20,6 +29,7 @@ class Demo extends Block {
       DemoButtonComponent,
       DemoInputComponent,
       DemoFormComponent,
+      DemoAvatarComponent,
     });
   }
 
@@ -28,6 +38,7 @@ class Demo extends Block {
       DemoButtonComponent: this.children.DemoButtonComponent,
       DemoInputComponent: this.children.DemoInputComponent,
       DemoFormComponent: this.children.DemoFormComponent,
+      DemoAvatarComponent: this.children.DemoAvatarComponent,
     });
   }
 }

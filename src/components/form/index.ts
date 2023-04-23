@@ -1,19 +1,21 @@
 import { SomeObject } from '../../common/types';
 import Block from '../../utils/Block';
+import Input from '../input';
 import template from './form.hbs';
 
-type FormProps = {
+export type FormProps = {
   attr: {
     classes?: string[],
     id: string,
     action: 'POST' | 'PUT' | 'GET' | 'DELETE'
   }
-  inputs: Block[],
+  inputs: Input[],
+  isDisabled?: boolean,
 };
 
 const defaultClasses = ['form__form'];
 
-class Form extends Block {
+export class Form extends Block {
   constructor(props: FormProps) {
     super('form', {
       ...props,
@@ -71,9 +73,22 @@ class Form extends Block {
     }
   };
 
+  setProps = (nextProps: FormProps): void => {
+    if (!nextProps) {
+      return;
+    }
+
+    const { inputs } = this.children;
+
+    // Если изменился пропс isDisabled - то он влияет на все инпуты внутри формы
+    if (Array.isArray(inputs) && this.props.isDisabled !== nextProps.isDisabled) {
+      inputs.forEach((input: Input) => { input.setProps({ isDisabled: nextProps.isDisabled }); });
+    }
+
+    Object.assign(this.props, nextProps);
+  };
+
   render() {
     return this.compile(template, { inputs: [{}, {}] });
   }
 }
-
-export default Form;

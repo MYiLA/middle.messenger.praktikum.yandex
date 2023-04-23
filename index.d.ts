@@ -8,7 +8,8 @@ declare module '*.module.scss' {
   export default content;
 }
 
-declare module '*.svg' {
-  const svg: string;
-  export default svg;
-}
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.png';
+declare module '*.svg';
+declare module '*.vebp';
