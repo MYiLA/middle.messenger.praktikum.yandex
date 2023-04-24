@@ -1,17 +1,38 @@
 import Block from '../../utils/Block';
-import MESSAGES from './components/body/constants';
-import CHATS from './constants';
+import ChatBrick from './components/chat-brick';
+import { CHATS, MESSAGES } from './constants';
 import template from './home.hbs';
-// TODO: Тут я получаю блок данных о чатах, сообщениях в чатах и т. д., из которого всё генерится
-// Если selectedChatId есть, то рендерим ленту переписки
-// TODO: вынести chat-brick в отдельный компонент.
-// Без этого туда нереально впихнуть кастомный аватар.
-// Компонент аватара должен передаваться извне. Формироваться карточка будет через данные.
-// Пример - форма
-type HomeProps = { selectedChatId?: string };
+
+type HomeProps = {
+  selectedChatId?: string
+};
+
+const ChatBriks = CHATS.map((chat) => {
+  const {
+    avatarColor, title, unreadCount, lastMessage,
+  } = chat;
+  return new ChatBrick({
+    href: '#/chat/id',
+    title,
+    attr: {
+      classes: ['chat-list__chat-brick'],
+    },
+    avatarColor,
+    lastMessageContent: lastMessage.content,
+    lastMessageTime: lastMessage.time,
+    unreadCount,
+  });
+});
+
 class Home extends Block {
   constructor(props: HomeProps) {
-    super('div', { ...props, attr: { classes: ['home'] } });
+    super('div', {
+      ...props,
+      attr: {
+        classes: ['home'],
+      },
+      ChatBriks,
+    });
   }
 
   render() {
@@ -19,6 +40,7 @@ class Home extends Block {
       chats: CHATS,
       selectedChatId: this.props.selectedChatId,
       messages: MESSAGES,
+      ChatBriks: this.children.ChatBriks,
     });
   }
 }

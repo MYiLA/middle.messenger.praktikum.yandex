@@ -1,13 +1,11 @@
-const TEXT_LIMIT = 50;
-
-const CHATS = [
+export const CHATS = [
   {
     id: '123',
     title: 'Андрей',
     avatar: null,
     avatarColor: '#FFFFFF',
-    unread_count: 1,
-    last_message: {
+    unreadCount: 1,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -25,8 +23,8 @@ const CHATS = [
     title: 'Киноклуб',
     avatar: null,
     avatarColor: '#AB3245',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -44,8 +42,8 @@ const CHATS = [
     title: 'Илья',
     avatar: null,
     avatarColor: '#7E6C63',
-    unread_count: 10,
-    last_message: {
+    unreadCount: 10,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -55,7 +53,7 @@ const CHATS = [
         phone: '8(911)-222-33-22',
       },
       time: '13:66',
-      content: `${'Так увлёкся работой по курсу, что совсем забыл его анонсировать на следующий год. Вот блин, как всегда всё не так, как я планировал изначально. Простите меня охохох как страшно жить и писать эти строки пойду утоплюсь хахахохо'.substring(0, TEXT_LIMIT)}...`,
+      content: 'Так увлёкся работой по курсу, что совсем забыл его анонсировать на следующий год. Вот блин, как всегда всё не так, как я планировал изначально. Простите меня охохох как страшно жить и писать эти строки пойду утоплюсь хахахохо',
     },
   },
   {
@@ -63,8 +61,8 @@ const CHATS = [
     title: 'Такого времени не бывает',
     avatar: null,
     avatarColor: '#',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -82,8 +80,8 @@ const CHATS = [
     title: 'Вадим',
     avatar: null,
     avatarColor: '#2917F4',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -101,8 +99,8 @@ const CHATS = [
     title: '1, 2, 3',
     avatar: null,
     avatarColor: '#3F4489',
-    unread_count: 45,
-    last_message: {
+    unreadCount: 45,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -112,7 +110,7 @@ const CHATS = [
         phone: '8(911)-222-33-22',
       },
       time: 'Пт',
-      content: `${'Миллионы россиян ежедневно выпивают по три стакана воды с примесью трёх чайных ложек самого обычного раствора из топора. Мы делаем самый насыщенный раствор из топора. Если вы купите наш раствор сейчас, то получите в подарок обыкновенную вилку.'.substring(0, TEXT_LIMIT)}...`,
+      content: 'Миллионы россиян ежедневно выпивают по три стакана воды с примесью трёх чайных ложек самого обычного раствора из топора. Мы делаем самый насыщенный раствор из топора. Если вы купите наш раствор сейчас, то получите в подарок обыкновенную вилку.',
     },
   },
   {
@@ -120,8 +118,8 @@ const CHATS = [
     title: 'Design Destroyer',
     avatar: null,
     avatarColor: '#DB678A',
-    unread_count: '99+',
-    last_message: {
+    unreadCount: 10000,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -131,7 +129,7 @@ const CHATS = [
         phone: '8(911)-222-33-22',
       },
       time: 'Ср',
-      content: `${'В 2008 году художник Jon Rafman начал собирать своё портфолио. Это портфолио настолько профессионально собрано, что все его знакомые были в восторге. Люди стояли в очереди, чтобы посмотреть на это портфолио.'.substring(0, TEXT_LIMIT)}...`,
+      content: 'В 2008 году художник Jon Rafman начал собирать своё портфолио. Это портфолио настолько профессионально собрано, что все его знакомые были в восторге. Люди стояли в очереди, чтобы посмотреть на это портфолио.',
     },
   },
   {
@@ -139,8 +137,8 @@ const CHATS = [
     title: 'Day.',
     avatar: null,
     avatarColor: '#74C3BF',
-    unread_count: 99,
-    last_message: {
+    unreadCount: 99,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -150,7 +148,7 @@ const CHATS = [
         phone: '8(911)-222-33-22',
       },
       time: 'Пн',
-      content: `${'Так увлёкся работой по курсу, что совсем забыл его анонсировать. Так что анонсирую сейчас. Курс очень крутой и раскрывает не только основные темы, но и множество нюансов, которые можно обнаружить только на практике.'.substring(0, TEXT_LIMIT)}...`,
+      content: 'Так увлёкся работой по курсу, что совсем забыл его анонсировать. Так что анонсирую сейчас. Курс очень крутой и раскрывает не только основные темы, но и множество нюансов, которые можно обнаружить только на практике.',
     },
   },
   {
@@ -158,8 +156,8 @@ const CHATS = [
     title: 'Стас Рогозин',
     avatar: null,
     avatarColor: '#FFFFFF',
-    unread_count: '99+',
-    last_message: {
+    unreadCount: 100,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -177,8 +175,8 @@ const CHATS = [
     title: 'тет-а-теты',
     avatar: null,
     avatarColor: '#43F417',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -188,7 +186,7 @@ const CHATS = [
         phone: '8(911)-222-33-22',
       },
       time: '1 Мая 2022',
-      content: `${'И Human Interface Guidelines лучше изучить уже сегодня, иначе вы отстанете по программе.'.substring(0, TEXT_LIMIT)}...`,
+      content: 'И Human Interface Guidelines лучше изучить уже сегодня, иначе вы отстанете по программе.',
     },
   },
   {
@@ -196,8 +194,8 @@ const CHATS = [
     title: 'Группа № 13',
     avatar: null,
     avatarColor: '#17F4BF',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -215,8 +213,8 @@ const CHATS = [
     title: 'Учимся на Я.Практикум!',
     avatar: null,
     avatarColor: '#BE9D26',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -226,7 +224,7 @@ const CHATS = [
         phone: '8(911)-222-33-22',
       },
       time: '15 Апр 2020',
-      content: `${'Как заработать много новых впечатлений от поездок в простые места? Обращайтесь в нашу экскурсионную организацию и мы покажем, как :-)'.substring(0, TEXT_LIMIT)}...`,
+      content: 'Как заработать много новых впечатлений от поездок в простые места? Обращайтесь в нашу экскурсионную организацию и мы покажем, как :-)',
     },
   },
   {
@@ -234,8 +232,8 @@ const CHATS = [
     title: '###',
     avatar: null,
     avatarColor: '#FF0000',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -253,8 +251,8 @@ const CHATS = [
     title: 'Андрей',
     avatar: null,
     avatarColor: '#FFFFFF',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -272,8 +270,8 @@ const CHATS = [
     title: 'Киноклуб',
     avatar: null,
     avatarColor: '#AB3245',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -291,8 +289,8 @@ const CHATS = [
     title: 'Илья32',
     avatar: null,
     avatarColor: '#7E6C63',
-    unread_count: 0,
-    last_message: {
+    unreadCount: 0,
+    lastMessage: {
       user: {
         first_name: 'Андрей',
         second_name: 'Pupkin',
@@ -307,4 +305,52 @@ const CHATS = [
   },
 ];
 
-export default CHATS;
+export const MESSAGES = [
+  {
+    user: {
+      id: 123,
+      first_name: 'Petya',
+      second_name: 'Pupkin',
+      display_name: 'Petya Pupkin',
+      login: 'userLogin',
+      email: 'my@email.com',
+      phone: '89223332211',
+      avatar: '/path/to/avatar.jpg',
+    },
+    time: '2023-04-23T14:10:19.000Z',
+    content: 'Ой даже не знаю',
+  },
+  {
+    user: {
+      id: 1234,
+      first_name: 'Petya',
+      second_name: 'Pupkin',
+      display_name: 'Petya Pupkin',
+      login: 'userLogin',
+      email: 'my@email.com',
+      phone: '89223332211',
+      avatar: '/path/to/avatar.jpg',
+    },
+    time: '2023-04-23T14:10:19.000Z',
+    content: `
+      Я тоже не смогу сегодня. Проработала я на этой бирже около 3 месяцев, и все, что я заработала это 200 рублей, да, вроде бы тоже деньги, но за такую работу, 
+      я могла бы получить в 100 раз больше, дада, вы все правильно поняли, именно в 100, потому как на бирже вообще не ценят труд, а сами наверняка перепродают его за бешеные деньги.
+      Работаешь, трудишься целый день, а в конце получаешь либо рублей 10, либо вообще отказ от автора и понижение рейтинга...
+      Вообщем, как по мне, вы наверное уже поняли, я терпеть немогу такие сайты, где человеческий труд вообще ни во что не ставят.
+    `,
+  },
+  {
+    user: {
+      id: 123,
+      first_name: 'Petya',
+      second_name: 'Pupkin',
+      display_name: 'Petya Pupkin',
+      login: 'userLogin',
+      email: 'my@email.com',
+      phone: '89223332211',
+      avatar: '/path/to/avatar.jpg',
+    },
+    time: '2023-04-23T14:10:19.000Z',
+    content: 'Ок',
+  },
+];

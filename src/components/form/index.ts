@@ -89,6 +89,6 @@ export class Form extends Block {
   };
 
   render() {
-    return this.compile(template, { inputs: [{}, {}] });
+    return this.compile(template, { inputs: this.children.inputs });
   }
 }

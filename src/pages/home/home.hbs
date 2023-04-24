@@ -9,22 +9,8 @@
   </div>
   <input class="chat-list__search" id="search" placeholder="Поиск" type="search">
   <ul class="chat-list__list">
-    {{#each chats}}
-      <li class="chat-list__chat-brick chat-brick">
-        <a class="chat-brick__link" href="#/chat/id">
-          <div class="chat-brick__avatar" style="background-color: {{this.avatarColor}}"></div>
-          <div class="chat-brick__title-wrap">
-            <h3 class="chat-brick__title">{{this.title}}</h3>
-            <p class="chat-brick__desc">{{this.last_message.content}}</p>
-          </div>
-          <div class="chat-brick__info-wrap">
-            <span class="chat-brick__time">{{this.last_message.time}}</span>
-            {{#if this.unread_count}}
-              <span class="chat-brick__count">{{this.unread_count}}</span>
-            {{/if}}
-          </div>
-        </a>
-      </li>
+    {{#each ChatBriks}}
+      {{{this}}}
     {{/each}}
   </ul>
 </div>
@@ -37,8 +23,10 @@
   {{/unless}}
   {{#if selectedChatId}}
     <div class="chat__header header">
-      <div class="header__avatar avatar"></div>
-      <h2 class="header__title">Вадим</h2>
+      <div class="header__chat-info">
+        <div class="header__avatar avatar"></div>
+        <h2 class="header__title">Вадим</h2>
+      </div>
       <div class="header__dropdown dropdown dropdown--open">
         <button class="dropdown__btn" type="button"></button>
         <list class="dropdown__list">

@@ -6,7 +6,6 @@ import Block from '../utils/Block';
 export type Router = {
   path: string,
   component: Block,
-  name: string,
 };
 
 /**

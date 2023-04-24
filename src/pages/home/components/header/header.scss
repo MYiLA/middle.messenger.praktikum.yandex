@@ -1,5 +1,21 @@
 .header {
-  &__avatar {}
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $white-6;
+
+  &__chat-info {
+    flex-grow: 1;
+  }
+
+  &__avatar {
+    margin-right: 11px;
+  }
+
   &__title {}
-  &__dropdown {}
+
+  &__dropdown {
+    flex-shrink: 0;
+  }
 }

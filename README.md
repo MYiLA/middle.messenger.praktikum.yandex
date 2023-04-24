@@ -22,16 +22,18 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 ```
 ### **Используемые технологии:**
 ```
-parsel            https://parceljs.org
-SCSS              https://sass-lang.com
-handlebars        https://handlebarsjs.com
-express-server    https://expressjs.com
-googlefonts       https://fonts.google.com
-netlify           https://app.netlify.com
-stylelint         https://stylelint.io/
-stylelint plugins https://github.com/stylelint/awesome-stylelint#plugins
-swagger           https://ya-praktikum.tech/api/v2/swagger/#/
-Тест RegExp       https://regex101.com/
+parsel                    https://parceljs.org
+scss                      https://sass-lang.com
+handlebars                https://handlebarsjs.com
+express-server            https://expressjs.com
+googlefonts               https://fonts.google.com
+netlify                   https://app.netlify.com
+typescript                https://www.typescriptlang.org/
+eslint                    https://eslint.org/
+stylelint                 https://stylelint.io/
+stylelint plugins         https://github.com/stylelint/awesome-stylelint#plugins
+swagger                   https://ya-praktikum.tech/api/v2/swagger/#/
+тестирование RegExp       https://regex101.com/
 
 ```
 ### **МР-ы**
