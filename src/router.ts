@@ -8,7 +8,7 @@ const ready = () => {
   const pageAuthorizationComponent = new PageAuthorization();
   const PageRegistrationComponent = new PageRegistration();
   const PageHomeComponent = new PageHome({});
-  const PageHomeChatComponent = new PageHome({ selectedChatId: '1236' });
+  const PageHomeChatComponent = new PageHome({ selectedChatId: 'id' });
   const PageUserSettingsComponent = new PageUserSettings({});
   const page404Component = new PageError({ code: '404', desc: 'Не туда попали' });
   const Page500Component = new PageError({ code: '500', desc: 'Мы уже фиксим' });

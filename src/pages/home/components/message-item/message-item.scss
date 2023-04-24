@@ -1,0 +1,9 @@
+.message-item {
+  &__text {};
+  &__image {};
+  &__time {
+    &--viewed {}
+  };
+
+  &--my{}
+}

@@ -1,0 +1,14 @@
+.dropdown {
+  &--open {}
+  &__btn {}
+  &__list {}
+  &__item{}
+  &__item-btn {
+    &--add {}
+    &--delete {}
+    &--exit {}
+    &--photo {}
+    &--file {}
+    &--location {}
+  }
+} 

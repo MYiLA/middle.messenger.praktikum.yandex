@@ -11,25 +11,85 @@
   <ul class="chat-list__list">
     {{#each chats}}
       <li class="chat-list__chat-brick chat-brick">
-        <div class="chat-brick__avatar" style="background-color: {{this.avatarColor}}"></div>
-        <div class="chat-brick__title-wrap">
-          <h3 class="chat-brick__title">{{this.title}}</h3>
-          <p class="chat-brick__desc">{{this.desc}}</p>
-        </div>
-        <div class="chat-brick__info-wrap">
-          <span class="chat-brick__time">{{this.time}}</span>
-          {{#if this.messagesCount}}
-            <span class="chat-brick__count">{{this.messagesCount}}</span>
-          {{/if}}
-        </div>
+        <a class="chat-brick__link" href="#/chat/id">
+          <div class="chat-brick__avatar" style="background-color: {{this.avatarColor}}"></div>
+          <div class="chat-brick__title-wrap">
+            <h3 class="chat-brick__title">{{this.title}}</h3>
+            <p class="chat-brick__desc">{{this.last_message.content}}</p>
+          </div>
+          <div class="chat-brick__info-wrap">
+            <span class="chat-brick__time">{{this.last_message.time}}</span>
+            {{#if this.unread_count}}
+              <span class="chat-brick__count">{{this.unread_count}}</span>
+            {{/if}}
+          </div>
+        </a>
       </li>
     {{/each}}
   </ul>
 </div>
 
 <div class="home__chat chat">
-  <div class="chat__info">
-    Выберите чат чтобы отправить сообщение
-  </div>
+  {{#unless selectedChatId}}
+    <div class="chat__info">
+      Выберите чат чтобы отправить сообщение
+    </div>
+  {{/unless}}
+  {{#if selectedChatId}}
+    <div class="chat__header header">
+      <div class="header__avatar avatar"></div>
+      <h2 class="header__title">Вадим</h2>
+      <div class="header__dropdown dropdown dropdown--open">
+        <button class="dropdown__btn" type="button"></button>
+        <list class="dropdown__list">
+          <li class="dropdown__item">
+            <button class="dropdown__item-btn dropdown__item-btn--add">Добавить пользователя</button>
+          </li>
+          <li class="dropdown__item">
+            <button class="dropdown__item-btn dropdown__item-btn--delete">Удалить пользователя</button>
+          </li>
+          <li class="dropdown__item">
+            <button class="dropdown__item-btn dropdown__item-btn--exit">Выйти из чата</button>
+          </li>
+        </list>
+      </div>
+    </div>
+    <div class="chat__body body">
+      <div class="body__date">19 июня</div>
+      <ul class="body__messages-list">
+        {{#each messages}}
+          <li class="body__message-item message-item">
+            <p class="message-item__text"></p>
+            <img class="message-item__image">
+            <span class="message-item__time"></span>
+          </li>
+        {{/each}}
+        <li class="body__message-item message-item message-item--my">
+          <p class="message-item__text">
+            Круто!
+          </p>
+          <span class="message-item__time message-item__time--viewed"></span>
+        </li>
+      </ul>
+    </div>
+    <div class="chat__footer footer">
+      <div class="footer__dropdown dropdown dropdown--open">
+        <button class="dropdown__btn" type="button"></button>
+        <list class="dropdown__list">
+          <li class="dropdown__item">
+            <button class="dropdown__item-btn dropdown__item-btn--photo">Фото или Видео</button>
+          </li>
+          <li class="dropdown__item">
+            <button class="dropdown__item-btn dropdown__item-btn--file">Файл</button>
+          </li>
+          <li class="dropdown__item">
+            <button class="dropdown__item-btn dropdown__item-btn--location">Локация</button>
+          </li>
+        </list>
+      </div>
+      <div class="footer__form form"></div>
+      <button class="footer__button button button--icon-right" type="submit"></button>
+    </div>
+  {{/if}}
 </div>
 

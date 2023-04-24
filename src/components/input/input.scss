@@ -169,7 +169,7 @@
   }
 }
 
-.input__input:focus + .input__label, .input__input:not(:placeholder-shown) + .input__label {
+.input__input:focus + .input__label, .input__input:not(:placeholder-shown) + .input__label, input:-webkit-autofill + .input__label {
   bottom: 28;
   font-size: 9px;
   line-height: 9px;

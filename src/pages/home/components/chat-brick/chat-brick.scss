@@ -1,18 +1,21 @@
 .chat-brick {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 6px;
   border-top: solid 1px $white-6;
   border-bottom: solid 1px $white-6;
   margin-bottom: 2px;
-  background-color: $black-2;
-  transition: background-color 1.5s;
-  cursor: pointer;
 
-  &.active, &:hover {
-    background: linear-gradient(90deg, $white-6 1%, rgba($black-2, 0) 60%);
+  &__link {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    background-color: $black-2;
+    transition: background-color 1.5s;
+    cursor: pointer;
+  
+    &.active, &:hover {
+      background: linear-gradient(90deg, $white-6 1%, rgba($black-2, 0) 60%);
+    }
   }
 
   &__avatar {

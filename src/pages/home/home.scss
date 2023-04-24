@@ -1,14 +1,16 @@
-@import "./components/chat-header/chat-header.scss";
+@import "./components/header/header.scss";
 
-@import "./components/chat-body/chat-body.scss";
+@import "./components/body/body.scss";
 
-@import "./components/chat-footer/chat-footer.scss";
+@import "./components/footer/footer.scss";
 
 @import "./components/chat/chat.scss";
 
 @import "./components/chat-brick/chat-brick.scss";
 
 @import "./components/chat-list/chat-list.scss";
+
+@import "./components/message-item/message-item.scss";
 
 .home {
   display: flex;
