@@ -19,6 +19,8 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 Запуск сервера:                       npm run start
 Запуск сборки проекта в браузере:     npm run dev
 Сборка проекта:                       npm run build
+Запуск линтеров:                      npm run check
+Автоматическое исправление ошибок:    npm run fix
 ```
 ### **Используемые технологии:**
 ```
@@ -39,4 +41,5 @@ swagger                   https://ya-praktikum.tech/api/v2/swagger/#/
 ### **МР-ы**
 ```
 спринт-1   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/2
+спринт-2   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/3
 ```
