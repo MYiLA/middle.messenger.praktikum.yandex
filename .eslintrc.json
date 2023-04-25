@@ -25,7 +25,8 @@
         "render",
         "componentDidUpdate",
         "componentDidMount",
-        "_createDocumentElement"
+        "_createDocumentElement",
+        "request"
       ]
       }],
       "no-console": "off"
