@@ -73,7 +73,7 @@ export class Form extends Block {
     }
   };
 
-  setProps = (nextProps: FormProps): void => {
+  setProps = (nextProps: SomeObject): void => {
     if (!nextProps) {
       return;
     }

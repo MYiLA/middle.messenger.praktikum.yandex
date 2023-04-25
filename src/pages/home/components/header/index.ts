@@ -15,7 +15,7 @@ const AvatarComponent = new Avatar({
     classes: ['header__avatar'],
   },
   color: '#2917F4',
-  size: '30',
+  size: 30,
 });
 
 class Header extends Block {

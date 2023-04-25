@@ -22,8 +22,8 @@
     left: 0;
     bottom: 7px;
     color: $white-4;
-    pointer-events: none;
     transition: bottom 0.5s, font-size 0.5s;
+    cursor: pointer;
   };
 
   &__input {
@@ -165,8 +165,35 @@
 .input.input--avatar {
   margin-bottom: 0;
 
-  .input__input {}
-  .input__label {
+  .input__wrap{
+    position: initial;
+    &:after {
+      content: none;
+    }
+  }
+
+  .input__input {
+    display: none;
+  }
+
+  .input__label, 
+  .input__input:not(:placeholder-shown) + .input__label, 
+  .input__input:not(:placeholder-shown) + .input__label {
+    @include content-center;
+    bottom: 0;
+    left: 0;
+    width: 130px;
+    height: 130px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 14px;
+    text-align: center;
+    background-color: $black-1;
+    opacity: 0;
+    color: $white-1;
+    transition: opacity 0.5s;
 
     &:hover {
       opacity: 0.6;

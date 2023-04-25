@@ -1,15 +1,8 @@
 import { MESSAGES, VALIDATOR } from '../../common/constant';
+import { Input } from '../../common/types';
 
 export const DEFAULT_SETTING = {
   form: 'registration',
-};
-
-type Input = {
-  name: string,
-  label: string,
-  type: 'email' | 'text' | 'tel' | 'password',
-  invalidMessage: string,
-  validator: (value: string) => boolean,
 };
 
 export const INPUTS: Input[] = [

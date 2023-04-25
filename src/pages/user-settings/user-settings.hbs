@@ -2,47 +2,25 @@
   <a class="user-settings__link-back" href="#/home" ></a>
 </div>
 
-<div class="user-settings__wrap">
-  <div class="user-settings__avatar-wrap">
-    <div class="user-settings__avatar avatar">
+<div class="user-settings__right-wrap">
+  <div class="user-settings__wrap">
+    <div class="user-settings__avatar-wrap">
+      {{{AvatarComponent}}}
+      {{{FormAvatar}}}
     </div>
-    <form class="user-settings__avatar-form form" action="post" >
-      <div class="form__input input input--avatar">
-        <input class="input__input" type="file" name="avatar" accept="image/png, image/jpeg, image/svg, image/webp"></input>
-        <label>
-          Поменять аватар
-        </label>
-      </div>
-    </form>
-  </div>
-  <h1 class="user-settings__name">Иван</h1>
-  <div class="user-settings__form form form--setting">
-    <form id="setting-user-data" action="POST" class="form__form">
-      {{#each dataInputs}}
-        <div class="form__item">
-          <div class="form__input-wrap">
-            <input class="form__input" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}"></input>
-            <label class="form__label">{{this.label}}</label>
-          </div>
-        </div>
-      {{/each}}
-    </form>
-    <form id="setting-user-password" action="POST" class="form__form">
-      {{#each passwordInputs}}
-        <div class="form__item">
-          <div class="form__input-wrap">
-            <input class="form__input" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}"></input>
-            <label class="form__label">{{this.label}}</label>
-          </div>
-        </div>
-      {{/each}}
-    </form>
-  </div>
+    <h1 class="user-settings__name">Иван</h1>
+    <div class="user-settings__form-wrap">
+      {{{FormData}}}
+      {{{FormPassword}}}
+    </div>
 
-  <div class="user-settings__button-wrap">
-    <button class="user-settings__button button" type="button">Изменить пароль</button>
-    <button class="user-settings__button button" type="button">Изменить данные</button>
-    <a class="user-settings__button button button--dark" href="#/">Выйти</a>
+    <div class="user-settings__button-wrap">
+      {{{ChangePasswordBtn}}}
+      {{{ChangeDataBtn}}}
+      <a class="user-settings__button button button--dark" href="#/">Выйти</a>
+      {{{SubmitData}}}
+      {{{SubmitPassword}}}
+    </div>
   </div>
 </div>
 

@@ -42,7 +42,6 @@ class ChatBrick extends Block {
   }
 
   render() {
-    console.log('CHAT BRICK', this.children);
     return this.compile(template, {
       href: this.props.href,
       avatarColor: this.props.avatarColor,

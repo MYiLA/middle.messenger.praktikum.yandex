@@ -1,5 +1,3 @@
-@import "./components/form-avatar/form-avatar.scss";
-
 .user-settings {
   display: flex;
   justify-content: space-between;
@@ -30,18 +28,27 @@
     }
   };
 
-  &__wrap {
-    display: flex;
-    justify-content: center;
+  &__right-wrap {
     flex-grow: 1;
     padding-top: 60px;
+    padding-bottom: 60px;
   };
 
-  &__avatar-wrap {
+  &__wrap {
+    max-width: 510px;
+    margin: 0 auto;
+  }
+
+  &__form-wrap{
     width: 100%;
-    max-width: 550px;
+  }
+
+  &__avatar-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: auto;
     margin-bottom: 21px;
-    padding: 20px;
   };
 
   &__name {
@@ -61,7 +68,9 @@
   };
 
   &__button {
+    max-width: 164px;
     margin-right: 9px;
+    flex-shrink: 0;
 
     &:nth-last-child(1) {
       margin-right: 0;

@@ -6,8 +6,6 @@
   margin: auto;
   border-radius: 50%;
   box-shadow: inset -5px 0 30px rgb(0 0 0 / 50%), inset -2px 1px 4px rgb(183 173 133 / 50%);
-  transition: opacity 0.3s;
-  cursor: pointer;
 
   &::after {
     @include absolute-center;

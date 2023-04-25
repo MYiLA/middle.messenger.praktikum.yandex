@@ -4,7 +4,7 @@ import template from './input.hbs';
 type FormItemProps = {
   label: string,
   name: string,
-  type: 'email' | 'text' | 'tel' | 'password',
+  type: 'email' | 'text' | 'tel' | 'password' | 'file',
   form: string,
   value?: string,
   placeholder?: string,

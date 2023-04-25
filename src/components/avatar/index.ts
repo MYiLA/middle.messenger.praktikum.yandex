@@ -11,7 +11,7 @@ type AvatarProps = {
   /* Цвет аватара. Добавляется при регистрации, применяется если не загружена картинка аватара */
   color?: string,
   /* Размер аватара в px */
-  size?: string
+  size?: number
 };
 
 class Avatar extends Block {
@@ -27,14 +27,7 @@ class Avatar extends Block {
         // Цвет и размер берётся извне
         style: `width: ${props.size}px; height: ${props.size}px; background-color:${props.color ? props.color : DEFAULT_SETTING.color}`,
       },
-      events: {
-        click: (ev: Event) => this.onClick(ev),
-      },
     });
-  }
-
-  onClick(ev: Event) {
-    console.log('аватар загружается', this, ev);
   }
 
   render() {

@@ -1,13 +1,21 @@
-import { Router } from './common/types';
+import Block from './utils/Block';
 import {
   PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
 } from './pages';
+
+/**
+ * Роут
+ */
+export type Router = {
+  path: string,
+  component: Block,
+};
 
 const ready = () => {
   const pageAuthorizationComponent = new PageAuthorization();
   const PageRegistrationComponent = new PageRegistration();
   const PageHomeComponent = new PageHome({});
-  const PageUserSettingsComponent = new PageUserSettings({});
+  const PageUserSettingsComponent = new PageUserSettings();
   const page404Component = new PageError({ code: '404', desc: 'Не туда попали' });
   const Page500Component = new PageError({ code: '500', desc: 'Мы уже фиксим' });
   const PageDemoComponent = new PageDemo();

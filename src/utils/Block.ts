@@ -1,4 +1,5 @@
 import { v4 as uuid4 } from 'uuid';
+import { SomeObject } from '../common/types';
 import EventBus from './EventBus';
 
 export type BlockProps = {
@@ -121,7 +122,7 @@ class Block {
     return true;
   }
 
-  setProps = (nextProps: BlockProps): void => {
+  setProps = (nextProps: SomeObject): void => {
     if (!nextProps) {
       return;
     }
