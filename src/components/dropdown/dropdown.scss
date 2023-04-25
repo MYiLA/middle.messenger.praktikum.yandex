@@ -2,11 +2,27 @@
   width: 23px;
   height: 23px;
   position: relative;
+
   &--open, &:hover {
     &__list {
       opacity: 0;
       pointer-events: none;
     }
+  }
+
+  &__list {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 45px;
+    right: -10;
+    display: inline-block;
+    list-style: none;
+    border-radius: 12px;
+    border: 1px solid $white-4;
+    padding: 15px;
+    background-color: $black-1;
+    transition: opacity 0.5s;
   }
 
   &__btn {
@@ -16,7 +32,6 @@
     border: none;
     border-radius: 50%;
     background-color: transparent;
-
     transition: background-color 0.5s;
 
     &::after {
@@ -30,8 +45,8 @@
       border-radius: 50%;
       box-shadow: 
       inset 0 0 0 3px $white-6, 
-      0px 6px $white-6, 
-      0px 12px $white-6, 
+      0 6px $white-6, 
+      0 12px $white-6, 
     }
 
     &:hover, &:active, &:focus {
@@ -40,8 +55,8 @@
       &::after {
         box-shadow: 
         inset 0 0 0 3px $black-1, 
-        0px 6px $black-1, 
-        0px 12px $black-1, 
+        0 6px $black-1, 
+        0 12px $black-1, 
       }
 
       & + .dropdown__list {
@@ -52,6 +67,7 @@
 
     &--icon {
       &::after {
+
         @include absolute-center;
 
         width: 100%;
@@ -70,26 +86,15 @@
       }
     }
   }
-  &__list {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 45px;
-    right: -10;
-    display: inline-block;
-    list-style: none;
-    border-radius: 12px;
-    border: 1px solid $white-4;
-    padding: 15px;
-    background-color: $black-1;
-    transition: opacity 0.5s;
-  }
+
   &__item{
     margin-bottom: 16px;
+
     &:nth-last-child(1) {
       margin-bottom: 0;
     }
   }
+
   &__item-btn {
     position: relative;
     display: inline-block;
@@ -99,6 +104,7 @@
     color: $white-1;
     background-color: transparent;
     white-space: nowrap;
+
     &::after {
       content: '';
       position: absolute;
@@ -108,31 +114,37 @@
       width: 22px;
       height: 22px;
     }
+
     &--add {
       &::after {
         background-image: url("../public/images/svg/plus.svg");
       }
     }
+
     &--delete {
       &::after {
         background-image: url("../public/images/svg/cross-gold.svg");
       }
     }
+
     &--exit {
       &::after {
         background-image: url("../public/images/svg/exit.svg");
       }
     }
+
     &--photo {
       &::after {
         background-image: url("../public/images/svg/picture-gold.svg");
       }
     }
+
     &--file {
       &::after {
         background-image: url("../public/images/svg/file.svg");
       }
     }
+
     &--location {
       &::after {
         background-image: url("../public/images/svg/location.svg");
