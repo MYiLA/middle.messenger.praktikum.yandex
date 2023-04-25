@@ -2,8 +2,6 @@
 
 @import "./components/footer/footer.scss";
 
-@import "./components/chat/chat.scss";
-
 @import "./components/chat-brick/chat-brick.scss";
 
 @import "./components/message-item/message-item.scss";
@@ -12,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   height: 100vh;
+  overflow: hidden;
 
   &__chat-list {
     flex-shrink: 0;
@@ -89,9 +88,32 @@
   };
 }
 
+.chat {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &__info {
+    @include content-center;
+
+    width: 100%;
+    height: 100%;
+    color: $white-4;
+  }
+}
+
 .body {
-  &__date {}
-  &__messages-list {}
-  &__message-item {}
+  height: calc(100vh - (54px + 54px));
+  padding-right: 10px;
+  overflow-y: scroll;
+
+  &__date {
+    margin-top: 48px;
+    margin-bottom: 27px;
+    text-align: center;
+  }
+
+  &__message-item {
+    margin-bottom: 10px;
+  }
  }
  

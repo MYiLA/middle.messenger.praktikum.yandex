@@ -1,9 +1,67 @@
 .message-item {
-  &__text {}
-  &__image {}
+  &__content {
+    position: relative;
+    display: inline-block;
+    max-width: 400px;
+    padding: 11px 11px 28px;
+    border-radius: 0 12px 12px 12px;
+    background-color: $black-2;
+    color: $white-4;
+
+    &--image {
+      width: 316px;
+      height: 211px; 
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      & .message-item__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__text {
+    margin: 0;
+  }
+
   &__time {
-    &--viewed {}
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    padding: 2px 7px;
+    border-radius: 15px;
+    font-size: 9px;
+    background-color: rgba($black-2, 0.5);
+    color: $white-1;
+
+    &--viewed {
+      padding-left: 18px;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 9px;
+        height: 4px;
+        background-image: url("../public/images/svg/check-white.svg");
+        background-position: center;
+        background-size: cover;
+      }
+    }
   };
 
-  &--my{}
+  &--my{
+    text-align: right;
+    .message-item__content {
+      border-radius: 12px 12px 0 12px;
+      background-color: $white-6;
+      color: $black-1;
+      &--image {
+        border-radius: 12px;
+      }
+    }
+  }
 }

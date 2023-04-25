@@ -27,5 +27,14 @@
     }
   }
 
-  &--icon-right {}
+  &--icon-right {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    background-image: url("../public/images/svg/arrow.svg");
+    transform: rotate(180deg);
+    background-position: center;
+    background-size: cover;
+  }
 };

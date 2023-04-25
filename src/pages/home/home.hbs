@@ -22,62 +22,15 @@
     </div>
   {{/unless}}
   {{#if selectedChatId}}
-    <div class="chat__header header">
-      <div class="header__chat-info">
-        <div class="header__avatar avatar"></div>
-        <h2 class="header__title">Вадим</h2>
-      </div>
-      <div class="header__dropdown dropdown dropdown--open">
-        <button class="dropdown__btn" type="button"></button>
-        <list class="dropdown__list">
-          <li class="dropdown__item">
-            <button class="dropdown__item-btn dropdown__item-btn--add">Добавить пользователя</button>
-          </li>
-          <li class="dropdown__item">
-            <button class="dropdown__item-btn dropdown__item-btn--delete">Удалить пользователя</button>
-          </li>
-          <li class="dropdown__item">
-            <button class="dropdown__item-btn dropdown__item-btn--exit">Выйти из чата</button>
-          </li>
-        </list>
-      </div>
-    </div>
+    {{{HeaderComponent}}}
     <div class="chat__body body">
       <div class="body__date">19 июня</div>
       <ul class="body__messages-list">
-        {{#each messages}}
-          <li class="body__message-item message-item">
-            <p class="message-item__text"></p>
-            <img class="message-item__image">
-            <span class="message-item__time"></span>
-          </li>
+        {{#each Messages}}
+          {{{this}}}
         {{/each}}
-        <li class="body__message-item message-item message-item--my">
-          <p class="message-item__text">
-            Круто!
-          </p>
-          <span class="message-item__time message-item__time--viewed"></span>
-        </li>
       </ul>
     </div>
-    <div class="chat__footer footer">
-      <div class="footer__dropdown dropdown dropdown--open">
-        <button class="dropdown__btn" type="button"></button>
-        <list class="dropdown__list">
-          <li class="dropdown__item">
-            <button class="dropdown__item-btn dropdown__item-btn--photo">Фото или Видео</button>
-          </li>
-          <li class="dropdown__item">
-            <button class="dropdown__item-btn dropdown__item-btn--file">Файл</button>
-          </li>
-          <li class="dropdown__item">
-            <button class="dropdown__item-btn dropdown__item-btn--location">Локация</button>
-          </li>
-        </list>
-      </div>
-      <div class="footer__form form"></div>
-      <button class="footer__button button button--icon-right" type="submit"></button>
-    </div>
+    {{{FooterComponent}}}
   {{/if}}
 </div>
-

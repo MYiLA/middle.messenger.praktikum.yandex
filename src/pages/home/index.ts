@@ -1,5 +1,8 @@
 import Block from '../../utils/Block';
 import ChatBrick from './components/chat-brick';
+import Footer from './components/footer';
+import Header from './components/header';
+import MessageItem from './components/message-item';
 import { CHATS, MESSAGES } from './constants';
 import template from './home.hbs';
 
@@ -24,6 +27,23 @@ const ChatBriks = CHATS.map((chat) => {
   });
 });
 
+const Messages = MESSAGES.map((message) => {
+  const {
+    time, text, image, user, isViewed,
+  } = message;
+  return new MessageItem({
+    time,
+    attr: { classes: ['body__message-item'] },
+    image,
+    isMy: user.id === 'id',
+    text,
+    isViewed,
+  });
+});
+
+const HeaderComponent = new Header({ attr: { classes: ['chat__header'] } });
+const FooterComponent = new Footer({ attr: { classes: ['chat__footer'] } });
+
 class Home extends Block {
   constructor(props: HomeProps) {
     super('div', {
@@ -32,15 +52,19 @@ class Home extends Block {
         classes: ['home'],
       },
       ChatBriks,
+      HeaderComponent,
+      FooterComponent,
+      Messages,
     });
   }
 
   render() {
     return this.compile(template, {
-      chats: CHATS,
       selectedChatId: this.props.selectedChatId,
-      messages: MESSAGES,
       ChatBriks: this.children.ChatBriks,
+      HeaderComponent: this.children.HeaderComponent,
+      FooterComponent: this.children.FooterComponent,
+      Messages: this.children.Messages,
     });
   }
 }
