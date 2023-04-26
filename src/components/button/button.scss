@@ -36,5 +36,11 @@
     transform: rotate(180deg);
     background-position: center;
     background-size: cover;
+    opacity: 1;
+    transition: opacity 0.5s;
+
+    &:hover, &:focus, &:active {
+      opacity: 0.5;
+    }
   }
 };

@@ -61,6 +61,14 @@ class Block {
     });
   }
 
+  protected removeEvents() {
+    const { events = {} } = this.props as { events: Record<string, () => void> };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element!.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.CDM, this._componentDidMount.bind(this));
@@ -140,8 +148,9 @@ class Block {
 
   private _render() {
     const block = this.render();
+    // Очищаем события
+    this.removeEvents();
     // Очищаем элемент
-    // TODO: проверить очищение обработчиков
     this._element!.innerHTML = '';
     // Добавляем элемент
     this._element!.append(block);

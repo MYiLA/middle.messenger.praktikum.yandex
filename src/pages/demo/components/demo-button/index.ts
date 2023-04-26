@@ -21,7 +21,15 @@ const buttonBlack = new Button({
   },
   attr: {
     type: 'button',
-    classes: ['button--dark'],
+    classes: ['button--dark', 'margin-bottom-20'],
+  },
+});
+
+const buttonIconRight = new Button({
+  label: '',
+  attr: {
+    classes: ['button--icon-right', 'margin-bottom-20'],
+    type: 'button',
   },
 });
 
@@ -31,6 +39,7 @@ class DemoButton extends Block {
       attr: { classes: ['demo-item__component-wrap'] },
       button,
       buttonBlack,
+      buttonIconRight,
     });
   }
 
@@ -38,6 +47,7 @@ class DemoButton extends Block {
     return this.compile(template, {
       button: this.props.button,
       buttonBlack: this.props.buttonBlack,
+      buttonIconRight: this.props.buttonIconRight,
     });
   }
 }

@@ -48,6 +48,16 @@ class Input extends Block {
     }
   }
 
+  protected removeEvents() {
+    const { events = {} } = this.props as { events: Record<string, () => void> };
+    const inputElement = this.element?.querySelector('input');
+    if (inputElement) {
+      Object.keys(events).forEach((eventName) => {
+        inputElement.removeEventListener(eventName, events[eventName]);
+      });
+    }
+  }
+
   onBlur(ev: Event) {
     const input = ev.target as HTMLInputElement;
     const { value } = input;

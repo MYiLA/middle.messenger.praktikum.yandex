@@ -12,7 +12,6 @@ const PROPSES: ItemProp[] = [
 <pre>
 {
   click: (ev: Event) => void,
-  submit: (ev: Event) => void
 }
 </pre>
     `,
@@ -33,7 +32,9 @@ const PROPSES: ItemProp[] = [
     Атрибут: cписок классов
     <br>
     <br>
-    <span class="txt-yellow">.button--dark</span>&emsp;&emsp;делает кнопку тёмной
+    <span class="txt-yellow">.button--dark</span>&emsp;&emsp;&emsp;&emsp;&ensp;делает кнопку тёмной
+    <br>
+    <span class="txt-yellow">.button--icon-right</span>&emsp;&emsp;кнопка c иконкой 'стрелка направо'
     `,
   },
   {

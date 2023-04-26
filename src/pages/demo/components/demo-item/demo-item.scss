@@ -2,6 +2,8 @@
   &__title {
     margin-top: 0;
     margin-bottom: 20px;
+    font-size: 32px;
+    line-height: 32px;
   }
 
   &__subtitle {
@@ -25,17 +27,24 @@
 
  &__head-row {
   border-radius: 12px;
+  opacity: 0.6;
  }
 
  &__head-item {
   padding: 10px;
+  color: $white-2;
  }
 
  &__body-row {
-  background-color: rgba($white-1, 0.05);
+  background-color: rgba($white-1, 0.06);
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
  }
 
  &__body-item {
   padding: 10px;
+  color: $white-6;
  }
 }
