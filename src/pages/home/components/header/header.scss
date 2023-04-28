@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  height: 54px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $white-6;
+
+  &__chat-info {
+    flex-grow: 1;
+  }
+
+  &__avatar {
+    display: inline-block;
+    margin-right: 11px;
+  }
+
+  &__title {
+    display: inline-block;
+    vertical-align: super;
+    margin: 0;
+  }
+
+  &__dropdown {
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+}

@@ -1,35 +1,26 @@
-<div class="user-settings">
-  <div class="user-settings__left-wrap">
-    <a class="user-settings__link-back" href="#" ></a>
-  </div>
+<div class="user-settings__left-wrap">
+  <a class="user-settings__link-back" href="#/home" ></a>
+</div>
 
+<div class="user-settings__right-wrap">
   <div class="user-settings__wrap">
     <div class="user-settings__avatar-wrap">
-      <div class="user-settings__avatar avatar">
-        <form class="avatar__form" action="post" >
-          <input class="avatar__input" type="image" name="avatar"></input>
-        </form>
-      </div>
+      {{{AvatarComponent}}}
+      {{{FormAvatar}}}
+    </div>
+    <h1 class="user-settings__name">Иван</h1>
+    <div class="user-settings__form-wrap">
+      {{{FormData}}}
+      {{{FormPassword}}}
+    </div>
 
-      <h1 class="user-settings__name">Иван</h1>
-      <div class="user-settings__form form">
-        <form id="setting-user-data" action="POST" class="form__form">
-          {{#each .}}
-            <div class="form__item">
-              <div class="form__input-wrap">
-                <label class="form__label">{{this.label}}</label>
-                <input class="form__input" value="{{this.value}}" type="{{this.type}}" name="{{this.name}}"></input>
-              </div>
-            </div>
-          {{/each}}
-        </form>
-      </div>
-
-      <div class="user-settings__button-wrap">
-        <button class="user-settings__button button" type="button">Изменить пароль</button>
-        <button class="user-settings__button button" type="button">Изменить данные</button>
-        <a class="user-settings__button button button--dark" href="#">Выйти</a>
-      </div>
+    <div class="user-settings__button-wrap">
+      {{{ChangePasswordBtn}}}
+      {{{ChangeDataBtn}}}
+      <a class="user-settings__button button button--dark" href="#/">Выйти</a>
+      {{{SubmitData}}}
+      {{{SubmitPassword}}}
     </div>
   </div>
 </div>
+

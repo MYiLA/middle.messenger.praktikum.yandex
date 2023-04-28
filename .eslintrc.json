@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-underscore-dangle": ["error", { 
+      "allow": ["_bar"],
+      "allowAfterThis": true
+    }],
+    "no-param-reassign": ["error", { 
+      "props": false
+    }],
+    "class-methods-use-this": ["error", {
+      "exceptMethods": [
+        "_getChildrenAndProps",
+        "render",
+        "componentDidUpdate",
+        "componentDidMount",
+        "_createDocumentElement",
+        "request"
+      ]
+      }],
+      "no-console": "off"
+  }
+}

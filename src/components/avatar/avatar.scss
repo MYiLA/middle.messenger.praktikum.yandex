@@ -1,33 +1,32 @@
 .avatar {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
   margin: auto;
   border-radius: 50%;
-  background-color: $black-3;
-  cursor: pointer;
-  transition: opacity 0.3s;
+  box-shadow: inset -5px 0 30px rgb(0 0 0 / 50%), inset -2px 1px 4px rgb(183 173 133 / 50%);
+
   &::after {
-    @include background-image;
+
     @include absolute-center;
+
     content: '';
-    width: 40px;
-    height: 40px;
-    background-image: url(../public/images/svg/picture-white.svg);
+    width: 100%;
+    height: 100%;
+    background-image: url("../public/images/png/moon-texture.png");
+    background-position: center;
+    background-size: cover;
+    opacity:0.25;
   }
 
-  &:hover {
-    opacity: 60%;
-  }
+  &__img {
 
-  &__form {
     @include absolute-center;
-    z-index: 1;
-    left: 20%;
-    opacity: 0;
-  }
 
-  &__input {
-    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }

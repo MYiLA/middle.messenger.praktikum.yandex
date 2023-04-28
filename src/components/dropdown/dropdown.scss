@@ -1,0 +1,154 @@
+.dropdown {
+  width: 23px;
+  height: 23px;
+  position: relative;
+
+  &--open, &:hover {
+    &__list {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__list {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 45px;
+    right: -10;
+    display: inline-block;
+    list-style: none;
+    border-radius: 12px;
+    border: 1px solid $white-4;
+    padding: 15px;
+    background-color: $black-1;
+    transition: opacity 0.5s;
+  }
+
+  &__btn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.5s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 4px;
+      display: block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      box-shadow: 
+      inset 0 0 0 3px $white-6, 
+      0 6px $white-6, 
+      0 12px $white-6, 
+    }
+
+    &:hover, &:active, &:focus {
+      background-color: $white-4;
+
+      &::after {
+        box-shadow: 
+        inset 0 0 0 3px $black-1, 
+        0 6px $black-1, 
+        0 12px $black-1, 
+      }
+
+      & + .dropdown__list {
+        opacity: 1;
+        pointer-events: initial;
+      }
+    }
+
+    &--icon {
+      &::after {
+
+        @include absolute-center;
+
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 0 transparent;
+        background-image: url("../public/images/svg/clip-white.svg");
+        background-position: center;
+        background-size: cover;
+      }
+
+      &:hover, &:active, &:focus {
+        &::after {
+          box-shadow: 0 0 0 transparent;
+          background-image: url("../public/images/svg/clip-black.svg");
+        }
+      }
+    }
+  }
+
+  &__item{
+    margin-bottom: 16px;
+
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item-btn {
+    position: relative;
+    display: inline-block;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 37px;
+    color: $white-1;
+    background-color: transparent;
+    white-space: nowrap;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+    }
+
+    &--add {
+      &::after {
+        background-image: url("../public/images/svg/plus.svg");
+      }
+    }
+
+    &--delete {
+      &::after {
+        background-image: url("../public/images/svg/cross-gold.svg");
+      }
+    }
+
+    &--exit {
+      &::after {
+        background-image: url("../public/images/svg/exit.svg");
+      }
+    }
+
+    &--photo {
+      &::after {
+        background-image: url("../public/images/svg/picture-gold.svg");
+      }
+    }
+
+    &--file {
+      &::after {
+        background-image: url("../public/images/svg/file.svg");
+      }
+    }
+
+    &--location {
+      &::after {
+        background-image: url("../public/images/svg/location.svg");
+      }
+    }
+  }
+} 

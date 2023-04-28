@@ -1,0 +1,23 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  border-top: 1px solid $white-4;
+
+  &__dropdown {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  &__form {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+
+  &__button {
+    flex-shrink: 0;
+  }
+}

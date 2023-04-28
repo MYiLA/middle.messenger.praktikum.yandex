@@ -1,0 +1,18 @@
+<div class="input__wrap">
+  <input
+    class="input__input"
+    type="{{type}}"
+    name="{{name}}"
+    id="{{name}}-id"
+    {{#if value}} value="{{value}}" {{/if}}
+    {{#if placeholder}}placeholder="{{placeholder}}" {{/if}}
+    {{#unless placeholder}}placeholder="{{name}}" {{/unless}}
+    {{#if isDisabled}}disabled{{/if}}
+    ></input>
+  <label class="input__label" for="{{name}}-id">{{label}}</label>
+</div>
+{{#unless isValid}}
+  <div class="input__message">
+    {{invalidMessage}}
+  </div>
+{{/unless}}

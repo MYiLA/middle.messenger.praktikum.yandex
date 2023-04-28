@@ -1,0 +1,26 @@
+<h2 class="demo-item__title">{{name}}</h2>
+{{{item}}}
+<h3 class="demo-item__subtitle">Пропсы</h3>
+<table class="demo-item__table table">
+  <colgroup>
+    <col style="width: 20%;">
+    <col style="width: 20%;">
+    <col>
+  </colgroup>
+  <thead class="table__head">
+    <tr class="table__head-row">
+      <th class="table__head-item">Имя</th>
+      <th class="table__head-item">Тип</th>
+      <th class="table__head-item">Описание</th>
+    </tr>
+    <tbody class="table__body">
+      {{#each itemPropses}}
+        <tr class="table__body-row">
+          <td class="table__body-item">{{{this.name}}}</td>
+          <td class="table__body-item">{{{this.type}}}</td>
+          <td class="table__body-item">{{{this.desc}}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </thead>
+</table>

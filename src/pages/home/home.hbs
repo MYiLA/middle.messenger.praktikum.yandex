@@ -1,0 +1,36 @@
+<div class="home__chat-list chat-list">
+  <div class="chat-list__link-wrap">
+    <a href="#/demo" class="chat-list__link chat-list__link--left">
+      Компоненты
+    </a>
+    <a href="#/user-settings" class="chat-list__link">
+      Профиль
+    </a>
+  </div>
+  <input class="chat-list__search" id="search" placeholder="Поиск" type="search">
+  <ul class="chat-list__list">
+    {{#each ChatBriks}}
+      {{{this}}}
+    {{/each}}
+  </ul>
+</div>
+
+<div class="home__chat chat">
+  {{#unless selectedChatId}}
+    <div class="chat__info">
+      Выберите чат чтобы отправить сообщение
+    </div>
+  {{/unless}}
+  {{#if selectedChatId}}
+    {{{HeaderComponent}}}
+    <div class="chat__body body">
+      <div class="body__date">19 июня</div>
+      <ul class="body__messages-list">
+        {{#each Messages}}
+          {{{this}}}
+        {{/each}}
+      </ul>
+    </div>
+    {{{FooterComponent}}}
+  {{/if}}
+</div>

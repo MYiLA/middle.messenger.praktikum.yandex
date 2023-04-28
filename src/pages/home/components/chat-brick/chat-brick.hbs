@@ -1,0 +1,13 @@
+<a class="chat-brick__link" href="{{href}}">
+  {{{Avatar}}}
+  <div class="chat-brick__title-wrap">
+    <h3 class="chat-brick__title">{{title}}</h3>
+    <p class="chat-brick__desc">{{lastMessageContent}}</p>
+  </div>
+  <div class="chat-brick__info-wrap">
+    <span class="chat-brick__time">{{lastMessageTime}}</span>
+    {{#if unreadCount}}
+      <span class="chat-brick__count">{{unreadCount}}</span>
+    {{/if}}
+  </div>
+</a>

@@ -1,0 +1,6 @@
+<div class="message-item__content{{#if image}} message-item__content--image{{/if}}">
+  {{#if text}}<p class="message-item__text">{{text}}</p>{{/if}}
+  {{#if image}}<img class="message-item__image" src="{{image}}">{{/if}}
+  <span class="message-item__time{{#if isViewed}} message-item__time--viewed{{/if}}">{{time}}</span>
+</div>
+

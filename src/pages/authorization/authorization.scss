@@ -1,9 +1,12 @@
 
 .authorization {
+
   @include popup;
+
   min-height: 460px;
 
   &__title {
+
     @include popup-title;
   };
 
