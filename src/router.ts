@@ -1,4 +1,4 @@
-import Block from './utils/Block';
+import Block from './services/Block';
 import {
   PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
 } from './pages';
@@ -51,7 +51,7 @@ const ready = () => {
     appElement.innerHTML = '';
     // Рендерим полученный компонент в документ
     appElement.append(temp);
-
+    // TODO: сделать отдельный роут для чата. Выделить чат в отдельный компонент
     const isChat = document.location.href.includes('#/chat/id') ? 'id' : undefined;
     PageHomeComponent.setProps({ selectedChatId: isChat });
   };

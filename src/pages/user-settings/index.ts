@@ -1,6 +1,6 @@
 import template from './user-settings.hbs';
 import { DATA_INPUTS, FORM, PASSWORD_INPUTS } from './constants';
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
 import {
   Avatar, Button, Form, Input,
 } from '../../components';

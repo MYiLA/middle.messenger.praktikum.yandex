@@ -1,5 +1,5 @@
 import { Input } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
 import template from './demo-input.hbs';
 
 const input = new Input({

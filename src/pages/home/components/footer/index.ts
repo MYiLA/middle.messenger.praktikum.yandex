@@ -1,6 +1,6 @@
 import { MESSAGES, VALIDATOR } from '../../../../common/constant';
 import { Button, Form, Input } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
 import template from './footer.hbs';
 
 type FooterProps = {

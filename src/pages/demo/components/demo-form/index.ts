@@ -1,7 +1,7 @@
 import {
   Button, Form, FormProps, Input,
 } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
 import template from './demo-form.hbs';
 
 const Input1 = new Input({

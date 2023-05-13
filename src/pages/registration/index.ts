@@ -1,5 +1,5 @@
 import { Button, Form, Input } from '../../components';
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
 import { DEFAULT_SETTING, INPUTS } from './constants';
 import template from './registration.hbs';
 

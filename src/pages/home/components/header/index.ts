@@ -1,5 +1,5 @@
 import { Avatar } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
 import template from './header.hbs';
 
 type HeaderProps = {

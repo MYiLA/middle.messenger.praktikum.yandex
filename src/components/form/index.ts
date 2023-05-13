@@ -1,5 +1,5 @@
 import { SomeObject } from '../../common/types';
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
 import Input from '../input';
 import template from './form.hbs';
 

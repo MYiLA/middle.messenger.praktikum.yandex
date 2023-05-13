@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
 import ChatBrick from './components/chat-brick';
 import Footer from './components/footer';
 import Header from './components/header';

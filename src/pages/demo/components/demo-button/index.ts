@@ -1,5 +1,5 @@
 import { Button } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
 import template from './demo-button.hbs';
 
 const button = new Button({

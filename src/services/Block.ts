@@ -1,7 +1,17 @@
 import { v4 as uuid4 } from 'uuid';
 import { SomeObject } from '../common/types';
-import EventBus from './EventBus';
+import EventBus from '../utils/EventBus';
 
+/**
+ * Тип конструктора объекта Block
+ */
+export type BlockConstructor = {
+  new (props: SomeObject): Block;
+};
+
+/**
+ * Тип пропсов объекта Block
+ */
 export type BlockProps = {
   [x: string | symbol | number]: any;
   attr?: {
