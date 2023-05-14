@@ -11,9 +11,6 @@ const renderDOM = (query: string, component: Block): Element | never => {
 
   if (!temp) throw new Error(`Не найдено элемента на странице с id ${component.id}}`);
 
-  // Очищаем темплейт
-  root.innerHTML = '';
-
   // Рендерим полученный компонент в темплейт
   root.appendChild(temp);
 

@@ -252,7 +252,7 @@ class Block {
     const content = this.getContent();
 
     if (content) {
-      content.style.display = 'block';
+      content.style.display = '';
     } else {
       throw new Error('Элемент не найден. show не отрабатывает');
     }
@@ -260,7 +260,6 @@ class Block {
 
   hide() {
     const content = this.getContent();
-
     if (content) {
       content.style.display = 'none';
     } else {

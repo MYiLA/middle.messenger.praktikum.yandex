@@ -38,12 +38,13 @@ class Router {
 
   // запустить роутер
   start() {
-    window.onpopstate = () => { this._onRoute(window.location.pathname); };
-    this._onRoute(window.location.pathname);
+    window.onpopstate = () => { this._onRoute(Router.parseLocation()); };
+    this._onRoute(Router.parseLocation());
   }
 
-  _onRoute(pathname: string) {
-    const route = this.getRoute(pathname);
+  _onRoute(path: string) {
+    const route = this.getRoute(path);
+
     if (!route) {
       return;
     }
@@ -72,8 +73,10 @@ class Router {
   }
 
   getRoute(path: string) {
-    return this.routes.find((route) => route.match(path));
+    return this.routes.find((route) => route.match(path)) || this.routes.find((item) => item.match('/404'));
   }
+
+  static parseLocation = () => window.location.hash.slice(1).toLowerCase() || '/';
 }
 
 export default Router;

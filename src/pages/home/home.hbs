@@ -1,13 +1,15 @@
 <div class="home__chat-list chat-list">
-  <div class="chat-list__link-wrap">
-    <a href="#/demo" class="chat-list__link chat-list__link--left">
-      Компоненты
-    </a>
-    <a href="#/user-settings" class="chat-list__link">
-      Профиль
-    </a>
+  <div class="chat-list__info">
+    <div class="chat-list__link-wrap">
+      <a href="#/demo" class="chat-list__link chat-list__link--left">
+        Компоненты
+      </a>
+      <a href="#/user-settings" class="chat-list__link">
+        Профиль
+      </a>
+    </div>
+    <input class="chat-list__search" id="search" placeholder="Поиск" type="search">
   </div>
-  <input class="chat-list__search" id="search" placeholder="Поиск" type="search">
   <ul class="chat-list__list">
     {{#each ChatBriks}}
       {{{this}}}
