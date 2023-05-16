@@ -1,6 +1,6 @@
 import { v4 as uuid4 } from 'uuid';
 import { SomeObject } from '../common/types';
-import EventBus from '../utils/EventBus';
+import EventBus from './EventBus';
 
 /**
  * Тип конструктора объекта Block
@@ -80,10 +80,10 @@ class Block {
   }
 
   private _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.RENDER, this._render.bind(this));
+    eventBus.attach(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.attach(Block.EVENTS.CDM, this._componentDidMount.bind(this));
+    eventBus.attach(Block.EVENTS.CDU, this._componentDidUpdate.bind(this));
+    eventBus.attach(Block.EVENTS.RENDER, this._render.bind(this));
   }
 
   private _createResources() {

@@ -1,6 +1,6 @@
 import { SomeObject } from '../common/types';
 import isArray from './isArray';
-import isSomeObject from './isPlainObject';
+import isSomeObject from './isSomeObject';
 
 const getQueryString = (data: SomeObject): string | never => {
   if (!isSomeObject(data)) {
