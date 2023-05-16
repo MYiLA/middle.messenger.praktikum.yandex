@@ -3,6 +3,12 @@ import {
   PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
 } from './pages';
 
+declare global {
+  interface Window {
+    spaceChatStoreAction?: (add: string) => void;
+  }
+}
+
 const router = new Router('#app');
 // TODO: сделать открытие чатов по id
 // TODO: редиректы на 500

@@ -2,7 +2,6 @@ import { SomeObject } from '../../common/types';
 import set from '../../utils/set';
 import EventBus from '../EventBus';
 
-// TODO: Возможно стоит типизировать стор, а не использовать SomeObject
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
 export default class Store extends EventBus {
   static EVENT_UPDATE = '1';
