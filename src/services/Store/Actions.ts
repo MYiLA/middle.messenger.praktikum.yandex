@@ -1,86 +1,111 @@
-import Store from './Store';
+import { SomeObject } from '../../common/types';
+// import Store from './Store';
 
-const store = new Store();
+// const store = new Store();
 
-const getFormState = () => {
-  const state = store.getState();
-  const form = state.form ?? {};
-
-  return {
-    text: '',
-    lines: [],
-    times: [],
-    ...form,
-  };
+/** Регистрация */
+const signup = (props: SomeObject) => {
+  console.log('signup', props);
 };
 
-const getCustomState = () => {
-  const state = store.getState();
-  const custom = state.custom ?? {};
-
-  return {
-    data: [],
-    times: [],
-    ...custom,
-  };
+/** Авторизация */
+const signin = (props: SomeObject) => {
+  console.log('signin', props);
 };
 
-const getUserState = () => {
-  const state = store.getState();
-  const user = state.user ?? {};
-
-  return {
-    data: [],
-    times: [],
-    ...user,
-  };
+/** Получение подробной информации по текущему пользователю */
+const getProfile = (props: SomeObject) => {
+  console.log('getProfile', props);
 };
 
-const explodeText = (text: string): string[] => text.split('\n').map((i) => i.trim());
-
-const setText = (newText: string) => {
-  const form = getFormState();
-  const lines = explodeText(newText);
-  const times = (Array(lines.length)).fill((new Date()).toString());
-
-  store.set('form', {
-    ...form,
-    text: lines.join('\n'),
-    lines,
-    times,
-  });
+/** Выход пользователя из системы */
+const logout = (props: SomeObject) => {
+  console.log('logout', props);
 };
 
-const addText = (add: string) => {
-  const form = getFormState();
-  const lines = explodeText(add);
-  const times = (Array(lines.length)).fill((new Date()).toString());
-
-  form.lines = form.lines.concat(lines);
-  form.times = form.times.concat(times);
-  form.text = form.lines.join('\n');
-
-  store.set('form', form);
+/** Изменить данные текущего пользователя */
+const setProfileData = (props: SomeObject) => {
+  console.log('setProfileData', props);
 };
 
-const addCustomData = (add: string) => {
-  const custom = getCustomState();
-  custom.data.push(add);
-  custom.times.push((new Date()).toString());
-
-  store.set('custom', custom);
+/** Изменить аватар текущего пользователя */
+const setProfileAvatar = (props: SomeObject) => {
+  console.log('setProfileAvatar', props);
 };
 
-const addUserData = (add: string) => {
-  const user = getUserState();
-  user.data.push(add);
-  user.times.push((new Date()).toString());
-
-  store.set('user', user);
+/** Изменить пароль текущего пользователя */
+const setProfilePassword = (props: SomeObject) => {
+  console.log('setProfilePassword', props);
 };
 
-window.spaceChatStoreAction = addUserData;
+/** Получить информацию по конкретному пользователю */
+const getUser = (props: SomeObject) => {
+  console.log('getUser', props);
+};
+
+/** Получить чаты текущего пользователя */
+const getChats = (props: SomeObject) => {
+  console.log('getChats', props);
+};
+
+/** Создать чат */
+const createChat = (props: SomeObject) => {
+  console.log('createChat', props);
+};
+
+/** Удалить чат */
+const deleteChat = (props: SomeObject) => {
+  console.log('deleteChat', props);
+};
+
+/** Получить пользователей чата */
+const getChatUsers = (props: SomeObject) => {
+  console.log('getChatUsers', props);
+};
+
+/** Получить количество новых сообщений в указанном чате */
+const getMessageCount = (props: SomeObject) => {
+  console.log('getMessageCount', props);
+};
+
+/** Добавить пользователя в чат */
+const addUserInChat = (props: SomeObject) => {
+  console.log('addUserInChat', props);
+};
+
+/** Удалить пользователя из чата */
+const deleteUserFromChat = (props: SomeObject) => {
+  console.log('deleteUserFromChat', props);
+};
+
+/** Отправить сообщение */
+const sendMessage = (props: SomeObject) => {
+  console.log('sendMessage', props);
+};
+
+/** Логировать переданные данные в консоль */
+const log = (props: SomeObject) => {
+  console.log('log', props);
+};
+
+window.spaceChatStoreAction = signup;
 
 export {
-  setText, addText, addCustomData, addUserData,
+  signup,
+  signin,
+  getProfile,
+  logout,
+  setProfileData,
+  setProfileAvatar,
+  setProfilePassword,
+  getUser,
+  getChats,
+  createChat,
+  deleteChat,
+  getChatUsers,
+  getMessageCount,
+  addUserInChat,
+  deleteUserFromChat,
+  sendMessage,
+  log,
 };

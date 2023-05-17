@@ -2,10 +2,11 @@ import Router from './services/Router/Router';
 import {
   PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
 } from './pages';
+import { SomeObject } from './common/types';
 
 declare global {
   interface Window {
-    spaceChatStoreAction?: (add: string) => void;
+    spaceChatStoreAction?: (props: SomeObject) => void;
   }
 }
 

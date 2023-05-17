@@ -1,4 +1,4 @@
-import { MESSAGES, VALIDATOR } from '../../common/constant';
+import { ActionName, MESSAGES, VALIDATOR } from '../../common/constant';
 import { Button, Form, Input } from '../../components';
 import Block from '../../services/Block';
 import template from './authorization.hbs';
@@ -31,6 +31,7 @@ const FormElement = new Form({
     classes: ['authorization__form'],
   },
   inputs: [Login, Password],
+  actionName: ActionName.signin,
 });
 
 const Enter = new Button({

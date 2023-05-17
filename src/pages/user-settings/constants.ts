@@ -80,7 +80,8 @@ export const PASSWORD_INPUTS: Input[] = [
     label: 'Повторите новый пароль',
     value: 'Пароль123@',
     type: 'password',
-    invalidMessage: MESSAGES.invalid.password,
-    validator: VALIDATOR.password,
+    invalidMessage: MESSAGES.invalid.repeatInputValue,
+    validator: VALIDATOR.repeatInputValue,
+    repeatInputName: 'newPassword',
   },
 ];

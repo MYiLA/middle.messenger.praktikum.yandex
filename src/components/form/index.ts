@@ -1,5 +1,7 @@
+import { ActionName } from '../../common/constant';
 import { SomeObject } from '../../common/types';
 import Block from '../../services/Block';
+import runAction from '../../utils/runAction';
 import Input from '../input';
 import template from './form.hbs';
 
@@ -11,6 +13,7 @@ export type FormProps = {
   }
   inputs: Input[],
   isDisabled?: boolean,
+  actionName: ActionName,
 };
 
 const defaultClasses = ['form__form'];
@@ -50,10 +53,13 @@ export class Form extends Block {
         (inputBlock) => (inputBlock.getProps().name === input.name),
       );
       const inputBlock = inputBlocks[inputBlockIndex];
-      const { validator } = inputBlock.getProps();
+      const { validator, repeatInputName } = inputBlock.getProps();
 
       if (validator) {
-        formIsValid = validator(input.value);
+        const repeatInput = repeatInputName ? document.querySelector(`[name="${repeatInputName}"]`) as HTMLInputElement : undefined;
+        const repeatInputValue = repeatInput ? repeatInput?.value : undefined;
+
+        formIsValid = validator(input.value, repeatInputValue);
       }
 
       // Если поле не прошло валидатор, то делаем его невалидным
@@ -68,8 +74,8 @@ export class Form extends Block {
     }
 
     if (formIsValid) {
-      // Если все поля прошли успешно валидацию, то отправляем данные в консоль
-      console.log(result);
+      // Если все поля прошли успешно валидацию, то запускаем экшн
+      runAction(this.props.actionName, result);
     }
   };
 

@@ -1,3 +1,4 @@
+import { ActionName } from '../../common/constant';
 import { Button, Form, Input } from '../../components';
 import Block from '../../services/Block';
 import { DEFAULT_SETTING, INPUTS } from './constants';
@@ -5,7 +6,7 @@ import template from './registration.hbs';
 
 const inputs = INPUTS.map((input) => {
   const {
-    label, name, type, validator, invalidMessage,
+    label, name, type, validator, invalidMessage, repeatInputName,
   } = input;
   return new Input({
     label,
@@ -15,6 +16,7 @@ const inputs = INPUTS.map((input) => {
     attr: { classes: ['form__input'] },
     validator,
     invalidMessage,
+    repeatInputName,
   });
 });
 
@@ -25,6 +27,7 @@ const FormElement = new Form({
     classes: ['authorization__form'],
   },
   inputs,
+  actionName: ActionName.signup,
 });
 
 const RegisterButton = new Button({

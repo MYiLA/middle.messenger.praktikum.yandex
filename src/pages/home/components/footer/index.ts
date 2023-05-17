@@ -1,4 +1,4 @@
-import { MESSAGES, VALIDATOR } from '../../../../common/constant';
+import { ActionName, MESSAGES, VALIDATOR } from '../../../../common/constant';
 import { Button, Form, Input } from '../../../../components';
 import Block from '../../../../services/Block';
 import template from './footer.hbs';
@@ -32,6 +32,7 @@ const FormComponent = new Form({
     id: FORM_NAME,
   },
   inputs: [InputComponent],
+  actionName: ActionName.sendMessage,
 });
 
 const ButtonComponent = new Button({

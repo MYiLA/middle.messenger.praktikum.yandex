@@ -20,15 +20,56 @@ export const VALIDATOR = {
   phone: (value: string): boolean => /^\+?\d{10,15}$/.test(value),
   /** Не должно быть пустым */
   message: (value: string): boolean => !!value,
+  /** Значения в инпутах должны совпадать */
+  repeatInputValue:
+  (value: string, repeatInputValue: string): boolean => value === repeatInputValue,
 };
 
 export const MESSAGES = {
   invalid: {
-    login: 'От 3 до 20 символов, латиница, может содержать цифры но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчёркивание)',
-    password: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
-    name: 'Латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
-    email: 'Латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы',
-    phone: 'От 10 до 15 символов, состоит из цифр, может начинается с плюса',
-    message: 'Не должно быть пустым',
+    login: 'Некорректный логин',
+    password: 'Пароль слишком слабый',
+    name: 'С заглавной буквы без спецсимволов',
+    email: 'Некорректный емейл',
+    phone: 'Некорректный телефон',
+    message: 'Пожалуйста заполните поле',
+    repeatInputValue: 'Пожалуйста повторите предыдущую запись',
   },
 };
+
+export enum ActionName {
+  /** Регистрация */
+  signup = 'signup',
+  /** Авторизация */
+  signin = 'signin',
+  /** Получение подробной информации по текущему пользователю */
+  getProfile = 'getProfile',
+  /** Выход пользователя из системы */
+  logout = 'logout',
+  /** Изменить данные текущего пользователя */
+  setProfileData = 'setProfileData',
+  /** Изменить аватар текущего пользователя */
+  setProfileAvatar = 'setProfileAvatar',
+  /** Изменить пароль текущего пользователя */
+  setProfilePassword = 'setProfilePassword',
+  /** Получить информацию по конкретному пользователю */
+  getUser = 'getUser',
+  /** Получить чаты текущего пользователя */
+  getChats = 'getChats',
+  /** Создать чат */
+  createChat = 'createChat',
+  /** Удалить чат */
+  deleteChat = 'deleteChat',
+  /** Получить пользователей чата */
+  getChatUsers = 'getChatUsers',
+  /** Получить количество новых сообщений в указанном чате */
+  getMessageCount = 'getMessageCount',
+  /** Добавить пользователя в чат */
+  addUserInChat = 'addUserInChat',
+  /** Удалить пользователя из чата */
+  deleteUserFromChat = 'deleteUserFromChat',
+  /** Отправить сообщение */
+  sendMessage = 'sendMessage',
+  /** Логировать переданные данные в консоль */
+  log = 'log',
+}

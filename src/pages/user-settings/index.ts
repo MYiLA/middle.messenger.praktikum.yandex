@@ -4,6 +4,7 @@ import Block from '../../services/Block';
 import {
   Avatar, Button, Form, Input,
 } from '../../components';
+import { ActionName } from '../../common/constant';
 
 const AvatarInput = new Input({
   attr: { classes: ['input--avatar'] },
@@ -33,7 +34,7 @@ const DataInputs = DATA_INPUTS.map((input) => {
 
 const PasswordInputs = PASSWORD_INPUTS.map((input) => {
   const {
-    invalidMessage, label, name, type, validator, value,
+    invalidMessage, label, name, type, validator, value, repeatInputName,
   } = input;
 
   return new Input({
@@ -45,6 +46,7 @@ const PasswordInputs = PASSWORD_INPUTS.map((input) => {
     invalidMessage,
     validator,
     value,
+    repeatInputName,
   });
 });
 
@@ -55,6 +57,7 @@ const FormPassword = new Form({
     action: 'POST',
   },
   inputs: PasswordInputs,
+  actionName: ActionName.setProfilePassword,
 });
 
 const FormData = new Form({
@@ -64,6 +67,7 @@ const FormData = new Form({
     action: 'POST',
   },
   inputs: DataInputs,
+  actionName: ActionName.setProfileData,
 });
 
 const FormAvatar = new Form({
@@ -73,6 +77,7 @@ const FormAvatar = new Form({
     action: 'POST',
   },
   inputs: [AvatarInput],
+  actionName: ActionName.setProfileAvatar,
 });
 
 const AvatarComponent = new Avatar({

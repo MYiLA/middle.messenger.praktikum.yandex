@@ -52,7 +52,8 @@ export const INPUTS: Input[] = [
     name: 'password-repeat',
     label: 'Пароль',
     type: 'password',
-    validator: VALIDATOR.password,
-    invalidMessage: MESSAGES.invalid.password,
+    validator: VALIDATOR.repeatInputValue,
+    invalidMessage: MESSAGES.invalid.repeatInputValue,
+    repeatInputName: 'password',
   },
 ];

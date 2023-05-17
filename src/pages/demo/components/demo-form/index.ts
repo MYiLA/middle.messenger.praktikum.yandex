@@ -1,3 +1,4 @@
+import { ActionName } from '../../../../common/constant';
 import {
   Button, Form, FormProps, Input,
 } from '../../../../components';
@@ -30,6 +31,7 @@ const FormDemo = new Form({
     action: 'POST',
   },
   inputs: [Input1, Input2],
+  actionName: ActionName.log,
 });
 
 const Submit = new Button({

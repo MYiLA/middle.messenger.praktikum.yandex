@@ -11,6 +11,7 @@ export type Input = {
   label: string,
   type: 'email' | 'text' | 'tel' | 'password',
   invalidMessage: string,
-  validator: (value: string) => boolean,
+  validator: (value: string, password?: string) => boolean,
   value?: string,
+  repeatInputName?: string,
 };
