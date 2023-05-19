@@ -17,9 +17,9 @@ router
   .use('/', PageAuthorization)
   .use('/404', PageError, { code: '404', desc: 'Не туда попали' })
   .use('/500', PageError, { code: '500', desc: 'Мы уже фиксим' })
-  .use('/registration', PageRegistration)
-  .use('/home', PageHome, {})
+  .use('/sign-up', PageRegistration)
+  .use('/messenger', PageHome, {})
   .use('/chat/id', PageHome, {})
-  .use('/user-settings', PageUserSettings)
+  .use('/settings', PageUserSettings)
   .use('/demo', PageDemo)
   .start();

@@ -23,13 +23,12 @@ class Router {
     this.routes = [];
     this.history = window.history;
     this._currentRoute = null;
-    this._rootQuery = rootQuery;
+    this._rootQuery = rootQuery || '#app';
 
     Router.instance = this;
   }
 
   use(path: string, component: BlockConstructor, props: SomeObject = {}) {
-    // Вместо трёх точек напишем отдельную сущность — об этом речь пойдёт ниже
     const route = new Route(path, component, { ...props, rootQuery: this._rootQuery });
     this.routes.push(route);
     // Возврат this — основа паттерна "Builder" («Строитель»)
@@ -38,13 +37,16 @@ class Router {
 
   // запустить роутер
   start() {
-    window.onpopstate = () => { this._onRoute(Router.parseLocation()); };
+    // Обработка события действий в браузере
+    window.onpopstate = () => {
+      this._onRoute(Router.parseLocation());
+    };
     this._onRoute(Router.parseLocation());
   }
 
   _onRoute(path: string) {
     const route = this.getRoute(path);
-
+    console.log('getRoute route', route);
     if (!route) {
       return;
     }
@@ -73,6 +75,8 @@ class Router {
   }
 
   getRoute(path: string) {
+    console.log('this.routes', this.routes);
+    console.log('path', path);
     return this.routes.find((route) => route.match(path)) || this.routes.find((item) => item.match('/404'));
   }
 

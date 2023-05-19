@@ -2,6 +2,7 @@ import Block, { BlockConstructor } from '../Block';
 import isEqual from '../../utils/isEqual';
 import renderDOM from '../../utils/renderDOM';
 import { SomeObject } from '../../common/types';
+import clearDOM from '../../utils/clearDOM';
 
 /** Хранит URL и соответствующий ему блок, умеет показывать, скрывать и создавать блоки */
 class Route {
@@ -14,15 +15,13 @@ class Route {
   private _props: SomeObject = {
     /** Селектор обёртки, в которой будет отрендерен блок */
     rootQuery: '#app',
-    /** Тег компонента */
-    tag: 'div',
   };
 
-  constructor(path: string, Component: BlockConstructor, props?: SomeObject) {
+  constructor(path: string, Component: BlockConstructor, props: SomeObject) {
     this._path = path;
     this._Component = Component;
     this._block = null;
-    this._props = { ...this._props, ...props };
+    this._props = props;
   }
 
   navigate(path: string) {
@@ -34,7 +33,8 @@ class Route {
 
   leave() {
     if (this._block) {
-      this._block.hide();
+      /** Что делать со страницей, когда мы уходим из неё */
+      clearDOM(this._props.rootQuery);
     }
   }
 
@@ -45,16 +45,15 @@ class Route {
   }
 
   render() {
+    /** Если нас ещё на странице не было */
     if (!this._block) {
       if (this._Component === null) throw new Error('Route: компонент, который нужно рендерить не найден');
       // TODO: тут предлагается передавать через пропсы айдишник.
       // Но мне кажется надо делать изящнее.
       this._block = new this._Component(this._props);
-      renderDOM(this._props.rootQuery, this._block);
-      return;
     }
-
-    this._block.show();
+    /** Если мы возвращаемся на уже созданную страницу */
+    renderDOM(this._props.rootQuery, this._block);
   }
 }
 

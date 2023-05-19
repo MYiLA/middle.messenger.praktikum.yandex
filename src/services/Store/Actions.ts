@@ -21,7 +21,7 @@ const registration = (props: RegistrationFormData): void => {
 
   authApi.registration(registrationProps).then((response: ResponseChat) => {
     if (response.status >= 200 && response.status < 300) {
-      router.go('/home');
+      router.go('/messenger');
       console.log('Редирект на Home');
     }
     // TODO: Заменить алерты на компонент notification
