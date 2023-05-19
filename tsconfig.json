@@ -20,7 +20,7 @@
     "dist",
     ".parcel-cache",
     ".github",
-    "public"
+    "public",
   ],
   "paths": {
     "@common/*": ["src/common/*"],

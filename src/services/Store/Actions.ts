@@ -1,16 +1,39 @@
-import { SomeObject } from '../../common/types';
+import { SigninProps, SomeObject } from '../../common/types';
+import { RegistrationFormData } from '../../pages/registration/type';
+import getResponseText from '../../utils/getResponseText';
+import AuthApi from '../Api/auth';
+import { Router } from '../Router';
 // import Store from './Store';
 
 // const store = new Store();
+const authApi = new AuthApi();
+const router = new Router();
+
+interface ResponseChat extends Response {
+  responseText: string
+}
 
 /** Регистрация */
-const signup = (props: SomeObject) => {
-  console.log('signup', props);
+const registration = (props: RegistrationFormData): void => {
+  // Удаляем повтор пароля
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { password_repeat, ...registrationProps } = props;
+
+  authApi.registration(registrationProps).then((response: ResponseChat) => {
+    if (response.status >= 200 && response.status < 300) {
+      router.go('/home');
+      console.log('Редирект на Home');
+    }
+    // TODO: Заменить алерты на компонент notification
+    // eslint-disable-next-line no-alert
+    window.alert(getResponseText(response.responseText));
+  });
 };
 
 /** Авторизация */
-const signin = (props: SomeObject) => {
-  console.log('signin', props);
+const signin = (formData: SigninProps) => {
+  const props = authApi.authorization(formData);
+  console.log('signin', formData, props);
 };
 
 /** Получение подробной информации по текущему пользователю */
@@ -88,10 +111,10 @@ const log = (props: SomeObject) => {
   console.log('log', props);
 };
 
-window.spaceChatStoreAction = signup;
+window.spaceChatStoreAction = registration;
 
 export {
-  signup,
+  registration,
   signin,
   getProfile,
   logout,

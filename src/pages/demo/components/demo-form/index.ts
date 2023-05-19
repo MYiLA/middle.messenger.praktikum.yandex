@@ -1,8 +1,8 @@
-import { ActionName } from '../../../../common/constant';
 import {
   Button, Form, FormProps, Input,
 } from '../../../../components';
 import Block from '../../../../services/Block';
+import ActionName from '../../../../services/Store/constant';
 import template from './demo-form.hbs';
 
 const Input1 = new Input({

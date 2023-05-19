@@ -4,7 +4,7 @@ import Block from '../../services/Block';
 import {
   Avatar, Button, Form, Input,
 } from '../../components';
-import { ActionName } from '../../common/constant';
+import ActionName from '../../services/Store/constant';
 
 const AvatarInput = new Input({
   attr: { classes: ['input--avatar'] },

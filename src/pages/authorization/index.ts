@@ -1,6 +1,7 @@
-import { ActionName, MESSAGES, VALIDATOR } from '../../common/constant';
+import { MESSAGES, VALIDATOR } from '../../common/constant';
 import { Button, Form, Input } from '../../components';
 import Block from '../../services/Block';
+import ActionName from '../../services/Store/constant';
 import template from './authorization.hbs';
 import DEFAULT_SETTING from './constant';
 

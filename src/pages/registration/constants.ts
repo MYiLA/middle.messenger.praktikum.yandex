@@ -49,7 +49,7 @@ export const INPUTS: Input[] = [
     invalidMessage: MESSAGES.invalid.password,
   },
   {
-    name: 'password-repeat',
+    name: 'password_repeat',
     label: 'Пароль',
     type: 'password',
     validator: VALIDATOR.repeatInputValue,

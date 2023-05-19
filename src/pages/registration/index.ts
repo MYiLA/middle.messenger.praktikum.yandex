@@ -1,6 +1,6 @@
-import { ActionName } from '../../common/constant';
 import { Button, Form, Input } from '../../components';
 import Block from '../../services/Block';
+import ActionName from '../../services/Store/constant';
 import { DEFAULT_SETTING, INPUTS } from './constants';
 import template from './registration.hbs';
 
@@ -27,7 +27,7 @@ const FormElement = new Form({
     classes: ['authorization__form'],
   },
   inputs,
-  actionName: ActionName.signup,
+  actionName: ActionName.registration,
 });
 
 const RegisterButton = new Button({

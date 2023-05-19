@@ -1,13 +1,14 @@
-import { ActionName } from '../common/constant';
-import { SomeObject } from '../common/types';
-import { Actions } from '../services/Store';
+import { SigninProps, SomeObject } from '../../common/types';
+import { RegistrationFormData } from '../../pages/registration/type';
+import ActionName from './constant';
+import { Actions } from '.';
 
 const runAction = (name: ActionName, props: SomeObject = {}) => {
   switch (name) {
-    case ActionName.signup:
-      return Actions.signup(props);
+    case ActionName.registration:
+      return Actions.registration(props as RegistrationFormData);
     case ActionName.signin:
-      return Actions.signin(props);
+      return Actions.signin(props as SigninProps);
     case ActionName.getProfile:
       return Actions.getProfile(props);
     case ActionName.logout:

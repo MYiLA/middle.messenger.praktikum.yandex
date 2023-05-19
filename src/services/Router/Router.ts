@@ -10,11 +10,11 @@ class Router {
 
   private _currentRoute: Route | null;
 
-  private _rootQuery: string;
+  private _rootQuery?: string;
 
   static instance: Router;
 
-  constructor(rootQuery: string) {
+  constructor(rootQuery?: string) {
     if (Router.instance) {
       // eslint-disable-next-line no-constructor-return
       return Router.instance;

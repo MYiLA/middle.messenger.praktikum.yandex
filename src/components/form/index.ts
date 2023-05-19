@@ -1,7 +1,7 @@
-import { ActionName } from '../../common/constant';
 import { SomeObject } from '../../common/types';
 import Block from '../../services/Block';
-import runAction from '../../utils/runAction';
+import ActionName from '../../services/Store/constant';
+import runAction from '../../services/Store/runAction';
 import Input from '../input';
 import template from './form.hbs';
 
