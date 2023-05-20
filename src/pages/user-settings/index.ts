@@ -5,6 +5,7 @@ import {
   Avatar, Button, Form, Input,
 } from '../../components';
 import ActionName from '../../services/Store/constant';
+import runAction from '../../services/Store/runAction';
 
 const AvatarInput = new Input({
   attr: { classes: ['input--avatar'] },
@@ -119,6 +120,19 @@ const ChangeDataBtn = new Button({
   },
 });
 
+const LogoutBtn = new Button({
+  label: 'Выйти',
+  attr: {
+    classes: ['user-settings__button', 'button--dark'],
+    type: 'button',
+  },
+  events: {
+    click: () => {
+      runAction(ActionName.logout);
+    },
+  },
+});
+
 class UserSettings extends Block {
   constructor() {
     SubmitPassword.hide();
@@ -160,6 +174,7 @@ class UserSettings extends Block {
       ChangeDataBtn,
       SubmitData,
       SubmitPassword,
+      LogoutBtn,
     });
   }
 
@@ -173,6 +188,7 @@ class UserSettings extends Block {
       ChangeDataBtn: this.children.ChangeDataBtn,
       SubmitData: this.children.SubmitData,
       SubmitPassword: this.children.SubmitPassword,
+      LogoutBtn: this.children.LogoutBtn,
     });
   }
 }

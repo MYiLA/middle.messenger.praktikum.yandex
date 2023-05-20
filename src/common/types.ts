@@ -59,3 +59,7 @@ export type SetProfileDataProps = {
   email: string,
   phone: string
 };
+
+export interface ResponseChat extends Response {
+  responseText: string
+}

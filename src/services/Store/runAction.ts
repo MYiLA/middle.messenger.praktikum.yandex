@@ -10,9 +10,9 @@ const runAction = (name: ActionName, props: SomeObject = {}) => {
     case ActionName.signin:
       return Actions.signin(props as SigninProps);
     case ActionName.getProfile:
-      return Actions.getProfile(props);
+      return Actions.getProfile();
     case ActionName.logout:
-      return Actions.logout(props);
+      return Actions.logout();
     case ActionName.setProfileData:
       return Actions.setProfileData(props);
     case ActionName.setProfileAvatar:

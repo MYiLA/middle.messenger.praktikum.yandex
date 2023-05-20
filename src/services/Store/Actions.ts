@@ -1,6 +1,5 @@
 import { SigninProps, SomeObject } from '../../common/types';
 import { RegistrationFormData } from '../../pages/registration/type';
-import getResponseText from '../../utils/getResponseText';
 import AuthApi from '../Api/auth';
 import { Router } from '../Router';
 // import Store from './Store';
@@ -9,41 +8,37 @@ import { Router } from '../Router';
 const authApi = new AuthApi();
 const router = new Router();
 
-interface ResponseChat extends Response {
-  responseText: string
-}
-
 /** Регистрация */
 const registration = (props: RegistrationFormData): void => {
   // Удаляем повтор пароля
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { password_repeat, ...registrationProps } = props;
 
-  authApi.registration(registrationProps).then((response: ResponseChat) => {
-    if (response.status >= 200 && response.status < 300) {
-      router.go('/messenger');
-      console.log('Редирект на Home');
-    }
-    // TODO: Заменить алерты на компонент notification
-    // eslint-disable-next-line no-alert
-    window.alert(getResponseText(response.responseText));
+  authApi.registration(registrationProps).then(() => {
+    // Если регистрация успешно прошла - редиректим в мессенджер
+    router.go('/messenger');
   });
 };
 
 /** Авторизация */
-const signin = (formData: SigninProps) => {
-  const props = authApi.authorization(formData);
-  console.log('signin', formData, props);
-};
-
-/** Получение подробной информации по текущему пользователю */
-const getProfile = (props: SomeObject) => {
-  console.log('getProfile', props);
+const authorization = (formData: SigninProps) => {
+  authApi.authorization(formData).then(() => {
+    // Если авторизация успешно прошла - редиректим в мессенджер
+    router.go('/messenger');
+  });
 };
 
 /** Выход пользователя из системы */
-const logout = (props: SomeObject) => {
-  console.log('logout', props);
+const logout = () => {
+  authApi.logout().then(() => {
+    // Если пользователь успешно разлогинился - редиректим в авторизацию
+    router.go('/');
+  });
+};
+
+/** Получение подробной информации по текущему пользователю */
+const getProfile = () => {
+  console.log('getProfile');
 };
 
 /** Изменить данные текущего пользователя */
@@ -115,7 +110,7 @@ window.spaceChatStoreAction = registration;
 
 export {
   registration,
-  signin,
+  authorization as signin,
   getProfile,
   logout,
   setProfileData,

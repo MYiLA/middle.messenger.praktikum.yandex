@@ -16,7 +16,7 @@ class ChatsApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Удалить чат по id */
@@ -30,7 +30,7 @@ class ChatsApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Получить пользователей чата */
@@ -38,13 +38,13 @@ class ChatsApi extends BaseAPI {
     id: number,
   }): Promise<unknown> => {
     console.log('getChatUsers', props);
-    return chatsAPIInstance.get(`${props.id}/users`);
+    return chatsAPIInstance.get(`${props.id}/users`).then(this.parseServerResponse);
   };
 
   /** Получить количество новых сообщений в указанном чате */
   getNewMessageCount = (id: number): Promise<unknown> => {
     console.log('getMessageCount', id);
-    return chatsAPIInstance.get(`new/${id}`);
+    return chatsAPIInstance.get(`new/${id}`).then(this.parseServerResponse);
   };
 
   /** Добавить пользователей в чат */
@@ -59,7 +59,7 @@ class ChatsApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Удалить пользователей из чата */
@@ -74,13 +74,13 @@ class ChatsApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Получить чаты текущего пользователя */
   getChats = (id: number): Promise<unknown> => {
     console.log('getChats', id);
-    return chatsAPIInstance.post(`token/${id}`);
+    return chatsAPIInstance.post(`token/${id}`).then(this.parseServerResponse);
   };
 }
 

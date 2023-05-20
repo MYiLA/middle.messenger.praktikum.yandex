@@ -1,5 +1,5 @@
 import Block from '../../services/Block';
-import Button from '../button';
+import Button from '../notification';
 import { Form } from '../form';
 import template from './button.hbs';
 

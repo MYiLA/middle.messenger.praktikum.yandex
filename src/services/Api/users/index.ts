@@ -14,7 +14,7 @@ class UserApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Изменить аватар текущего пользователя */
@@ -28,7 +28,7 @@ class UserApi extends BaseAPI {
         accept: 'application/json',
       },
       body: formData,
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Изменить пароль текущего пользователя */
@@ -43,13 +43,13 @@ class UserApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   };
 
   /** Получение информации о пользователе по id */
   getUser = (id: string): Promise<unknown> => {
     console.log('getUser', id);
-    return userAPIInstance.get(id);
+    return userAPIInstance.get(id).then(this.parseServerResponse);
   };
 }
 

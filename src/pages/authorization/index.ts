@@ -1,7 +1,6 @@
 import { MESSAGES, VALIDATOR } from '../../common/constant';
 import { Button, Form, Input } from '../../components';
 import Block from '../../services/Block';
-import { Router } from '../../services/Router';
 import ActionName from '../../services/Store/constant';
 import template from './authorization.hbs';
 import DEFAULT_SETTING from './constant';
@@ -39,13 +38,9 @@ const FormElement = new Form({
 const Enter = new Button({
   label: 'Войти',
   attr: {
-    // type: 'submit',
-    type: 'button',
+    type: 'submit',
     form: DEFAULT_SETTING.form,
     classes: ['authorization__button'],
-  },
-  events: {
-    click: () => { (new Router()).go('/messenger'); },
   },
 });
 

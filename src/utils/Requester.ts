@@ -2,19 +2,10 @@ import { BASE_HOST } from '../common/constant';
 import { SomeObject } from '../common/types';
 import getQueryString from './getQueryString';
 
-const defaultOptions = {
-  /** Работаем с CORS */
-  mode: 'cors',
-  /** Нужно подставлять куки */
-  credentials: 'include',
-};
-
 type Options = {
   timeout?: number;
   headers?: SomeObject,
   method?: METHODS,
-  credentials?: string,
-  mode?: string,
   body?: any,
 };
 
@@ -34,11 +25,10 @@ class Requester {
     Requester.baseUrl = baseUrl;
   }
 
-  get: HTTPMethod = (url, options = defaultOptions) => (
+  get: HTTPMethod = (url, options = {}) => (
     this.request(
       Requester.getUrl(url),
       {
-        ...defaultOptions,
         ...options,
         method: METHODS.GET,
       },
@@ -46,11 +36,10 @@ class Requester {
     )
   );
 
-  post: HTTPMethod = (url, options = defaultOptions) => (
+  post: HTTPMethod = (url, options = {}) => (
     this.request(
       Requester.getUrl(url),
       {
-        ...defaultOptions,
         ...options,
         method: METHODS.POST,
       },
@@ -58,11 +47,10 @@ class Requester {
     )
   );
 
-  put: HTTPMethod = (url, options = defaultOptions) => (
+  put: HTTPMethod = (url, options = {}) => (
     this.request(
       Requester.getUrl(url),
       {
-        ...defaultOptions,
         ...options,
         method: METHODS.PUT,
       },
@@ -70,11 +58,10 @@ class Requester {
     )
   );
 
-  delete: HTTPMethod = (url, options = defaultOptions) => (
+  delete: HTTPMethod = (url, options = {}) => (
     this.request(
       Requester.getUrl(url),
       {
-        ...defaultOptions,
         ...options,
         method: METHODS.DELETE,
       },
@@ -84,7 +71,7 @@ class Requester {
 
   request = (
     url: string,
-    options: Options = defaultOptions,
+    options: Options,
     timeout = 5000,
   ) => {
     const { headers = {}, method, body } = options;
@@ -118,6 +105,7 @@ class Requester {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+      xhr.withCredentials = true;
 
       if (isGet || !body) {
         xhr.send();

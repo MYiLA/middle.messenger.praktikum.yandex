@@ -39,7 +39,11 @@ class Router {
   start() {
     // Обработка события действий в браузере
     window.onpopstate = () => {
-      this._onRoute(Router.parseLocation());
+      const location = Router.parseLocation();
+      // Если к локации нет доступа, то редирект на /
+      // TODO: настройку доступа к локации вынести отдельно
+      // Если доступ есть, то переходим в локацию
+      this._onRoute(location);
     };
     this._onRoute(Router.parseLocation());
   }
@@ -77,6 +81,7 @@ class Router {
   getRoute(path: string) {
     console.log('this.routes', this.routes);
     console.log('path', path);
+    // Если путь не найден, то 404
     return this.routes.find((route) => route.match(path)) || this.routes.find((item) => item.match('/404'));
   }
 

@@ -13,7 +13,7 @@ class AuthApi extends BaseAPI {
         accept: 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   }
 
   /** Авторизация */
@@ -23,17 +23,17 @@ class AuthApi extends BaseAPI {
         'content-type': 'application/json',
       },
       body: JSON.stringify(props),
-    });
+    }).then(this.parseServerResponse);
   }
 
   /** Получение подробной информации по текущему пользователю */
   getCurrentUser(): Promise<unknown> {
-    return authAPIInstance.get('user');
+    return authAPIInstance.get('user').then(this.parseServerResponse);
   }
 
   /** Выход пользователя из системы */
   logout(): Promise<unknown> {
-    return authAPIInstance.post('logout');
+    return authAPIInstance.post('logout').then(this.parseServerResponse);
   }
 }
 
