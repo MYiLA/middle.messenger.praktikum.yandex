@@ -47,7 +47,7 @@ class Router {
 
   _onRoute(path: string) {
     const route = this.getRoute(path);
-    console.log('getRoute route', route);
+
     if (!route) {
       return;
     }
@@ -76,9 +76,7 @@ class Router {
   }
 
   getRoute(path: string) {
-    console.log('this.routes', this.routes);
-    console.log('path', path);
-    // Если путь не найден, то 404
+    // Если путь не найден, то редирект на 404
     return this.routes.find((route) => route.match(path)) || this.routes.find((item) => item.match('/404'));
   }
 

@@ -1,5 +1,22 @@
+import { Button } from '../../components';
 import Block from '../../services/Block';
+import { Router } from '../../services/Router';
 import template from './page-error.hbs';
+
+const router = new Router();
+
+const ReturnButton = new Button({
+  label: 'Вернуться к чатам',
+  attr: {
+    type: 'button',
+    classes: ['page-error__button', 'button'],
+  },
+  events: {
+    click: () => {
+      router.go('/messenger');
+    },
+  },
+});
 
 type PageErrorProps = {
   code: string,
@@ -8,11 +25,21 @@ type PageErrorProps = {
 
 class PageError extends Block {
   constructor(props: PageErrorProps) {
-    super('div', { ...props, attr: { classes: ['page-error'] } });
+    super('div', {
+      ...props,
+      attr: {
+        classes: ['page-error'],
+      },
+      ReturnButton,
+    });
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, {
+      code: this.props.code,
+      desc: this.props.desc,
+      ReturnButton: this.children.ReturnButton,
+    });
   }
 }
 

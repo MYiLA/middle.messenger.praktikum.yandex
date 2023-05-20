@@ -1,8 +1,11 @@
 import { Button, Form, Input } from '../../components';
 import Block from '../../services/Block';
+import { Router } from '../../services/Router';
 import ActionName from '../../services/Store/constant';
 import { DEFAULT_SETTING, INPUTS } from './constants';
 import template from './registration.hbs';
+
+const router = new Router();
 
 const inputs = INPUTS.map((input) => {
   const {
@@ -39,18 +42,33 @@ const RegisterButton = new Button({
   },
 });
 
+const EnterButton = new Button({
+  label: 'Войти',
+  attr: {
+    type: 'button',
+    classes: ['registration__button', 'button--link', 'button'],
+  },
+  events: {
+    click: () => {
+      router.go('/');
+    },
+  },
+});
+
 class Registration extends Block {
   constructor() {
     super('div', {
       attr: { classes: ['cover-wrap'] },
       FormElement,
       RegisterButton,
+      EnterButton,
     });
   }
 
   render() {
     return this.compile(template, {
       RegisterButton: this.children.RegisterButton,
+      EnterButton: this.children.EnterButton,
       FormElement: this.children.FormElement,
     });
   }
