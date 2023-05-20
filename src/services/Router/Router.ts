@@ -40,9 +40,6 @@ class Router {
     // Обработка события действий в браузере
     window.onpopstate = () => {
       const location = Router.parseLocation();
-      // Если к локации нет доступа, то редирект на /
-      // TODO: настройку доступа к локации вынести отдельно
-      // Если доступ есть, то переходим в локацию
       this._onRoute(location);
     };
     this._onRoute(Router.parseLocation());
@@ -64,7 +61,7 @@ class Router {
 
   // переход на страницу по пути
   go(path: string) {
-    this.history.pushState({}, '', path);
+    this.history.pushState({}, '', `/#${path}`);
     this._onRoute(path);
   }
 
