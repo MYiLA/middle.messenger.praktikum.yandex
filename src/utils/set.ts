@@ -1,11 +1,10 @@
+import { SomeObject } from '../common/types';
+import isSomeObject from './isSomeObject';
 import merge from './merge';
 
-type Indexed<T = any> = {
-  [key in string]: T;
-};
-
-function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
-  if (typeof object !== 'object' || object === null) {
+/** Сохраняет в объект значение по переданному маршруту */
+function set(object: SomeObject, path: string, value: unknown): SomeObject {
+  if (!isSomeObject(object) || object === null) {
     return object;
   }
 
@@ -13,10 +12,11 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
     throw new Error('path must be string');
   }
 
-  const result = path.split('.').reduceRight<Indexed>((acc, key) => ({
+  const result = path.split('.').reduceRight<SomeObject>((acc, key) => ({
     [key]: acc,
   }), value as any);
-  return merge(object as Indexed, result);
+
+  return merge(object, result);
 }
 
 export default set;

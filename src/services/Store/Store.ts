@@ -1,5 +1,6 @@
 import { SomeObject } from '../../common/types';
-import set from '../../utils/set';
+import getStore from '../../utils/get';
+import setStore from '../../utils/set';
 import EventBus from '../EventBus';
 
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
@@ -10,7 +11,7 @@ export default class Store extends EventBus {
 
   static STORE_NAME = 'spaceСhatStore';
 
-  _state: SomeObject = { };
+  _state: SomeObject = {};
 
   constructor() {
     // eslint-disable-next-line no-constructor-return
@@ -30,19 +31,27 @@ export default class Store extends EventBus {
     );
   }
 
+  /** Получает весь стор */
   getState(): SomeObject {
     return this._state;
   }
 
+  /** Очищает весь стор */
   removeState() {
     this._state = {};
     this.emit(Store.EVENT_UPDATE);
   }
 
-  /** Устанавливает значение стора по указанному пути */
+  /** Устанавливает значение в стор по указанному пути */
   set<T>(patch: string, value: T) {
-    set(this, patch, value);
+    this._state = setStore(this._state, patch, value);
+    console.log('this._state', this._state);
     this.emit(Store.EVENT_UPDATE);
     return this;
+  }
+
+  /** Получает значение из стора по указанному пути */
+  get(patch: string): unknown {
+    return getStore(this._state, patch);
   }
 }

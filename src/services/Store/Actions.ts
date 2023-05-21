@@ -1,12 +1,22 @@
-import { SigninProps, SomeObject } from '../../common/types';
+import { ResponseChat, SigninProps, SomeObject } from '../../common/types';
 import { RegistrationFormData } from '../../pages/registration/type';
 import AuthApi from '../Api/auth';
 import { Router } from '../Router';
-// import Store from './Store';
+import Store from './Store';
 
-// const store = new Store();
+const store = new Store();
 const authApi = new AuthApi();
 const router = new Router();
+
+/** Получение подробной информации по текущему пользователю */
+const getProfile = () => {
+  authApi.getCurrentUser()
+    .then((response: ResponseChat) => JSON.parse(response.response))
+    .then((data) => {
+      store.set('profile', data);
+      console.log('store', store.getState(), data);
+    });
+};
 
 /** Регистрация */
 const registration = (props: RegistrationFormData): void => {
@@ -15,6 +25,7 @@ const registration = (props: RegistrationFormData): void => {
   const { password_repeat, ...registrationProps } = props;
 
   authApi.registration(registrationProps).then(() => {
+    getProfile();
     // Если регистрация успешно прошла - редиректим в мессенджер
     router.go('/messenger');
   });
@@ -23,6 +34,7 @@ const registration = (props: RegistrationFormData): void => {
 /** Авторизация */
 const authorization = (formData: SigninProps) => {
   authApi.authorization(formData).then(() => {
+    getProfile();
     // Если авторизация успешно прошла - редиректим в мессенджер
     router.go('/messenger');
   });
@@ -31,14 +43,11 @@ const authorization = (formData: SigninProps) => {
 /** Выход пользователя из системы */
 const logout = () => {
   authApi.logout().then(() => {
-    // Если пользователь успешно разлогинился - редиректим в авторизацию
+    // Очищаем стор
+    store.removeState();
+    // редиректим на авторизацию
     router.go('/');
   });
-};
-
-/** Получение подробной информации по текущему пользователю */
-const getProfile = () => {
-  console.log('getProfile');
 };
 
 /** Изменить данные текущего пользователя */
@@ -110,7 +119,7 @@ window.spaceChatStoreAction = registration;
 
 export {
   registration,
-  authorization as signin,
+  authorization,
   getProfile,
   logout,
   setProfileData,

@@ -61,5 +61,6 @@ export type SetProfileDataProps = {
 };
 
 export interface ResponseChat extends Response {
-  responseText: string
+  responseText: string,
+  response: string
 }

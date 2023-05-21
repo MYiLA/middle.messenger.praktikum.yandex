@@ -8,7 +8,7 @@ const runAction = (name: ActionName, props: SomeObject = {}) => {
     case ActionName.registration:
       return Actions.registration(props as RegistrationFormData);
     case ActionName.signin:
-      return Actions.signin(props as SigninProps);
+      return Actions.authorization(props as SigninProps);
     case ActionName.getProfile:
       return Actions.getProfile();
     case ActionName.logout:

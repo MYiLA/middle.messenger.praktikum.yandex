@@ -19,6 +19,13 @@ export default class BaseAPI {
       // идём далее
       return response;
     }
+    // Если статус 400, то пользователь уже зарегистрирован в системе
+    if (response.status === 400) {
+      // редиректим на чат
+      router.go('/messenger');
+      return response;
+      // Если статус 401, то пользователь НЕ зарегистрирован в системе
+    }
     if (response.status === 401) {
       // редиректим на авторизацию
       router.go('/');
