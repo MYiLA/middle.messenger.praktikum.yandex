@@ -14,7 +14,6 @@ const getProfile = () => {
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('profile', data);
-      console.log('store', store.getState(), data);
     });
 };
 

@@ -1,6 +1,7 @@
 import { SomeObject } from '../common/types';
 import isSomeObject from './isSomeObject';
 
+// Соединяет 2 объекта в один
 function merge(lhs: SomeObject, rhs: SomeObject): SomeObject {
   const result = {} as SomeObject;
 

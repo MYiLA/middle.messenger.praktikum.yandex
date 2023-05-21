@@ -45,7 +45,6 @@ export default class Store extends EventBus {
   /** Устанавливает значение в стор по указанному пути */
   set<T>(patch: string, value: T) {
     this._state = setStore(this._state, patch, value);
-    console.log('this._state', this._state);
     this.emit(Store.EVENT_UPDATE);
     return this;
   }

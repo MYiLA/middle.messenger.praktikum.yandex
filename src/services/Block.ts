@@ -1,5 +1,6 @@
 import { v4 as uuid4 } from 'uuid';
 import { SomeObject } from '../common/types';
+import merge from '../utils/merge';
 import EventBus from './EventBus';
 
 /**
@@ -130,7 +131,8 @@ class Block {
   }
 
   private _componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+    const isReRender = this.componentDidUpdate(oldProps, newProps);
+    if (isReRender) {
       this.eventBus().emit(Block.EVENTS.RENDER);
     }
   }
@@ -145,11 +147,17 @@ class Block {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    const oldProps = this.props;
+    this.props = merge(this.props, nextProps);
+    this._componentDidUpdate(oldProps, this.props);
   };
 
   getProps(): BlockProps {
     return this.props;
+  }
+
+  getChildren(): BlockProps {
+    return this.children;
   }
 
   get element() {
