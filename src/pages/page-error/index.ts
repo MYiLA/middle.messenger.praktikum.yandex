@@ -6,14 +6,14 @@ import template from './page-error.hbs';
 const router = new Router();
 
 const ReturnButton = new Button({
-  label: 'Вернуться к чатам',
+  label: 'Вернуться на предыдущую страницу',
   attr: {
     type: 'button',
     classes: ['page-error__button', 'button'],
   },
   events: {
     click: () => {
-      router.go('/messenger');
+      router.back();
     },
   },
 });

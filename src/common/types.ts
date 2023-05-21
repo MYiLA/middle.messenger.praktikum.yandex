@@ -64,3 +64,9 @@ export interface ResponseChat extends Response {
   responseText: string,
   response: string
 }
+
+export type ChangePasswordForm = {
+  oldPassword: string;
+  newPassword: string;
+  repeatNewPassword: string;
+};

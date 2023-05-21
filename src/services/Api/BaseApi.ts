@@ -30,6 +30,11 @@ export default class BaseAPI {
       // редиректим на авторизацию
       router.go('/');
       throw new Error('Неверные куки');
+    }
+    if (response.status === 404) {
+      // редиректим на авторизацию
+      router.go('/404');
+      throw new Error('В базе таких данных не найдено');
     } else {
       // редиректим на страницу с серверной ошибкой
       router.go('/500');

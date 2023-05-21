@@ -1,6 +1,7 @@
 import { v4 as uuid4 } from 'uuid';
 import { SomeObject } from '../common/types';
 import merge from '../utils/merge';
+import mergeMutable from '../utils/mergeMutable';
 import EventBus from './EventBus';
 
 /**
@@ -147,8 +148,11 @@ class Block {
       return;
     }
 
-    const oldProps = this.props;
-    this.props = merge(this.props, nextProps);
+    // Сохраняем старое состояние пропсов для сравнения
+    const oldProps = merge(this.props, {});
+    // Мутируем пропсы, добавляя новое состояние
+    this.props = mergeMutable(this.props, nextProps);
+    // Запускаем логику по обновлению блока
     this._componentDidUpdate(oldProps, this.props);
   };
 

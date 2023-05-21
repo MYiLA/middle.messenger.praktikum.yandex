@@ -7,6 +7,7 @@ const authAPIInstance = new Requester('auth');
 class AuthApi extends BaseAPI {
   /** Регистрация */
   registration(props: RegistrationProps): Promise<unknown> {
+    console.log('registration');
     return authAPIInstance.post('signup', {
       headers: {
         'content-type': 'application/json',
@@ -18,6 +19,7 @@ class AuthApi extends BaseAPI {
 
   /** Авторизация */
   authorization(props: SigninProps): Promise<unknown> {
+    console.log('авторизация');
     return authAPIInstance.post('signin', {
       headers: {
         'content-type': 'application/json',

@@ -166,6 +166,18 @@ class UserSettings extends Block {
       },
     });
 
+    SubmitPassword.setProps({
+      events: {
+        click: () => {
+          FormPassword.hide();
+          FormData.show();
+          ChangeDataBtn.show();
+          ChangePasswordBtn.show();
+          SubmitPassword.hide();
+        },
+      },
+    });
+
     super('div', {
       ...props,
       attr: {
@@ -188,7 +200,6 @@ class UserSettings extends Block {
     if (isRerendered) {
       // Обновляем инпуты, если их значения обновились
       const FormData = this.children.FormData as Form;
-      const FormPassword = this.children.FormPassword as Form;
 
       const updateInput = (InputChild: Input) => {
         const oldValue = InputChild.getProps().value;
@@ -197,7 +208,6 @@ class UserSettings extends Block {
       };
 
       FormData.getChildren().inputs.forEach(updateInput);
-      FormPassword.getChildren().inputs.forEach(updateInput);
 
       // Обновляем аватар, если он обновился
       const AvatarChild = this.children.AvatarComponent as Avatar;

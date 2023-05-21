@@ -6,9 +6,9 @@ const chatsAPIInstance = new Requester('chats');
 
 class ChatsApi extends BaseAPI {
 /** Создать чат */
-  createChat = (props: {
+  createChat(props: {
     title: string
-  }): Promise<unknown> => {
+  }): Promise<unknown> {
     console.log('createChat', props);
     return chatsAPIInstance.post('', {
       headers: {
@@ -17,12 +17,12 @@ class ChatsApi extends BaseAPI {
       },
       body: JSON.stringify(props),
     }).then(this.parseServerResponse);
-  };
+  }
 
   /** Удалить чат по id */
-  deleteChat = (props: {
+  deleteChat(props: {
     chatId: number,
-  }): Promise<unknown> => {
+  }): Promise<unknown> {
     console.log('deleteChat', props);
     return chatsAPIInstance.delete('', {
       headers: {
@@ -31,27 +31,27 @@ class ChatsApi extends BaseAPI {
       },
       body: JSON.stringify(props),
     }).then(this.parseServerResponse);
-  };
+  }
 
   /** Получить пользователей чата */
-  getChatUsers = (props: {
+  getChatUsers(props: {
     id: number,
-  }): Promise<unknown> => {
+  }): Promise<unknown> {
     console.log('getChatUsers', props);
     return chatsAPIInstance.get(`${props.id}/users`).then(this.parseServerResponse);
-  };
+  }
 
   /** Получить количество новых сообщений в указанном чате */
-  getNewMessageCount = (id: number): Promise<unknown> => {
+  getNewMessageCount(id: number): Promise<unknown> {
     console.log('getMessageCount', id);
     return chatsAPIInstance.get(`new/${id}`).then(this.parseServerResponse);
-  };
+  }
 
   /** Добавить пользователей в чат */
-  addUsersToChat = (props: {
+  addUsersToChat(props: {
     users: number[],
     chatId: number
-  }): Promise<unknown> => {
+  }): Promise<unknown> {
     console.log('addUserToChat', props);
     return chatsAPIInstance.put('users', {
       headers: {
@@ -60,13 +60,13 @@ class ChatsApi extends BaseAPI {
       },
       body: JSON.stringify(props),
     }).then(this.parseServerResponse);
-  };
+  }
 
   /** Удалить пользователей из чата */
-  deleteUsersFromChat = (props: {
+  deleteUsersFromChat(props: {
     users: number[],
     chatId: number
-  }): Promise<unknown> => {
+  }): Promise<unknown> {
     console.log('deleteUserFromChat', props);
     return chatsAPIInstance.delete('users', {
       headers: {
@@ -75,13 +75,13 @@ class ChatsApi extends BaseAPI {
       },
       body: JSON.stringify(props),
     }).then(this.parseServerResponse);
-  };
+  }
 
   /** Получить чаты текущего пользователя */
-  getChats = (id: number): Promise<unknown> => {
+  getChats(id: number): Promise<unknown> {
     console.log('getChats', id);
     return chatsAPIInstance.post(`token/${id}`).then(this.parseServerResponse);
-  };
+  }
 }
 
 export default ChatsApi;
