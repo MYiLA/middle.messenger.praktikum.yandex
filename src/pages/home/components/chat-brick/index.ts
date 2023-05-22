@@ -11,12 +11,13 @@ type ChatBrickProps = {
   title: string,
   lastMessageContent?: string,
   lastMessageTime?: string,
-  unreadCount?: number,
+  unread_count?: number,
   avatar?: string,
 };
 
 const DEFAULT_CLASSES = ['chat-brick'];
 const TEXT_LIMIT = 50;
+const TITLE_LIMIT = 23;
 
 const cropString = (string: string, symbolLimit: number) => ((string.length > symbolLimit) ? `${string.substring(0, symbolLimit)}...` : string);
 
@@ -45,10 +46,10 @@ class ChatBrick extends Block {
     return this.compile(template, {
       href: this.props.href,
       avatarColor: this.props.avatarColor,
-      title: this.props.title,
-      lastMessageContent: cropString(this.props.lastMessageContent, TEXT_LIMIT),
+      title: cropString(this.props.title, TITLE_LIMIT),
+      lastMessageContent: this.props.lastMessageContent ? cropString(this.props.lastMessageContent, TEXT_LIMIT) : '',
       lastMessageTime: this.props.lastMessageTime,
-      unreadCount: this.props.unreadCount > 99 ? '99+' : this.props.unreadCount,
+      unread_count: this.props.unread_count > 99 ? '99+' : this.props.unread_count,
       Avatar: this.children.Avatar,
     });
   }

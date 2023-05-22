@@ -4,6 +4,7 @@
       {{{DemoButton}}}
       {{{ProfileButton}}}
     </div>
+    {{{CreateChatButton}}}
     <input class="chat-list__search" id="search" placeholder="Поиск" type="search">
   </div>
   <ul class="chat-list__list">
@@ -14,12 +15,12 @@
 </div>
 
 <div class="home__chat chat">
-  {{#unless selectedChatId}}
+  {{#unless withId}}
     <div class="chat__info">
       Выберите чат чтобы отправить сообщение
     </div>
   {{/unless}}
-  {{#if selectedChatId}}
+  {{#if withId}}
     {{{HeaderComponent}}}
     <div class="chat__body body">
       <div class="body__date">19 июня</div>
@@ -32,3 +33,4 @@
     {{{FooterComponent}}}
   {{/if}}
 </div>
+{{{ModalCreateChat}}}

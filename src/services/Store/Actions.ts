@@ -4,7 +4,8 @@ import {
 } from '../../common/types';
 import { RegistrationFormData } from '../../pages/registration/type';
 import AuthApi from '../Api/auth';
-import { UserRequest } from '../Api/type';
+import ChatsApi from '../Api/chats';
+import { CreateChatRequest, UserRequest } from '../Api/type';
 import UserApi from '../Api/users';
 import { Router } from '../Router';
 import Store from './Store';
@@ -12,6 +13,7 @@ import Store from './Store';
 const store = new Store();
 const authApi = new AuthApi();
 const userApi = new UserApi();
+const chatsApi = new ChatsApi();
 const router = new Router();
 
 /** Получение подробной информации по текущему пользователю */
@@ -23,6 +25,15 @@ const getProfile = () => {
     });
 };
 
+/** Получить чаты текущего пользователя */
+const getChats = () => {
+  chatsApi.getChats()
+    .then((response: ResponseChat) => JSON.parse(response.response))
+    .then((data) => {
+      store.set('chats', data);
+    });
+};
+
 /** Регистрация */
 const registration = (props: RegistrationFormData): void => {
   // Удаляем повтор пароля
@@ -31,6 +42,7 @@ const registration = (props: RegistrationFormData): void => {
 
   authApi.registration(registrationProps).then(() => {
     getProfile();
+    getChats();
     // Если регистрация успешно прошла - редиректим в мессенджер
     router.go('/messenger');
   });
@@ -40,6 +52,7 @@ const registration = (props: RegistrationFormData): void => {
 const authorization = (formData: SigninProps) => {
   authApi.authorization(formData).then(() => {
     getProfile();
+    getChats();
     // Если авторизация успешно прошла - редиректим в мессенджер
     router.go('/messenger');
   });
@@ -104,14 +117,12 @@ const getUser = (props: SomeObject) => {
   console.log('getUser', props);
 };
 
-/** Получить чаты текущего пользователя */
-const getChats = (props: SomeObject) => {
-  console.log('getChats', props);
-};
-
 /** Создать чат */
-const createChat = (props: SomeObject) => {
-  console.log('createChat', props);
+const createChat = (props: CreateChatRequest) => {
+  chatsApi.createChat(props)
+    .then(() => {
+      getChats();
+    });
 };
 
 /** Удалить чат */

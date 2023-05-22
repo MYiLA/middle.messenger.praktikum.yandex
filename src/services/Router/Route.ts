@@ -39,7 +39,6 @@ class Route {
   }
 
   match(path: string) {
-    // TODO: это намёк, что тут должна быть логика для индивидуального чата с айдишником
     if (this._props.withId) return path.includes(this._path);
     return isEqual(path, this._path);
   }

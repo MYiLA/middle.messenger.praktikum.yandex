@@ -23,7 +23,7 @@ router
   .use('/500', PageError, { code: '500', desc: 'Мы уже фиксим' })
   .use('/sign-up', PageRegistration)
   .use('/messenger', PageHome, {})
-  .use('/chat/id', PageHome, {})
+  .use('/chat/', PageHome, { withId: true })
   .use('/settings', PageUserSettings)
   .use('/demo', PageDemo)
   .start();

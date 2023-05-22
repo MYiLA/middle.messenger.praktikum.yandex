@@ -88,22 +88,12 @@
   }
 
   &__item{
+    position: relative;
     margin-bottom: 16px;
 
     &:nth-last-child(1) {
       margin-bottom: 0;
     }
-  }
-
-  &__item-btn {
-    position: relative;
-    display: inline-block;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 37px;
-    color: $white-1;
-    background-color: transparent;
-    white-space: nowrap;
 
     &::after {
       content: '';
@@ -150,5 +140,15 @@
         background-image: url("../public/images/svg/location.svg");
       }
     }
+  }
+
+  &__item-btn {
+    display: inline-block;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 37px;
+    color: $white-1;
+    background-color: transparent;
+    white-space: nowrap;
   }
 } 

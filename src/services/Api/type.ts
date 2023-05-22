@@ -1,22 +1,4 @@
-/** Информация о пользователе, которая приходит с бэка */
-export type UserResponse = {
-  /** id */
-  id: number;
-  /** Имя */
-  first_name: string;
-  /** Фамилия */
-  second_name: string;
-  /** Никнейм */
-  display_name: string;
-  /** Уникальный логин */
-  login: string;
-  /** Почта */
-  email: string;
-  /** Телефон */
-  phone: string;
-  /** Аватар */
-  avatar: string;
-};
+import { ChatsResponse } from '../../common/types';
 
 export type RegistrationRequest = {
   first_name: string;
@@ -44,21 +26,6 @@ export type CreateChatRequest = {
 export type UsersRequest = {
   users: number[];
   chatId: number;
-};
-
-export type Message = {
-  user: UserResponse;
-  time: string;
-  content: string;
-};
-
-export type ChatsResponse = {
-  id: number;
-  title: string;
-  avatar: string;
-  /** Количество непрочитанных сообщений в чате для текущего пользователя */
-  unread_count: number;
-  last_message: Message;
 };
 
 export type ChatDeleteRequest = {

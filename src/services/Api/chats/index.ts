@@ -78,9 +78,9 @@ class ChatsApi extends BaseAPI {
   }
 
   /** Получить чаты текущего пользователя */
-  getChats(id: number): Promise<unknown> {
-    console.log('getChats', id);
-    return chatsAPIInstance.post(`token/${id}`).then(this.parseServerResponse);
+  getChats(): Promise<unknown> {
+    console.log('getChats');
+    return chatsAPIInstance.get('').then(this.parseServerResponse);
   }
 }
 
