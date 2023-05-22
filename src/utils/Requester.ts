@@ -22,7 +22,6 @@ class Requester {
   baseUrl: string;
 
   constructor(baseUrl: string) {
-    console.log('Requester Constructor', baseUrl);
     this.baseUrl = baseUrl;
   }
 
@@ -37,19 +36,16 @@ class Requester {
     )
   );
 
-  post: HTTPMethod = (url, options = {}) => {
-    console.log('url in REQUESTER', url, this.baseUrl);
-    return (
-      this.request(
-        this.getUrl(url),
-        {
-          ...options,
-          method: METHODS.POST,
-        },
-        options.timeout,
-      )
-    );
-  };
+  post: HTTPMethod = (url, options = {}) => (
+    this.request(
+      this.getUrl(url),
+      {
+        ...options,
+        method: METHODS.POST,
+      },
+      options.timeout,
+    )
+  );
 
   put: HTTPMethod = (url, options = {}) => (
     this.request(

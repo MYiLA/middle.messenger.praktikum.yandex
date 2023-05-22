@@ -65,9 +65,8 @@ const setProfileData = (props: UserRequest) => {
 };
 
 /** Изменить аватар текущего пользователя */
-const setProfileAvatar = (props: File) => {
-  console.log('Экшн аватара');
-  userApi.setProfileAvatar(props)
+const setProfileAvatar = (props: SomeObject) => {
+  userApi.setProfileAvatar(props.avatar[0])
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('profile', data);

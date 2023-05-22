@@ -1,7 +1,7 @@
 import Block from '../../services/Block';
 import Button from '../notification';
 import { Form } from '../form';
-import template from './button.hbs';
+import template from './modal.hbs';
 
 type ModalProps = {
   title: string,

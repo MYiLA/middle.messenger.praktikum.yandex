@@ -19,14 +19,9 @@ class UserApi extends BaseAPI {
 
   /** Изменить аватар текущего пользователя */
   setProfileAvatar(file: File): Promise<unknown> {
-    console.log('setProfileAvatar', file);
     const formData = new FormData();
     formData.append('avatar', file);
     return userAPIInstance.put('profile/avatar', {
-      headers: {
-        'content-type': 'multipart/form-data',
-        accept: 'application/json',
-      },
       body: formData,
     }).then(this.parseServerResponse);
   }

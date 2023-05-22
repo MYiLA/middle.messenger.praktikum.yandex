@@ -68,7 +68,9 @@ export class Form extends Block {
       // Если поле прошло валидатор, то делаем его валидным и записываем в результат
       } else {
         inputBlock.setProps({ isValid: true });
-        result[input.name] = input.value;
+        if (input.getAttribute('type') === 'file') {
+          result[input.name] = input.files;
+        } else result[input.name] = input.value;
       }
       currentIndex += 1;
     }

@@ -8,6 +8,8 @@ import ActionName from '../../services/Store/constant';
 import runAction from '../../services/Store/runAction';
 import { SomeObject } from '../../common/types';
 import isEqual from '../../utils/isEqual';
+import Modal from '../../components/modal';
+import getResursePath from '../../utils/getResursePath';
 
 class UserSettings extends Block {
   constructor(props?: SomeObject) {
@@ -89,7 +91,7 @@ class UserSettings extends Block {
     const AvatarComponent = new Avatar({
       attr: { classes: ['user-settings__avatar'] },
       size: 130,
-      image: props?.avatar,
+      image: getResursePath(props?.avatar),
     });
 
     const SubmitData = new Button({
@@ -107,6 +109,15 @@ class UserSettings extends Block {
         classes: ['user-settings__button'],
         type: 'submit',
         form: FORM.passwordChange,
+      },
+    });
+
+    const SubmitAvatar = new Button({
+      label: 'Сохранить',
+      attr: {
+        classes: ['modal__button'],
+        type: 'submit',
+        form: FORM.avatarChange,
       },
     });
 
@@ -139,9 +150,17 @@ class UserSettings extends Block {
       },
     });
 
+    const ModalAvatarSubmit = new Modal({
+      title: 'Аватар',
+      bodyType: 'desc',
+      body: 'Сохранить новый аватар?',
+      Buttons: [SubmitAvatar],
+    });
+
     SubmitPassword.hide();
     SubmitData.hide();
     FormPassword.hide();
+    ModalAvatarSubmit.hide();
 
     ChangeDataBtn.setProps({
       events: {
@@ -166,6 +185,14 @@ class UserSettings extends Block {
       },
     });
 
+    FormAvatar.setProps({
+      events: {
+        click: () => {
+          ModalAvatarSubmit.show();
+        },
+      },
+    });
+
     SubmitPassword.setProps({
       events: {
         click: () => {
@@ -174,6 +201,14 @@ class UserSettings extends Block {
           ChangeDataBtn.show();
           ChangePasswordBtn.show();
           SubmitPassword.hide();
+        },
+      },
+    });
+
+    SubmitAvatar.setProps({
+      events: {
+        click: () => {
+          ModalAvatarSubmit.hide();
         },
       },
     });
@@ -192,6 +227,7 @@ class UserSettings extends Block {
       SubmitData,
       SubmitPassword,
       LogoutBtn,
+      ModalAvatarSubmit,
     });
   }
 
@@ -212,7 +248,7 @@ class UserSettings extends Block {
       // Обновляем аватар, если он обновился
       const AvatarChild = this.children.AvatarComponent as Avatar;
       const oldAvatar = AvatarChild.getProps().image;
-      const newAvatar = newProps.avatar;
+      const newAvatar = getResursePath(newProps.avatar);
       if (!isEqual(oldAvatar, newAvatar)) { AvatarChild.setProps({ image: newAvatar }); }
     }
     return isRerendered;
@@ -230,6 +266,7 @@ class UserSettings extends Block {
       SubmitPassword: this.children.SubmitPassword,
       LogoutBtn: this.children.LogoutBtn,
       first_name: this.props.first_name,
+      ModalAvatarSubmit: this.children.ModalAvatarSubmit,
     });
   }
 }
