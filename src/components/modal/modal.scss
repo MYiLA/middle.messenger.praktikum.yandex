@@ -1,6 +1,7 @@
 .modal {
   @include content-center;
 
+  z-index: 100;
   width: 100vw;
   height: 100vh;
   background-color: rgba($white-1, 0.15);

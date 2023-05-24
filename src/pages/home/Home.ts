@@ -5,6 +5,7 @@ import Modal from '../../components/modal';
 import Block from '../../services/Block';
 import { Router } from '../../services/Router';
 import ActionName from '../../services/Store/constant';
+import runAction from '../../services/Store/runAction';
 import isEqual from '../../utils/isEqual';
 import ChatBrick from './components/chat-brick';
 import Footer from './components/footer';
@@ -154,10 +155,14 @@ class Home extends Block {
         title, unread_count, last_message, id,
       } = chat;
       return new ChatBrick({
-        href: `#/chat/${id}`,
         title,
         attr: {
           classes: ['chat-list__chat-brick'],
+        },
+        events: {
+          click: () => {
+            runAction(ActionName.connectToChat, { id });
+          },
         },
         lastMessageContent: last_message?.content,
         lastMessageTime: last_message?.time,

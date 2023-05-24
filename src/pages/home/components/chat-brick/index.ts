@@ -6,13 +6,15 @@ type ChatBrickProps = {
   attr?: {
     classes?: string[],
   }
-  href: string,
   avatarColor?: string,
   title: string,
   lastMessageContent?: string,
   lastMessageTime?: string,
   unread_count?: number,
   avatar?: string,
+  events?: {
+    click?: (ev: Event) => void,
+  }
 };
 
 const DEFAULT_CLASSES = ['chat-brick'];
@@ -44,7 +46,6 @@ class ChatBrick extends Block {
 
   render() {
     return this.compile(template, {
-      href: this.props.href,
       avatarColor: this.props.avatarColor,
       title: cropString(this.props.title, TITLE_LIMIT),
       lastMessageContent: this.props.lastMessageContent ? cropString(this.props.lastMessageContent, TEXT_LIMIT) : '',

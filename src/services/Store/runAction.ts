@@ -1,7 +1,8 @@
-import { SigninProps, SomeObject } from '../../common/types';
+import { ChangePasswordForm, SigninProps, SomeObject } from '../../common/types';
 import { RegistrationFormData } from '../../pages/registration/type';
 import ActionName from './constant';
 import { Actions } from '.';
+import { CreateChatRequest, UserRequest } from '../Api/type';
 
 const runAction = (name: ActionName, props: SomeObject = {}) => {
   switch (name) {
@@ -14,17 +15,17 @@ const runAction = (name: ActionName, props: SomeObject = {}) => {
     case ActionName.logout:
       return Actions.logout();
     case ActionName.setProfileData:
-      return Actions.setProfileData(props);
+      return Actions.setProfileData(props as UserRequest);
     case ActionName.setProfileAvatar:
       return Actions.setProfileAvatar(props);
     case ActionName.setProfilePassword:
-      return Actions.setProfilePassword(props);
+      return Actions.setProfilePassword(props as ChangePasswordForm);
     case ActionName.getUser:
       return Actions.getUser(props);
     case ActionName.getChats:
-      return Actions.getChats(props);
+      return Actions.getChats();
     case ActionName.createChat:
-      return Actions.createChat(props);
+      return Actions.createChat(props as CreateChatRequest);
     case ActionName.deleteChat:
       return Actions.deleteChat(props);
     case ActionName.getChatUsers:

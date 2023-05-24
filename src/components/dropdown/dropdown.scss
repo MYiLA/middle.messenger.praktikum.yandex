@@ -3,13 +3,6 @@
   height: 23px;
   position: relative;
 
-  &--open, &:hover {
-    &__list {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-
   &__list {
     opacity: 0;
     pointer-events: none;
@@ -23,6 +16,11 @@
     padding: 15px;
     background-color: $black-1;
     transition: opacity 0.5s;
+
+    &--open {
+      opacity: 1;
+      pointer-events: initial;
+    }
   }
 
   &__btn {
@@ -57,11 +55,6 @@
         inset 0 0 0 3px $black-1, 
         0 6px $black-1, 
         0 12px $black-1, 
-      }
-
-      & + .dropdown__list {
-        opacity: 1;
-        pointer-events: initial;
       }
     }
 

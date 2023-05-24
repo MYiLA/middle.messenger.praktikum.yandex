@@ -33,6 +33,8 @@ enum ActionName {
   sendMessage = 'sendMessage',
   /** Логировать переданные данные в консоль */
   log = 'log',
+  /** Подключение в чат по айди */
+  connectToChat = 'connectToChat',
 }
 
 export default ActionName;

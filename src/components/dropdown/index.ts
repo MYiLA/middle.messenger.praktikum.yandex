@@ -1,9 +1,7 @@
 import Block from '../../services/Block';
 import DropdownItem, { DropdownItemProps } from './components/dropdown-item';
 import template from './dropdown.hbs';
-// TODO: клики не проходят по итемам, надо добавить открывание по клику
-// на кнопку дропдауна. клик добавляет/убирает класс. Можно сразу работать с DOM,
-// так как априори дропдаун отрендерится
+
 type DropDownProps = {
   actionItems: DropdownItemProps[];
   attr?: {
@@ -11,7 +9,7 @@ type DropDownProps = {
   }
 };
 
-const defaultClasses = ['dropdown', 'dropdown--open'];
+const defaultClasses = ['dropdown'];
 
 class DropDown extends Block {
   constructor(props: DropDownProps) {
@@ -23,12 +21,25 @@ class DropDown extends Block {
         // Замешиваем класc по-умолчанию
         classes: props.attr?.classes ? defaultClasses.concat(props.attr.classes) : defaultClasses,
       },
+      events: {
+        click: () => {
+          this.setProps({ isOpen: !this.props.isOpen });
+        },
+      },
       Items,
+      isOpen: false,
     });
   }
 
   render() {
-    return this.compile(template, { label: this.props.label, Items: this.children.Items });
+    return this.compile(
+      template,
+      {
+        label: this.props.label,
+        Items: this.children.Items,
+        isOpen: this.props.isOpen,
+      },
+    );
   }
 }
 

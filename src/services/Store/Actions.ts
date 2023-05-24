@@ -160,6 +160,10 @@ const log = (props: SomeObject) => {
   console.log('log', props);
 };
 
+const connectToChat = (id: number) => {
+  console.log('connectToChat', id);
+};
+
 window.spaceChatStoreAction = registration;
 
 export {
@@ -180,4 +184,5 @@ export {
   deleteUserFromChat,
   sendMessage,
   log,
+  connectToChat,
 };
