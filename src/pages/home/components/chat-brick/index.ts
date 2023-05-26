@@ -1,5 +1,6 @@
 import { Avatar } from '../../../../components';
 import Block from '../../../../services/Block';
+import cropString from '../../../../utils/cropString';
 import template from './chat-brick.hbs';
 
 type ChatBrickProps = {
@@ -20,8 +21,6 @@ type ChatBrickProps = {
 const DEFAULT_CLASSES = ['chat-brick'];
 const TEXT_LIMIT = 50;
 const TITLE_LIMIT = 23;
-
-const cropString = (string: string, symbolLimit: number) => ((string.length > symbolLimit) ? `${string.substring(0, symbolLimit)}...` : string);
 
 class ChatBrick extends Block {
   constructor(props: ChatBrickProps) {

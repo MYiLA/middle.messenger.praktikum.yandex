@@ -136,6 +136,7 @@ class Home extends Block {
   }
 
   componentDidUpdate(oldProps: SomeObject, newProps: SomeObject) {
+    console.log('Компонент Home собирается обновиться', oldProps, newProps);
     const isRerendered = !isEqual(oldProps, newProps);
     if (isRerendered) {
       const oldChatsProps = oldProps.chats ?? [] as ChatsResponse[];

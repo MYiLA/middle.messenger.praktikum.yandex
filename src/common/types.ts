@@ -71,6 +71,10 @@ export type ChangePasswordForm = {
   repeatNewPassword: string;
 };
 
+export type LoginFormData = {
+  login: string
+};
+
 export type ChatsResponse = {
   id: number;
   title: string;

@@ -1,5 +1,5 @@
 import { MESSAGES, VALIDATOR } from '../../../../common/constant';
-import { ChatsResponse } from '../../../../common/types';
+import { ChatsResponse, SomeObject } from '../../../../common/types';
 import {
   Avatar, Button, Form, Input,
 } from '../../../../components';
@@ -10,14 +10,16 @@ import Block from '../../../../services/Block';
 import { Router } from '../../../../services/Router';
 import ActionName from '../../../../services/Store/constant';
 import runAction from '../../../../services/Store/runAction';
+import cropString from '../../../../utils/cropString';
+import isEqual from '../../../../utils/isEqual';
 import template from './header.hbs';
 
-type HeaderProps = {
+interface HeaderProps extends SomeObject {
   attr?: {
     classes?: string[],
   },
   currentChat?: ChatsResponse
-};
+}
 
 const router = new Router();
 
@@ -26,90 +28,92 @@ const FORM_NAME = {
   deleteUser: 'delete-user',
   addUser: 'add-user',
 };
+const TITLE_LIMIT = 50;
 
-const AvatarComponent = new Avatar({
-  attr: {
-    classes: ['header__avatar'],
-  },
-  color: '#2917F4',
-  size: 30,
-});
-
-const DeleteUserInput = new Input({
-  form: FORM_NAME.deleteUser,
-  label: 'Логин',
-  name: 'login',
-  type: 'text',
-  invalidMessage: MESSAGES.invalid.login,
-  validator: VALIDATOR.login,
-});
-
-const DeleteUserForm = new Form({
-  attr: {
-    action: 'POST',
-    id: FORM_NAME.deleteUser,
-    classes: ['modal__form'],
-  },
-  inputs: [DeleteUserInput],
-  actionName: ActionName.deleteUserFromChat,
-});
-
-const DeleteUserFormSubmit = new Button({
-  label: 'Удалить',
-  attr: {
-    classes: ['modal-button'],
-    type: 'submit',
-    form: FORM_NAME.deleteUser,
-  },
-});
-
-const ModalDeleteUser = new Modal({
-  title: 'Удалить пользователя',
-  body: DeleteUserForm,
-  bodyType: 'form',
-  Buttons: [DeleteUserFormSubmit],
-});
-
-const AddUserInput = new Input({
-  form: FORM_NAME.addUser,
-  label: 'Логин',
-  name: 'login',
-  type: 'text',
-  invalidMessage: MESSAGES.invalid.login,
-  validator: VALIDATOR.login,
-});
-
-const AddUserForm = new Form({
-  attr: {
-    action: 'POST',
-    id: FORM_NAME.addUser,
-    classes: ['modal__form'],
-  },
-  inputs: [AddUserInput],
-  actionName: ActionName.addUserInChat,
-});
-
-const AddUserFormSubmit = new Button({
-  label: 'Добавить',
-  attr: {
-    classes: ['modal-button'],
-    type: 'submit',
-    form: FORM_NAME.addUser,
-  },
-});
-
-const ModalAddUser = new Modal({
-  title: 'Добавить пользователя',
-  body: AddUserForm,
-  bodyType: 'form',
-  Buttons: [AddUserFormSubmit],
-});
 // TODO: для хедера нужна информация о конкретном чате по id из адресной строки.
 // Айдишник текущего чата меняем в сторе при переходе на чат.
 // Там же запрашиваем данные чата и перезаписываем стор.
 // Тут уже забираем готовые данные по чату из поля currentChat
 class Header extends Block {
   constructor(props: HeaderProps) {
+    const AvatarComponent = new Avatar({
+      attr: {
+        classes: ['header__avatar'],
+      },
+      size: 30,
+      image: props.currentChat ? props.currentChat.avatar : undefined,
+    });
+
+    const DeleteUserInput = new Input({
+      form: FORM_NAME.deleteUser,
+      label: 'Логин',
+      name: 'login',
+      type: 'text',
+      invalidMessage: MESSAGES.invalid.login,
+      validator: VALIDATOR.login,
+    });
+
+    const DeleteUserForm = new Form({
+      attr: {
+        action: 'POST',
+        id: FORM_NAME.deleteUser,
+        classes: ['modal__form'],
+      },
+      inputs: [DeleteUserInput],
+      actionName: ActionName.deleteUserFromChat,
+    });
+
+    const DeleteUserFormSubmit = new Button({
+      label: 'Удалить',
+      attr: {
+        classes: ['modal-button'],
+        type: 'submit',
+        form: FORM_NAME.deleteUser,
+      },
+    });
+
+    const ModalDeleteUser = new Modal({
+      title: 'Удалить пользователя',
+      body: DeleteUserForm,
+      bodyType: 'form',
+      Buttons: [DeleteUserFormSubmit],
+    });
+
+    const AddUserInput = new Input({
+      form: FORM_NAME.addUser,
+      label: 'Логин',
+      name: 'login',
+      type: 'text',
+      invalidMessage: MESSAGES.invalid.login,
+      validator: VALIDATOR.login,
+    });
+
+    const AddUserForm = new Form({
+      attr: {
+        action: 'POST',
+        id: FORM_NAME.addUser,
+        classes: ['modal__form'],
+      },
+      inputs: [AddUserInput],
+      actionName: ActionName.addUserToChat,
+    });
+
+    const AddUserFormSubmit = new Button({
+      label: 'Добавить',
+      attr: {
+        classes: ['modal-button'],
+        type: 'submit',
+        form: FORM_NAME.addUser,
+      },
+    });
+
+    const ModalAddUser = new Modal({
+      title: 'Добавить пользователя',
+      body: AddUserForm,
+      bodyType: 'form',
+      Buttons: [AddUserFormSubmit],
+    });
+
     const ExitChatButton = new Button({
       label: 'Выйти',
       attr: {
@@ -127,7 +131,7 @@ class Header extends Block {
             // TODO: Нужно нормально очищать стор
             router.back();
           }
-          runAction(ActionName.deleteChat, this.props.currentChat.chatId);
+          runAction(ActionName.deleteChat, { chatId: this.props.currentChat.id });
         },
       },
     });
@@ -136,8 +140,8 @@ class Header extends Block {
     const currentChatTitle = props.currentChat ? props.currentChat.title : '';
 
     const ModalExitChat = new Modal({
-      title: 'Выйти из чата',
-      body: `Вы уверены, что хотите удалить всю историю сообщений и выйти из чата “${currentChatTitle}”?`,
+      title: 'Удалить чат',
+      body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${currentChatTitle}”?`,
       bodyType: 'desc',
       Buttons: [ExitChatButton],
     });
@@ -163,7 +167,7 @@ class Header extends Block {
           },
         },
         {
-          label: 'Выйти из чата',
+          label: 'Удалить чат',
           type: DropdownItemType.exit,
           events: {
             click: () => {
@@ -196,6 +200,23 @@ class Header extends Block {
     });
   }
 
+  componentDidUpdate(oldProps: SomeObject, newProps: SomeObject) {
+    const isRerendered = !isEqual(oldProps, newProps);
+    if (isRerendered) {
+      const oldChatsProps = oldProps.currentChat ?? {} as ChatsResponse;
+      const newChatsProps = newProps.currentChat ?? {} as ChatsResponse;
+      // Обновляем модалки, если поменялся текущий чат
+      if (isEqual(oldChatsProps, newChatsProps) && this.children.ModalExitChat instanceof Block) {
+        this.children.ModalExitChat.setProps(
+          {
+            body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${newChatsProps.title}”?`,
+          },
+        );
+      }
+    }
+    return isRerendered;
+  }
+
   render() {
     return this.compile(template, {
       AvatarComponent: this.children.AvatarComponent,
@@ -203,6 +224,7 @@ class Header extends Block {
       ModalAddUser: this.children.ModalAddUser,
       ModalDeleteUser: this.children.ModalDeleteUser,
       ModalExitChat: this.children.ModalExitChat,
+      title: this.props.currentChat ? cropString(this.props.currentChat.title, TITLE_LIMIT) : '',
     });
   }
 }

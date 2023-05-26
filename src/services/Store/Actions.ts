@@ -1,11 +1,12 @@
 import {
   ChangePasswordForm,
-  ResponseChat, SigninProps, SomeObject,
+  ChatsResponse,
+  ResponseChat, SigninProps, SomeObject, UserResponse,
 } from '../../common/types';
 import { RegistrationFormData } from '../../pages/registration/type';
 import AuthApi from '../Api/auth';
 import ChatsApi from '../Api/chats';
-import { CreateChatRequest, UserRequest } from '../Api/type';
+import { ChatDeleteRequest, CreateChatRequest, UserRequest } from '../Api/type';
 import UserApi from '../Api/users';
 import { Router } from '../Router';
 import Store from './Store';
@@ -31,6 +32,7 @@ const getChats = () => {
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('chats', data);
+      console.log('после сета стора', store.getState());
     });
 };
 
@@ -126,8 +128,61 @@ const createChat = (props: CreateChatRequest) => {
 };
 
 /** Удалить чат */
-const deleteChat = (props: SomeObject) => {
-  console.log('deleteChat', props);
+const deleteChat = (props: ChatDeleteRequest) => {
+  chatsApi.deleteChat(props)
+    .then(() => {
+      getChats();
+      router.go('/messenger');
+    });
+};
+
+/** Добавить пользователя в чат */
+const addUserToChat = ({ login }: { login: string }) => {
+  userApi.findUserByLogin({ login })
+    .then((response: ResponseChat) => JSON.parse(response.response))
+    .then((response: UserResponse[]) => {
+      // Получаем список айди юзеров
+      const users = response.map((user) => user.id);
+      if (users.length > 0) {
+        // Получаем айди чата из адресной строки
+        const urlParams = window.location.href.split('/');
+        const chatId = Number(urlParams[urlParams.length - 1]);
+        chatsApi.addUsersToChat({
+          chatId,
+          users,
+        });
+      } else {
+        window.alert('Пользователей с таким логином не найдено');
+      }
+    });
+};
+
+/** Удалить пользователя из чата */
+const deleteUserFromChat = ({ login }: { login: string }) => {
+  const urlParams = window.location.href.split('/');
+  const chatId = Number(urlParams[urlParams.length - 1]);
+  chatsApi.getChatUsers({ id: chatId })
+    .then((response: ResponseChat) => JSON.parse(response.response))
+    .then((response: UserResponse[]) => {
+      // Получаем список айди юзеров, подходящих по логину
+      const users = response.filter((user) => user.login === login).map((user) => user.id);
+      if (users.length > 0) {
+      // Удаляем их из чата
+        chatsApi.deleteUsersFromChat({
+          chatId,
+          users,
+        })
+          .then(() => {
+            // Если пользователь текущий, то редиректим его на список чатов и обновляем список чатов
+            if (users.includes(store.getState().profile.id)) {
+              getChats();
+              router.go('/messenger');
+            }
+          });
+      } else {
+        window.alert('Пользователей с таким логином не найдено');
+      }
+    });
 };
 
 /** Получить пользователей чата */
@@ -140,16 +195,6 @@ const getMessageCount = (props: SomeObject) => {
   console.log('getMessageCount', props);
 };
 
-/** Добавить пользователя в чат */
-const addUserInChat = (props: SomeObject) => {
-  console.log('addUserInChat', props);
-};
-
-/** Удалить пользователя из чата */
-const deleteUserFromChat = (props: SomeObject) => {
-  console.log('deleteUserFromChat', props);
-};
-
 /** Отправить сообщение */
 const sendMessage = (props: SomeObject) => {
   console.log('sendMessage', props);
@@ -160,8 +205,15 @@ const log = (props: SomeObject) => {
   console.log('log', props);
 };
 
-const connectToChat = (id: number) => {
-  console.log('connectToChat', id);
+/** Подключение к чату */
+const connectToChat = ({ id }: { id: number }) => {
+  // Получаем список чатов из стора
+  const chats = store.get('chats') as ChatsResponse[];
+  // Находим текущий чат по айди
+  const currentChat = chats.find((chat) => chat.id === id);
+  // Записываем текущий чат в стор
+  store.set('currentChat', currentChat);
+  router.go(`/chat/${id}`);
 };
 
 window.spaceChatStoreAction = registration;
@@ -180,7 +232,7 @@ export {
   deleteChat,
   getChatUsers,
   getMessageCount,
-  addUserInChat,
+  addUserToChat,
   deleteUserFromChat,
   sendMessage,
   log,

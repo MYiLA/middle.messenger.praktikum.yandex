@@ -7,7 +7,6 @@ const userAPIInstance = new Requester('user');
 class UserApi extends BaseAPI {
   /** Изменить данные текущего пользователя */
   setProfileData(props: SetProfileDataProps): Promise<unknown> {
-    console.log('setProfileData', props);
     return userAPIInstance.put('profile', {
       headers: {
         'content-type': 'application/json',
@@ -31,7 +30,6 @@ class UserApi extends BaseAPI {
     oldPassword: string,
     newPassword: string
   }): Promise<unknown> {
-    console.log('setProfilePassword', props);
     return userAPIInstance.put('password', {
       headers: {
         'content-type': 'application/json',
@@ -43,8 +41,18 @@ class UserApi extends BaseAPI {
 
   /** Получение информации о пользователе по id */
   getUser(id: string): Promise<unknown> {
-    console.log('getUser', id);
     return userAPIInstance.get(id).then(this.parseServerResponse);
+  }
+
+  /** Получение информации о пользователе по логину */
+  findUserByLogin(props: { login: string }): Promise<unknown> {
+    return userAPIInstance.post('search', {
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+      body: JSON.stringify(props),
+    });
   }
 }
 

@@ -26,7 +26,7 @@ enum ActionName {
   /** Получить количество новых сообщений в указанном чате */
   getMessageCount = 'getMessageCount',
   /** Добавить пользователя в чат */
-  addUserInChat = 'addUserInChat',
+  addUserToChat = 'addUserToChat',
   /** Удалить пользователя из чата */
   deleteUserFromChat = 'deleteUserFromChat',
   /** Отправить сообщение */

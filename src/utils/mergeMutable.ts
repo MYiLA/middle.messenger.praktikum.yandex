@@ -3,6 +3,7 @@ import isSomeObject from './isSomeObject';
 
 // Соединяет 2 объекта в один
 function mergeMutable(lhs: SomeObject, rhs: SomeObject): SomeObject {
+  if (!rhs) return lhs;
   Object.keys(rhs).forEach((key: string) => {
     // Если в lhs нет ключа rhs, то добавляем его
     if (!lhs[key]) {
