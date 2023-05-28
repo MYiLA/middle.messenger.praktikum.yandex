@@ -82,6 +82,7 @@ export type ChatsResponse = {
   /** Количество непрочитанных сообщений в чате для текущего пользователя */
   unread_count: number;
   last_message: Message;
+  token?: string;
 };
 
 export type Message = {
@@ -107,5 +108,5 @@ export type UserResponse = {
   /** Телефон */
   phone: string;
   /** Аватар */
-  avatar: string;
+  avatar?: string;
 };

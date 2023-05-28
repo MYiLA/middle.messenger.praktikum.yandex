@@ -3,6 +3,13 @@ import getStore from '../../utils/get';
 import setStore from '../../utils/set';
 import EventBus from '../EventBus';
 
+const defaultStore = {
+  chats: [],
+  profile: null,
+  currentChat: null,
+  messages: [],
+};
+
 // наследуем Store от EventBus, чтобы его методы были сразу доступны у экземпляра Store
 export default class Store extends EventBus {
   static EVENT_UPDATE = '1';
@@ -11,7 +18,7 @@ export default class Store extends EventBus {
 
   static STORE_NAME = 'spaceСhatStore';
 
-  _state: SomeObject = {};
+  _state: SomeObject = defaultStore;
 
   constructor() {
     // eslint-disable-next-line no-constructor-return
@@ -38,7 +45,7 @@ export default class Store extends EventBus {
 
   /** Очищает весь стор */
   removeState() {
-    this._state = {};
+    this._state = defaultStore;
     this.emit(Store.EVENT_UPDATE);
   }
 

@@ -12,14 +12,8 @@ import ActionName from '../../../../services/Store/constant';
 import runAction from '../../../../services/Store/runAction';
 import cropString from '../../../../utils/cropString';
 import isEqual from '../../../../utils/isEqual';
+import { HeaderProps } from '../../types';
 import template from './header.hbs';
-
-interface HeaderProps extends SomeObject {
-  attr?: {
-    classes?: string[],
-  },
-  currentChat?: ChatsResponse
-}
 
 const router = new Router();
 
@@ -36,6 +30,7 @@ const TITLE_LIMIT = 50;
 // Тут уже забираем готовые данные по чату из поля currentChat
 class Header extends Block {
   constructor(props: HeaderProps) {
+    console.log('HEADER props', props);
     const AvatarComponent = new Avatar({
       attr: {
         classes: ['header__avatar'],
@@ -137,11 +132,9 @@ class Header extends Block {
     });
     // TODO: Кажется, что компонент упадёт, если ещё не подгрузилось название чата.
     // Надо подумать как это обыграть
-    const currentChatTitle = props.currentChat ? props.currentChat.title : '';
-
     const ModalExitChat = new Modal({
       title: 'Удалить чат',
-      body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${currentChatTitle}”?`,
+      body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${props.currentChat}”?`,
       bodyType: 'desc',
       Buttons: [ExitChatButton],
     });

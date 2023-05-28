@@ -151,7 +151,7 @@ class Block {
     // Сохраняем старое состояние пропсов для сравнения
     const oldProps = merge(this.props, {});
     // Мутируем пропсы, добавляя новое состояние
-    this.props = mergeMutable(this.props, nextProps);
+    mergeMutable(this.props, nextProps);
     // Запускаем логику по обновлению блока
     this._componentDidUpdate(oldProps, this.props);
   };

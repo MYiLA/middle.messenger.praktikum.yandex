@@ -1,19 +1,6 @@
 import Block from '../../../../services/Block';
+import { MessageItemProps } from '../../types';
 import template from './message-item.hbs';
-
-type MessageItemProps = {
-  time: string,
-  text?: string,
-  image?: string,
-  events?: {
-    click?: (ev: Event) => void,
-  }
-  isViewed?: boolean,
-  isMy?: boolean,
-  attr?: {
-    classes?: string[],
-  }
-};
 
 class MessageItem extends Block {
   constructor(props: MessageItemProps) {

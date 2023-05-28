@@ -213,7 +213,14 @@ const connectToChat = ({ id }: { id: number }) => {
   const currentChat = chats.find((chat) => chat.id === id);
   // Записываем текущий чат в стор
   store.set('currentChat', currentChat);
-  router.go(`/chat/${id}`);
+  // Получаем токен для real-time чата
+  chatsApi.getChatsToken({ chatId: id })
+    .then((response: ResponseChat) => JSON.parse(response.response))
+    .then((response) => {
+      // Добавляем токен в стор
+      store.set('currentChat.token', response.token);
+      router.go(`/chat/${id}`);
+    });
 };
 
 window.spaceChatStoreAction = registration;

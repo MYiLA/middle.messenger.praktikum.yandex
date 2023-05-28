@@ -13,24 +13,5 @@
     {{/each}}
   </ul>
 </div>
-
-<div class="home__chat chat">
-  {{#unless withId}}
-    <div class="chat__info">
-      Выберите чат чтобы отправить сообщение
-    </div>
-  {{/unless}}
-  {{#if withId}}
-    {{{HeaderComponent}}}
-    <div class="chat__body body">
-      <div class="body__date">19 июня</div>
-      <ul class="body__messages-list">
-        {{#each Messages}}
-          {{{this}}}
-        {{/each}}
-      </ul>
-    </div>
-    {{{FooterComponent}}}
-  {{/if}}
-</div>
+{{{ChatComponent}}}
 {{{ModalCreateChat}}}
