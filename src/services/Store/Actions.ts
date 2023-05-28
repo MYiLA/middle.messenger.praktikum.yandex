@@ -32,7 +32,6 @@ const getChats = () => {
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('chats', data);
-      console.log('после сета стора', store.getState());
     });
 };
 
@@ -114,11 +113,6 @@ const setProfilePassword = (props: ChangePasswordForm) => {
   });
 };
 
-/** Получить информацию по конкретному пользователю */
-const getUser = (props: SomeObject) => {
-  console.log('getUser', props);
-};
-
 /** Создать чат */
 const createChat = (props: CreateChatRequest) => {
   chatsApi.createChat(props)
@@ -185,11 +179,6 @@ const deleteUserFromChat = ({ login }: { login: string }) => {
     });
 };
 
-/** Получить пользователей чата */
-const getChatUsers = (props: SomeObject) => {
-  console.log('getChatUsers', props);
-};
-
 /** Получить количество новых сообщений в указанном чате */
 const getMessageCount = (props: SomeObject) => {
   console.log('getMessageCount', props);
@@ -233,11 +222,9 @@ export {
   setProfileData,
   setProfileAvatar,
   setProfilePassword,
-  getUser,
   getChats,
   createChat,
   deleteChat,
-  getChatUsers,
   getMessageCount,
   addUserToChat,
   deleteUserFromChat,

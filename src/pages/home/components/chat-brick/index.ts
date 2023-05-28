@@ -1,6 +1,7 @@
 import { Avatar } from '../../../../components';
 import Block from '../../../../services/Block';
 import cropString from '../../../../utils/cropString';
+import formatDate from '../../../../utils/formatDate';
 import template from './chat-brick.hbs';
 
 type ChatBrickProps = {
@@ -48,7 +49,7 @@ class ChatBrick extends Block {
       avatarColor: this.props.avatarColor,
       title: cropString(this.props.title, TITLE_LIMIT),
       lastMessageContent: this.props.lastMessageContent ? cropString(this.props.lastMessageContent, TEXT_LIMIT) : '',
-      lastMessageTime: this.props.lastMessageTime,
+      lastMessageTime: formatDate(this.props.lastMessageTime),
       unread_count: this.props.unread_count > 99 ? '99+' : this.props.unread_count,
       Avatar: this.children.Avatar,
     });

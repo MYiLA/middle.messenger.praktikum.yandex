@@ -38,3 +38,5 @@ export const MESSAGES = {
 };
 
 export const BASE_HOST = 'https://ya-praktikum.tech/api/v2';
+
+export const PING_PERIOD = 20000;

@@ -110,3 +110,8 @@ export type UserResponse = {
   /** Аватар */
   avatar?: string;
 };
+
+export interface ErrorEvent extends Event {
+  error : Error,
+  message : string,
+}

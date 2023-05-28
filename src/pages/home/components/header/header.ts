@@ -30,7 +30,6 @@ const TITLE_LIMIT = 50;
 // Тут уже забираем готовые данные по чату из поля currentChat
 class Header extends Block {
   constructor(props: HeaderProps) {
-    console.log('HEADER props', props);
     const AvatarComponent = new Avatar({
       attr: {
         classes: ['header__avatar'],

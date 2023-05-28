@@ -7,7 +7,7 @@ import ActionName from '../../services/Store/constant';
 import isEqual from '../../utils/isEqual';
 import Footer from './components/footer';
 import Header from './components/header';
-import FORM_NAME from './constants';
+import { FORM_NAME } from './constants';
 import template from './home.hbs';
 import { HomeProps } from './types';
 import { getChatBricks, getCurrentChat } from './utils';

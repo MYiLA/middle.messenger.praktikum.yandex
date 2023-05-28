@@ -1,5 +1,5 @@
 import { SomeObject } from '../../common/types';
-
+// TODO: Это возможно упрощение для сокетов
 class WebSocketService {
   constructor(patch: string) {
     console.log(patch);

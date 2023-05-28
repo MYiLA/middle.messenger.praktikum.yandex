@@ -22,16 +22,12 @@ const runAction = (name: ActionName, props: SomeObject = {}) => {
       return Actions.setProfileAvatar(props);
     case ActionName.setProfilePassword:
       return Actions.setProfilePassword(props as ChangePasswordForm);
-    case ActionName.getUser:
-      return Actions.getUser(props);
     case ActionName.getChats:
       return Actions.getChats();
     case ActionName.createChat:
       return Actions.createChat(props as CreateChatRequest);
     case ActionName.deleteChat:
       return Actions.deleteChat(props as ChatDeleteRequest);
-    case ActionName.getChatUsers:
-      return Actions.getChatUsers(props);
     case ActionName.getMessageCount:
       return Actions.getMessageCount(props);
     case ActionName.addUserToChat:

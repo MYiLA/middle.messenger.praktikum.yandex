@@ -30,13 +30,14 @@ const getChatBricks = (chats: ChatsResponse[]) => chats.map((chat: ChatsResponse
 const getCurrentChat = (homeProps: HomeProps, withId: boolean) => {
   const { currentChat, profile } = homeProps;
   // Если пропсы для текущего чата существуют, то рендерим чат
-  if (currentChat && profile && withId) {
+  if (homeProps && currentChat && profile && withId && homeProps.currentChat?.token) {
     const ChatComponent = new Chat({
       attr: {
         classes: ['home__chat'],
       },
-      currentChat,
-      profile,
+      currentChatId: homeProps.currentChat.id,
+      profileId: homeProps.profile.id,
+      token: homeProps.currentChat.token,
     });
     return ChatComponent;
   }

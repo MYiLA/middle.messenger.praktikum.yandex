@@ -9,7 +9,6 @@ class ChatsApi extends BaseAPI {
   createChat(props: {
     title: string
   }): Promise<unknown> {
-    console.log('createChat', props);
     return chatsAPIInstance.post('', {
       headers: {
         'content-type': 'application/json',
@@ -23,7 +22,6 @@ class ChatsApi extends BaseAPI {
   deleteChat(props: {
     chatId: number,
   }): Promise<unknown> {
-    console.log('deleteChat', props);
     return chatsAPIInstance.delete('', {
       headers: {
         'content-type': 'application/json',
@@ -37,13 +35,11 @@ class ChatsApi extends BaseAPI {
   getChatUsers(props: {
     id: number,
   }): Promise<unknown> {
-    console.log('getChatUsers', props);
     return chatsAPIInstance.get(`${props.id}/users`).then(this.parseServerResponse);
   }
 
   /** Получить количество новых сообщений в указанном чате */
   getNewMessageCount(id: number): Promise<unknown> {
-    console.log('getMessageCount', id);
     return chatsAPIInstance.get(`new/${id}`).then(this.parseServerResponse);
   }
 
@@ -52,7 +48,6 @@ class ChatsApi extends BaseAPI {
     users: number[],
     chatId: number
   }): Promise<unknown> {
-    console.log('addUserToChat', props);
     return chatsAPIInstance.put('users', {
       headers: {
         'content-type': 'application/json',
@@ -67,7 +62,6 @@ class ChatsApi extends BaseAPI {
     users: number[],
     chatId: number
   }): Promise<unknown> {
-    console.log('deleteUserFromChat', props);
     return chatsAPIInstance.delete('users', {
       headers: {
         'content-type': 'application/json',

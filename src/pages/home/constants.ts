@@ -1,4 +1,4 @@
-const FORM_NAME = {
+export const FORM_NAME = {
   createChat: 'create-chat',
 };
 
