@@ -35,9 +35,6 @@ const getCurrentChat = (homeProps: HomeProps, withId: boolean) => {
       attr: {
         classes: ['home__chat'],
       },
-      currentChatId: homeProps.currentChat.id,
-      profileId: homeProps.profile.id,
-      token: homeProps.currentChat.token,
     });
     return ChatComponent;
   }

@@ -40,3 +40,14 @@ export const MESSAGES = {
 export const BASE_HOST = 'https://ya-praktikum.tech/api/v2';
 
 export const PING_PERIOD = 20000;
+
+export enum SocketEvent {
+  /** Cрабатывает, когда соединение установлено */
+  open = 'open',
+  /** Cрабатывает, когда получены данные */
+  close = 'close',
+  /** Cрабатывает, когда происходит ошибка */
+  error = 'error',
+  /** Cрабатывает, когда соединение закрыто */
+  message = 'message',
+}

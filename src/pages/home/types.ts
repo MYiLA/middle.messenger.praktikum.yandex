@@ -32,9 +32,6 @@ export type ChatProps = {
   attr?: {
     classes?: string[],
   },
-  currentChatId: number,
-  profileId: number,
-  token: string,
 };
 
 export type ChatBrickProps = {

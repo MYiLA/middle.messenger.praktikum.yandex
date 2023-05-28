@@ -9,6 +9,7 @@ import ChatsApi from '../Api/chats';
 import { ChatDeleteRequest, CreateChatRequest, UserRequest } from '../Api/type';
 import UserApi from '../Api/users';
 import { Router } from '../Router';
+import WebSocketService from '../webSocket';
 import Store from './Store';
 
 const store = new Store();
@@ -206,8 +207,13 @@ const connectToChat = ({ id }: { id: number }) => {
   chatsApi.getChatsToken({ chatId: id })
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((response) => {
+      const { token } = response;
+      const profileId = store.getState().profile.id;
       // Добавляем токен в стор
-      store.set('currentChat.token', response.token);
+      store.set('currentChat.token', token);
+      const socketUrl = `wss://ya-praktikum.tech/ws/chats/${profileId}/${id}/${token}`;
+      const Socket = new WebSocketService(socketUrl);
+      console.log('Socket', Socket);
       router.go(`/chat/${id}`);
     });
 };

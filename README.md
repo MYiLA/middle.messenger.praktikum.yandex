@@ -36,6 +36,7 @@ stylelint                 https://stylelint.io/
 stylelint plugins         https://github.com/stylelint/awesome-stylelint#plugins
 swagger                   https://ya-praktikum.tech/api/v2/swagger/#/
 тестирование RegExp       https://regex101.com/
+websocket                 https://learn.javascript.ru/websocket
 
 ```
 ### **МР-ы**
