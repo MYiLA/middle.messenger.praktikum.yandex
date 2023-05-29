@@ -33,15 +33,16 @@ class WebSocketService {
   /**
    * Закрытие соединения
    * @param code - Специальный WebSocket-код закрытия (не обязателен)
+   * @example
    * 1000 – По умолчанию, нормальное закрытие
    * 1006 – Указывает, что соединение было потеряно (нет фрейма закрытия)
-   * 1001 – сторона отключилась, например сервер выключен или пользователь покинул страницу
-   * 1009 – сообщение слишком большое для обработки
-   * 1011 – непредвиденная ошибка на сервере
+   * 1001 – Сторона отключилась, например сервер выключен или пользователь покинул страницу
+   * 1009 – Сообщение слишком большое для обработки
+   * 1011 – Непредвиденная ошибка на сервере
    * Полный список находится в https://datatracker.ietf.org/doc/html/rfc6455#section-7.4.1
    * @param reason - Строка с описанием причины закрытия (не обязательна)
    */
-  close(code: number, reason: string) {
+  close(code?: number, reason?: string) {
     this.socket.close(code, reason);
   }
 
@@ -67,6 +68,8 @@ class WebSocketService {
             }));
             subscriber({});
           }, PING_PERIOD);
+          // Когда соединение будет установлено, получаем 20 старых сообщений чата, если они есть
+          this.getOld('0');
         });
         break;
 
@@ -89,7 +92,6 @@ class WebSocketService {
       case SocketEvent.message:
         this.socket.addEventListener('message', (event) => {
           subscriber(event);
-          console.log('Получены данные', event.data);
         });
         break;
 

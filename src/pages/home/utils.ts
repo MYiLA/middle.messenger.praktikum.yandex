@@ -1,10 +1,10 @@
-import { ChatsResponse } from '../../common/types';
+import { ChatsResponse, Message } from '../../common/types';
 import ActionName from '../../services/Store/constant';
 import runAction from '../../services/Store/runAction';
 import Chat from './components/chat';
 import ChatBrick from './components/chat-brick';
 import ChatStub from './components/chat-stub';
-import { HomeProps } from './types';
+import MessageItem from './components/message-item';
 
 const getChatBricks = (chats: ChatsResponse[]) => chats.map((chat: ChatsResponse) => {
   const {
@@ -27,10 +27,9 @@ const getChatBricks = (chats: ChatsResponse[]) => chats.map((chat: ChatsResponse
   });
 });
 
-const getCurrentChat = (homeProps: HomeProps, withId: boolean) => {
-  const { currentChat, profile } = homeProps;
+const getCurrentChat = (withId: boolean) => {
   // Если пропсы для текущего чата существуют, то рендерим чат
-  if (homeProps && currentChat && profile && withId && homeProps.currentChat?.token) {
+  if (withId) {
     const ChatComponent = new Chat({
       attr: {
         classes: ['home__chat'],
@@ -47,4 +46,21 @@ const getCurrentChat = (homeProps: HomeProps, withId: boolean) => {
   return ChatComponent;
 };
 
-export { getChatBricks, getCurrentChat };
+const getMessages = (
+  messages: Message[],
+  currentUserId?: number,
+): MessageItem[] => messages.map((message) => {
+  const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    time, content, user_id, is_read,
+  } = message;
+  return new MessageItem({
+    time,
+    attr: { classes: ['body__message-item'] },
+    isMy: currentUserId ? currentUserId === user_id : false,
+    text: content,
+    isViewed: !!is_read,
+  });
+});
+
+export { getChatBricks, getCurrentChat, getMessages };

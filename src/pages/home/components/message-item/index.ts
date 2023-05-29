@@ -1,4 +1,5 @@
 import Block from '../../../../services/Block';
+import formatDate from '../../../../utils/formatDate';
 import { MessageItemProps } from '../../types';
 import template from './message-item.hbs';
 
@@ -22,7 +23,7 @@ class MessageItem extends Block {
 
   render() {
     return this.compile(template, {
-      time: this.props.time,
+      time: formatDate(this.props.time),
       text: this.props.text,
       image: this.props.image,
       isViewed: this.props.isViewed,

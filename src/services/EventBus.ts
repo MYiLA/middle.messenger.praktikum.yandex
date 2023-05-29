@@ -25,10 +25,6 @@ class EventBus {
     }
 
     this.listeners[event].forEach((listener) => {
-      /*
-      * TODO: разобраться с типизацией спред оператора.
-      * уйти от apply. listener(...args) Тут возможно пойти через кортеж
-      */
       listener.apply(null, ...args);
     });
   }

@@ -1,9 +1,14 @@
+import { SocketEvent } from '../../common/constant';
 import {
   ChangePasswordForm,
   ChatsResponse,
+  GetOldMessagesPrors,
+  Message,
   ResponseChat, SigninProps, SomeObject, UserResponse,
 } from '../../common/types';
 import { RegistrationFormData } from '../../pages/registration/type';
+import convertStringToData from '../../utils/convertStringToData';
+import isArray from '../../utils/isArray';
 import AuthApi from '../Api/auth';
 import ChatsApi from '../Api/chats';
 import { ChatDeleteRequest, CreateChatRequest, UserRequest } from '../Api/type';
@@ -17,6 +22,7 @@ const authApi = new AuthApi();
 const userApi = new UserApi();
 const chatsApi = new ChatsApi();
 const router = new Router();
+let socket: WebSocketService | null = null;
 
 /** Получение подробной информации по текущему пользователю */
 const getProfile = () => {
@@ -180,19 +186,30 @@ const deleteUserFromChat = ({ login }: { login: string }) => {
     });
 };
 
-/** Получить количество новых сообщений в указанном чате */
-const getMessageCount = (props: SomeObject) => {
-  console.log('getMessageCount', props);
+/** Получить старые сообщения */
+const getOldMessages = (props: GetOldMessagesPrors) => {
+  if (!socket) throw new Error('getOldMessages: Нет активного сокета');
+  socket.getOld(props.content);
 };
 
 /** Отправить сообщение */
 const sendMessage = (props: SomeObject) => {
-  console.log('sendMessage', props);
+  if (!socket) throw new Error('sendMessage: Нет активного сокета');
+  socket.send(props.message);
 };
 
 /** Логировать переданные данные в консоль */
 const log = (props: SomeObject) => {
   console.log('log', props);
+};
+
+/** Выход из текущего чата */
+const closeCurrentChat = () => {
+  // Если текущий чат существует - закрываем его и очищаем стор
+  if (socket) {
+    socket.close();
+    store.set('messages', []);
+  }
 };
 
 /** Подключение к чату */
@@ -209,11 +226,45 @@ const connectToChat = ({ id }: { id: number }) => {
     .then((response) => {
       const { token } = response;
       const profileId = store.getState().profile.id;
-      // Добавляем токен в стор
-      store.set('currentChat.token', token);
+
+      // Создаём сокет и подписываемся на его обновления. Связываем со стором
       const socketUrl = `wss://ya-praktikum.tech/ws/chats/${profileId}/${id}/${token}`;
-      const Socket = new WebSocketService(socketUrl);
-      console.log('Socket', Socket);
+      // Закпываем старый чат
+      closeCurrentChat();
+      socket = new WebSocketService(socketUrl);
+      socket.subscribe(SocketEvent.open, () => {});
+      socket.subscribe(SocketEvent.close, () => {});
+      socket.subscribe(SocketEvent.error, (payload) => {
+        throw new Error(payload.message);
+      });
+      socket.subscribe(SocketEvent.message, (payload) => {
+        // Получаем объект из строки
+        const newMessage = convertStringToData(payload.data) as Message;
+        // Если это сообщение просто пинг - ничего не делаем
+        if (newMessage.type === 'pong') return;
+
+        // Получаем старые сообщения из стора
+        const oldMessages = store.getState().messages as Message[];
+        let unsortedMessages = [];
+
+        if (isArray(newMessage)) {
+          unsortedMessages = [...oldMessages, ...newMessage];
+        } else {
+          oldMessages.push(newMessage);
+          unsortedMessages = oldMessages;
+        }
+
+        // Сортируем сообщения по дате
+        const result = unsortedMessages.sort((message1, message2) => {
+          const date1 = new Date(message1.time).getTime();
+          const date2 = new Date(message2.time).getTime();
+          return date2 - date1;
+        });
+
+        // Записываем отсортированные сообщения в стор
+        store.set('messages', result);
+      });
+      // и переходим в чат
       router.go(`/chat/${id}`);
     });
 };
@@ -231,10 +282,10 @@ export {
   getChats,
   createChat,
   deleteChat,
-  getMessageCount,
   addUserToChat,
   deleteUserFromChat,
   sendMessage,
   log,
   connectToChat,
+  getOldMessages,
 };

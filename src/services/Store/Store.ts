@@ -1,9 +1,18 @@
-import { SomeObject } from '../../common/types';
+import {
+  ChatsResponse, Message, SomeObject, UserInfo,
+} from '../../common/types';
 import getStore from '../../utils/get';
 import setStore from '../../utils/set';
 import EventBus from '../EventBus';
 
-const defaultStore = {
+type StoreStateType = {
+  chats: ChatsResponse[],
+  profile: UserInfo | null,
+  currentChat: ChatsResponse | null,
+  messages: Message[],
+};
+
+const defaultStore: StoreStateType = {
   chats: [],
   profile: null,
   currentChat: null,
@@ -52,7 +61,6 @@ export default class Store extends EventBus {
   /** Устанавливает значение в стор по указанному пути */
   set(patch: string, valueProp: unknown) {
     this._state = setStore(this._state, patch, valueProp);
-    console.log('СТОР', this._state, patch, valueProp);
     this.emit(Store.EVENT_UPDATE);
     return this;
   }

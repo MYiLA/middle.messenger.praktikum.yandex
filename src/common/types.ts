@@ -86,9 +86,14 @@ export type ChatsResponse = {
 };
 
 export type Message = {
-  user: UserResponse;
+  id: number;
+  user_id: number;
+  chat_id?: number;
   time: string;
   content: string;
+  type: string;
+  is_read?: boolean;
+  file?: null | File;
 };
 
 /** Информация о пользователе, которая приходит с бэка */
@@ -115,3 +120,7 @@ export interface ErrorEvent extends Event {
   error : Error,
   message : string,
 }
+
+export type GetOldMessagesPrors = {
+  content: string,
+};

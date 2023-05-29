@@ -17,7 +17,7 @@ class Home extends Block {
   constructor(props: HomeProps) {
     const chats = props.chats ?? [];
     const ChatBriks = getChatBricks(chats);
-    const ChatComponent = getCurrentChat(props, props.withId);
+    const ChatComponent = getCurrentChat(props.withId);
 
     const HeaderComponent = new Header({ attr: { classes: ['chat__header'] } });
     const FooterComponent = new Footer({ attr: { classes: ['chat__footer'] } });
