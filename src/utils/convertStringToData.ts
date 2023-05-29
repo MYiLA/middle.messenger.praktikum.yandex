@@ -1,10 +1,14 @@
 import { SomeObject } from '../common/types';
 
 const convertStringToData = (string: string): SomeObject => {
+  // Преобразование массива объектов
   if (string[0] === '[') {
+    if (string[1] === ']') return [];
     const stringArray = string.slice(1, -1).split('},').map((item) => `${item}}`);
     return stringArray.map((item) => convertStringToData(item));
   }
+
+  // Неглубокое преобразование объекта
   return string
     .split('"')
     .filter((item) => (

@@ -3,13 +3,15 @@ import isEqual from '../../../../utils/isEqual';
 import { BodyProps } from '../../types';
 import getMessages from './utils';
 import template from './body.hbs';
+import isArray from '../../../../utils/isArray';
 
 const defaultClasses = ['body'];
 
 class Body extends Block {
   constructor(props: BodyProps) {
     const messages = props.messages ?? [];
-    const Messages = getMessages(messages, props.currentUserId);
+    const Messages = getMessages(messages, props.currentUserId) ?? [];
+    console.log('MESSAGES', Messages);
     super('div', {
       ...props,
       attr: {
@@ -35,7 +37,10 @@ class Body extends Block {
   }
 
   render() {
-    return this.compile(template, { Messages: this.children.Messages });
+    console.log('this.children.Messages', this.children.Messages);
+    return this.compile(template, {
+      Messages: isArray(this.children.Messages) && this.children.Messages.length ? this.children.Messages : '',
+    });
   }
 }
 
