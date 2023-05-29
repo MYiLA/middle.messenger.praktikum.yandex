@@ -11,7 +11,7 @@ class Body extends Block {
   constructor(props: BodyProps) {
     const messages = props.messages ?? [];
     const Messages = getMessages(messages, props.currentUserId) ?? [];
-    console.log('MESSAGES', Messages);
+
     super('div', {
       ...props,
       attr: {
@@ -37,7 +37,6 @@ class Body extends Block {
   }
 
   render() {
-    console.log('this.children.Messages', this.children.Messages);
     return this.compile(template, {
       Messages: isArray(this.children.Messages) && this.children.Messages.length ? this.children.Messages : '',
     });

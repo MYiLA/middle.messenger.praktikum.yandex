@@ -5,7 +5,6 @@ const getMessages = (
   messages: Message[],
   currentUserId?: number,
 ): MessageItem[] => {
-  console.log('messages.length', messages.length, messages);
   if (messages.length === 0) return [];
   return messages.map((message) => {
     const {
