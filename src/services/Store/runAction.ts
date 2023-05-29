@@ -28,8 +28,6 @@ const runAction = (name: ActionName, props: SomeObject = {}) => {
       return Actions.createChat(props as CreateChatRequest);
     case ActionName.deleteChat:
       return Actions.deleteChat(props as ChatDeleteRequest);
-    case ActionName.getMessageCount:
-      return Actions.getMessageCount(props);
     case ActionName.addUserToChat:
       return Actions.addUserToChat(props as LoginFormData);
     case ActionName.deleteUserFromChat:

@@ -1,7 +1,7 @@
 import Block from '../../../../services/Block';
 import isEqual from '../../../../utils/isEqual';
 import { BodyProps } from '../../types';
-import { getMessages } from '../../utils';
+import getMessages from './utils';
 import template from './body.hbs';
 
 const defaultClasses = ['body'];

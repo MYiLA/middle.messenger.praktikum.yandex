@@ -1,10 +1,9 @@
-import { ChatsResponse, Message } from '../../common/types';
+import { ChatsResponse } from '../../common/types';
 import ActionName from '../../services/Store/constant';
 import runAction from '../../services/Store/runAction';
 import Chat from './components/chat';
 import ChatBrick from './components/chat-brick';
 import ChatStub from './components/chat-stub';
-import MessageItem from './components/message-item';
 
 const getChatBricks = (chats: ChatsResponse[]) => chats.map((chat: ChatsResponse) => {
   const {
@@ -46,21 +45,4 @@ const getCurrentChat = (withId: boolean) => {
   return ChatComponent;
 };
 
-const getMessages = (
-  messages: Message[],
-  currentUserId?: number,
-): MessageItem[] => messages.map((message) => {
-  const {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    time, content, user_id, is_read,
-  } = message;
-  return new MessageItem({
-    time,
-    attr: { classes: ['body__message-item'] },
-    isMy: currentUserId ? currentUserId === user_id : false,
-    text: content,
-    isViewed: !!is_read,
-  });
-});
-
-export { getChatBricks, getCurrentChat, getMessages };
+export { getChatBricks, getCurrentChat };

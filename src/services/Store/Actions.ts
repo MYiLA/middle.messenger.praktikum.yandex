@@ -153,6 +153,7 @@ const addUserToChat = ({ login }: { login: string }) => {
           users,
         });
       } else {
+        // eslint-disable-next-line no-alert
         window.alert('Пользователей с таким логином не найдено');
       }
     });
@@ -181,6 +182,7 @@ const deleteUserFromChat = ({ login }: { login: string }) => {
             }
           });
       } else {
+        // eslint-disable-next-line no-alert
         window.alert('Пользователей с таким логином не найдено');
       }
     });
