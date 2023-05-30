@@ -19,15 +19,15 @@ class EventBus {
     );
   }
 
-  emit(event: string, ...args: any[]) {
+  emit = (event: string, ...args: unknown[]): void => {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event].forEach((listener) => {
-      listener.apply(null, ...args);
+      listener.call(this, ...args);
     });
-  }
+  };
 }
 
 export default EventBus;

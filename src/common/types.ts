@@ -124,3 +124,5 @@ export interface ErrorEvent extends Event {
 export type GetOldMessagesPrors = {
   content: string,
 };
+
+export type EventHandler<P = any> = (...payload: P[]) => void;

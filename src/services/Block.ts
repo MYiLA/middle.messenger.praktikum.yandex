@@ -1,7 +1,6 @@
 import { v4 as uuid4 } from 'uuid';
 import { SomeObject } from '../common/types';
-import merge from '../utils/merge';
-import mergeMutable from '../utils/mergeMutable';
+import isArray from '../utils/isArray';
 import EventBus from './EventBus';
 
 /**
@@ -44,6 +43,8 @@ class Block {
   };
 
   protected children: Record<string, Block | Block[]>;
+
+  private isNeedUpdate = false;
 
   /**
    * @param tagName
@@ -134,7 +135,7 @@ class Block {
   private _componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
     const isReRender = this.componentDidUpdate(oldProps, newProps);
     if (isReRender) {
-      this.eventBus().emit(Block.EVENTS.RENDER);
+      this._render();
     }
   }
 
@@ -148,12 +149,22 @@ class Block {
       return;
     }
 
-    // Сохраняем старое состояние пропсов для сравнения
-    const oldProps = merge(this.props, {});
-    // Мутируем пропсы, добавляя новое состояние
-    mergeMutable(this.props, nextProps);
-    // Запускаем логику по обновлению блока
-    this._componentDidUpdate(oldProps, this.props);
+    this.isNeedUpdate = false;
+    const oldValues = { ...this.props };
+    const { children, props } = this._getChildrenAndProps(nextProps);
+
+    if (Object.values(children).length) {
+      Object.assign(this.children, children);
+    }
+
+    if (Object.values(props).length) {
+      Object.assign(this.props, props);
+    }
+
+    if (this.isNeedUpdate) {
+      this.eventBus().emit(Block.EVENTS.CDU, oldValues, this.props);
+      this.isNeedUpdate = false;
+    }
   };
 
   getProps(): BlockProps {
@@ -172,8 +183,13 @@ class Block {
     const block = this.render();
     // Очищаем события
     this.removeEvents();
+    if (!this._element) {
+      throw new Error(`Block._render: Элемент "${this.constructor.name}" не найден`);
+    }
+
     // Очищаем элемент
     this._element!.innerHTML = '';
+
     // Добавляем элемент
     this._element!.append(block);
     this.addEvents();
@@ -248,10 +264,14 @@ class Block {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
-        const oldTarget = { ...target };
-        target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.CDU, oldTarget, target);
+      set(target, prop, value, receiver) {
+        if (
+          (Reflect.get(target, prop, receiver) !== value)
+          || (isArray(value) && value.find((item) => item?.type === 'message'))
+        ) {
+          Reflect.set(target, prop, value, receiver);
+          self.isNeedUpdate = true;
+        }
         return true;
       },
       deleteProperty() {
