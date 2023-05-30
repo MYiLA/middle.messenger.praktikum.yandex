@@ -9,7 +9,7 @@ function set(object: SomeObject, path: string, value: unknown): SomeObject {
   }
 
   if (typeof path !== 'string') {
-    throw new Error('path must be string');
+    throw new Error('utils/set.ts: Пропс "path" должен быть строкой');
   }
 
   const result = path.split('.').reduceRight<SomeObject>((acc, key) => ({

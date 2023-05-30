@@ -1,21 +1,17 @@
 import { MESSAGES, VALIDATOR } from '../../../../common/constant';
 import {
-  Avatar, Button, Form, Input,
+  Button, Form, Input,
 } from '../../../../components';
 import DropDown from '../../../../components/dropdown';
 import DropdownItemType from '../../../../components/dropdown/constant';
 import Modal from '../../../../components/modal';
 import Block from '../../../../services/Block';
-import { Router } from '../../../../services/Router';
 import ActionName from '../../../../services/Store/constant';
-import runAction from '../../../../services/Store/runAction';
 import cropString from '../../../../utils/cropString';
-import getResursePath from '../../../../utils/getResursePath';
 import isEqual from '../../../../utils/isEqual';
 import { HeaderProps } from '../../types';
 import template from './header.hbs';
-
-const router = new Router();
+import { getAvatar, getModalExitChat } from './utils';
 
 const defaultClasses = ['header'];
 const FORM_NAME = {
@@ -26,14 +22,7 @@ const TITLE_LIMIT = 50;
 
 class Header extends Block {
   constructor(props: HeaderProps) {
-    const AvatarComponent = new Avatar({
-      attr: {
-        classes: ['header__avatar'],
-      },
-      size: 30,
-      image: (props.currentChat && props.currentChat.avatar)
-        ? getResursePath(props.currentChat.avatar) : undefined,
-    });
+    const AvatarComponent = getAvatar(props.currentChat?.avatar);
 
     const DeleteUserInput = new Input({
       form: FORM_NAME.deleteUser,
@@ -105,28 +94,7 @@ class Header extends Block {
       Buttons: [AddUserFormSubmit],
     });
 
-    const ExitChatButton = new Button({
-      label: 'Выйти',
-      attr: {
-        classes: ['modal-button'],
-        type: 'button',
-      },
-      events: {
-        click: () => {
-          if (!this.props.currentChat) {
-            router.back();
-          }
-          runAction(ActionName.deleteChat, { chatId: this.props.currentChat.id });
-        },
-      },
-    });
-
-    const ModalExitChat = new Modal({
-      title: 'Удалить чат',
-      body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${props.currentChat}”?`,
-      bodyType: 'desc',
-      Buttons: [ExitChatButton],
-    });
+    const ModalExitChat = getModalExitChat(props.currentChat?.id, props.currentChat?.title);
 
     const DropDownComponent = new DropDown({
       actionItems: [
@@ -153,7 +121,9 @@ class Header extends Block {
           type: DropdownItemType.exit,
           events: {
             click: () => {
-              ModalExitChat.show();
+              if (this.children.ModalExitChat instanceof Block) {
+                this.children.ModalExitChat.show();
+              }
             },
           },
         },
@@ -184,32 +154,22 @@ class Header extends Block {
 
   componentDidUpdate(oldProps: HeaderProps, newProps: HeaderProps) {
     const isRerendered = !isEqual(oldProps, newProps);
-    console.log('ПЕРЕРЕНДЕР ХЕДЕРА', oldProps, newProps);
     if (isRerendered) {
       const oldChatsProps = oldProps.currentChat ?? {};
       const newChatsProps = newProps.currentChat ?? {};
       // Обновляем модалки, если поменялся текущий чат
-      if (isEqual(oldChatsProps, newChatsProps) && this.children.ModalExitChat instanceof Block) {
-        this.children.ModalExitChat.setProps(
-          {
-            body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${newChatsProps.title}”?`,
-          },
-        );
+      if (!isEqual(oldChatsProps, newChatsProps)) {
+        // eslint-disable-next-line max-len
+        this.children.ModalExitChat = getModalExitChat(newChatsProps?.id, newChatsProps?.title);
+        this.children.ModalExitChat.hide();
       }
 
       const oldAvatarProps = oldProps?.currentChat?.avatar ?? null;
       const newAvatarProps = newProps?.currentChat?.avatar ?? null;
-      console.log('oldAvatarProps, newAvatarProps', oldAvatarProps, newAvatarProps);
+
       // Обновляем аватар, если поменялась картинка
-      if (
-        isEqual(oldAvatarProps, newAvatarProps)
-        && this.children.AvatarComponent instanceof Block
-      ) {
-        this.children.AvatarComponent.setProps(
-          {
-            avatar: newAvatarProps,
-          },
-        );
+      if (!isEqual(oldAvatarProps, newAvatarProps)) {
+        this.children.AvatarComponent = getAvatar(newAvatarProps);
       }
     }
     return isRerendered;

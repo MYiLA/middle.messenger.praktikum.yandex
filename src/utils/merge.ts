@@ -8,7 +8,7 @@ function merge(lhs: SomeObject, rhs: SomeObject): SomeObject {
   if (lhs) {
     Object.keys(lhs).forEach((key: string) => {
     // Если ключи разные сохраняем оба
-      if (!rhs[key]) {
+      if (rhs[key] === undefined) {
         result[key] = lhs[key];
       // Если значения - объекты, то проваливаемся вовнутрь обоих
       } else if (isSomeObject(rhs[key])) {
