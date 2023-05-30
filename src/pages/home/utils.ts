@@ -8,10 +8,11 @@ import ChatStub from './components/chat-stub';
 const getChatBricks = (chats: ChatsResponse[]) => chats.map((chat: ChatsResponse) => {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    title, unread_count, last_message, id,
+    title, unread_count, last_message, id, avatar,
   } = chat;
   return new ChatBrick({
     title,
+    avatar,
     attr: {
       classes: ['chat-list__chat-brick'],
     },

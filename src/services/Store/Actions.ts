@@ -15,6 +15,7 @@ import { ChatDeleteRequest, CreateChatRequest, UserRequest } from '../Api/type';
 import UserApi from '../Api/users';
 import { Router } from '../Router';
 import WebSocketService from '../webSocket';
+import ActionName from './constant';
 import Store from './Store';
 
 const store = new Store();
@@ -24,13 +25,19 @@ const chatsApi = new ChatsApi();
 const router = new Router();
 let socket: WebSocketService | null = null;
 
+// Обработка ошибок
+const onError = (error: Error, actionName: ActionName | string) => {
+  console.log(`${actionName}: ${error.message}`, error);
+};
+
 /** Получение подробной информации по текущему пользователю */
 const getProfile = () => {
   authApi.getCurrentUser()
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('profile', data);
-    });
+    })
+    .catch((error) => { onError(error, ActionName.getProfile); });
 };
 
 /** Получить чаты текущего пользователя */
@@ -39,7 +46,8 @@ const getChats = () => {
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('chats', data);
-    });
+    })
+    .catch((error) => { onError(error, ActionName.getChats); });
 };
 
 /** Регистрация */
@@ -48,32 +56,38 @@ const registration = (props: RegistrationFormData): void => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { password_repeat, ...registrationProps } = props;
 
-  authApi.registration(registrationProps).then(() => {
-    getProfile();
-    getChats();
-    // Если регистрация успешно прошла - редиректим в мессенджер
-    router.go('/messenger');
-  });
+  authApi.registration(registrationProps)
+    .then(() => {
+      getProfile();
+      getChats();
+      // Если регистрация успешно прошла - редиректим в мессенджер
+      router.go('/messenger');
+    })
+    .catch((error) => { onError(error, ActionName.registration); });
 };
 
 /** Авторизация */
 const authorization = (formData: SigninProps) => {
-  authApi.authorization(formData).then(() => {
-    getProfile();
-    getChats();
-    // Если авторизация успешно прошла - редиректим в мессенджер
-    router.go('/messenger');
-  });
+  authApi.authorization(formData)
+    .then(() => {
+      getProfile();
+      getChats();
+      // Если авторизация успешно прошла - редиректим в мессенджер
+      router.go('/messenger');
+    })
+    .catch((error) => { onError(error, ActionName.signin); });
 };
 
 /** Выход пользователя из системы */
 const logout = () => {
-  authApi.logout().then(() => {
-    // Очищаем стор
-    store.removeState();
-    // редиректим на авторизацию
-    router.go('/');
-  });
+  authApi.logout()
+    .then(() => {
+      // Очищаем стор
+      store.removeState();
+      // редиректим на авторизацию
+      router.go('/');
+    })
+    .catch((error) => { onError(error, ActionName.logout); });
 };
 
 /** Изменить данные текущего пользователя */
@@ -82,7 +96,8 @@ const setProfileData = (props: UserRequest) => {
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('profile', data);
-    });
+    })
+    .catch((error) => { onError(error, ActionName.setProfileData); });
 };
 
 /** Изменить аватар текущего пользователя */
@@ -91,7 +106,8 @@ const setProfileAvatar = (props: SomeObject) => {
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
       store.set('profile', data);
-    });
+    })
+    .catch((error) => { onError(error, ActionName.setProfileAvatar); });
 };
 
 /** Изменить пароль текущего пользователя */
@@ -99,25 +115,27 @@ const setProfilePassword = (props: ChangePasswordForm) => {
   // Удаляем повтор пароля
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const { repeatNewPassword, ...setPasswordProps } = props;
-  userApi.setProfilePassword(setPasswordProps).then((response: ResponseChat) => {
+  userApi.setProfilePassword(setPasswordProps)
+    .then((response: ResponseChat) => {
     // Если пользователь ввёл неверный старый пароль
-    if (response.status === 400) {
+      if (response.status === 400) {
       // показываем алерт и остаёмся на странице
       // eslint-disable-next-line no-alert
-      window.alert('Введён некорректный старый пароль');
-    // Если пользователь не авторизован
-    } else if (response.status === 401) {
+        window.alert('Введён некорректный старый пароль');
+        // Если пользователь не авторизован
+      } else if (response.status === 401) {
       // редиректим на авторизацию
-      router.go('/');
-      // eslint-disable-next-line no-alert
-      window.alert('Авторизуйтесь пожалуйста');
-    // Если получили ошибку сервера
-    } else if (response.status >= 500) {
+        router.go('/');
+        // eslint-disable-next-line no-alert
+        window.alert('Авторизуйтесь пожалуйста');
+        // Если получили ошибку сервера
+      } else if (response.status >= 500) {
       // редиректим на страницу с серверной ошибкой
-      router.go('/500');
-    }
-    return response;
-  });
+        router.go('/500');
+      }
+      return response;
+    })
+    .catch((error) => { onError(error, ActionName.setProfilePassword); });
 };
 
 /** Создать чат */
@@ -125,7 +143,8 @@ const createChat = (props: CreateChatRequest) => {
   chatsApi.createChat(props)
     .then(() => {
       getChats();
-    });
+    })
+    .catch((error) => { onError(error, ActionName.createChat); });
 };
 
 /** Удалить чат */
@@ -134,7 +153,8 @@ const deleteChat = (props: ChatDeleteRequest) => {
     .then(() => {
       getChats();
       router.go('/messenger');
-    });
+    })
+    .catch((error) => { onError(error, ActionName.deleteChat); });
 };
 
 /** Добавить пользователя в чат */
@@ -151,12 +171,20 @@ const addUserToChat = ({ login }: { login: string }) => {
         chatsApi.addUsersToChat({
           chatId,
           users,
-        });
+        })
+          .then(() => {
+            // eslint-disable-next-line no-alert
+            window.alert(
+              `Пользователь "${login}" добавлен в чат "${store.getState().currentChat.title}"`,
+            );
+          })
+          .catch((error) => { onError(error, ActionName.addUserToChat); });
       } else {
         // eslint-disable-next-line no-alert
         window.alert('Пользователей с таким логином не найдено');
       }
-    });
+    })
+    .catch((error) => { onError(error, 'Поиск пользователя по логину в текущем чате'); });
 };
 
 /** Удалить пользователя из чата */
@@ -180,12 +208,14 @@ const deleteUserFromChat = ({ login }: { login: string }) => {
               getChats();
               router.go('/messenger');
             }
-          });
+          })
+          .catch((error) => { onError(error, ActionName.deleteUserFromChat); });
       } else {
         // eslint-disable-next-line no-alert
         window.alert('Пользователей с таким логином не найдено');
       }
-    });
+    })
+    .catch((error) => { onError(error, 'Получение пользователя чата при его удалении из текущего чата'); });
 };
 
 /** Получить старые сообщения */
@@ -200,7 +230,7 @@ const sendMessage = (props: SomeObject) => {
   socket.send(props.message);
 };
 
-/** Логировать переданные данные в консоль */
+/** Логирование */
 const log = (props: SomeObject) => {
   console.log('log', props);
 };
@@ -268,7 +298,8 @@ const connectToChat = ({ id }: { id: number }) => {
       });
       // и переходим в чат
       router.go(`/chat/${id}`);
-    });
+    })
+    .catch((error) => { onError(error, ActionName.connectToChat); });
 };
 
 window.spaceChatStoreAction = registration;

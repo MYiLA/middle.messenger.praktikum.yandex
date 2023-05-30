@@ -1,5 +1,4 @@
 import { MESSAGES, VALIDATOR } from '../../../../common/constant';
-import { ChatsResponse, SomeObject } from '../../../../common/types';
 import {
   Avatar, Button, Form, Input,
 } from '../../../../components';
@@ -11,6 +10,7 @@ import { Router } from '../../../../services/Router';
 import ActionName from '../../../../services/Store/constant';
 import runAction from '../../../../services/Store/runAction';
 import cropString from '../../../../utils/cropString';
+import getResursePath from '../../../../utils/getResursePath';
 import isEqual from '../../../../utils/isEqual';
 import { HeaderProps } from '../../types';
 import template from './header.hbs';
@@ -31,7 +31,8 @@ class Header extends Block {
         classes: ['header__avatar'],
       },
       size: 30,
-      image: props.currentChat ? props.currentChat.avatar : undefined,
+      image: (props.currentChat && props.currentChat.avatar)
+        ? getResursePath(props.currentChat.avatar) : undefined,
     });
 
     const DeleteUserInput = new Input({
@@ -181,16 +182,32 @@ class Header extends Block {
     });
   }
 
-  componentDidUpdate(oldProps: SomeObject, newProps: SomeObject) {
+  componentDidUpdate(oldProps: HeaderProps, newProps: HeaderProps) {
     const isRerendered = !isEqual(oldProps, newProps);
+    console.log('ПЕРЕРЕНДЕР ХЕДЕРА', oldProps, newProps);
     if (isRerendered) {
-      const oldChatsProps = oldProps.currentChat ?? {} as ChatsResponse;
-      const newChatsProps = newProps.currentChat ?? {} as ChatsResponse;
+      const oldChatsProps = oldProps.currentChat ?? {};
+      const newChatsProps = newProps.currentChat ?? {};
       // Обновляем модалки, если поменялся текущий чат
       if (isEqual(oldChatsProps, newChatsProps) && this.children.ModalExitChat instanceof Block) {
         this.children.ModalExitChat.setProps(
           {
             body: `Вы уверены, что хотите удалить всю историю сообщений и удалить чат “${newChatsProps.title}”?`,
+          },
+        );
+      }
+
+      const oldAvatarProps = oldProps?.currentChat?.avatar ?? null;
+      const newAvatarProps = newProps?.currentChat?.avatar ?? null;
+      console.log('oldAvatarProps, newAvatarProps', oldAvatarProps, newAvatarProps);
+      // Обновляем аватар, если поменялась картинка
+      if (
+        isEqual(oldAvatarProps, newAvatarProps)
+        && this.children.AvatarComponent instanceof Block
+      ) {
+        this.children.AvatarComponent.setProps(
+          {
+            avatar: newAvatarProps,
           },
         );
       }

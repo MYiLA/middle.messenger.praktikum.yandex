@@ -2,6 +2,7 @@ import { Avatar } from '../../../../components';
 import Block from '../../../../services/Block';
 import cropString from '../../../../utils/cropString';
 import formatDate from '../../../../utils/formatDate';
+import getResursePath from '../../../../utils/getResursePath';
 import template from './chat-brick.hbs';
 
 type ChatBrickProps = {
@@ -30,7 +31,7 @@ class ChatBrick extends Block {
         classes: ['chat-brick__avatar'],
       },
       color: props.avatarColor,
-      image: props.avatar,
+      image: props.avatar ? getResursePath(props.avatar) : undefined,
     });
 
     super('li', {
