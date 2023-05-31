@@ -1,10 +1,12 @@
+import { BASE_HOST } from '../common/constant';
 import { SomeObject } from '../common/types';
+import getQueryString from './getQueryString';
 
 type Options = {
   timeout?: number;
   headers?: SomeObject,
   method?: METHODS,
-  data?: any,
+  body?: any,
 };
 
 enum METHODS {
@@ -16,40 +18,63 @@ enum METHODS {
 
 type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
 
-// Необязательный метод
-function queryStringify(data: any) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
+class Requester {
+  baseUrl: string;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
   }
 
-  // TODO: Пока достаточно и [object Object] для объекта, потом надо доделать
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
-}
-
-class HTTPTransport {
   get: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: METHODS.GET }, options.timeout)
+    this.request(
+      this.getUrl(url),
+      {
+        ...options,
+        method: METHODS.GET,
+      },
+      options.timeout,
+    )
   );
 
   post: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: METHODS.POST }, options.timeout)
+    this.request(
+      this.getUrl(url),
+      {
+        ...options,
+        method: METHODS.POST,
+      },
+      options.timeout,
+    )
   );
 
   put: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
+    this.request(
+      this.getUrl(url),
+      {
+        ...options,
+        method: METHODS.PUT,
+      },
+      options.timeout,
+    )
   );
 
   delete: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
+    this.request(
+      this.getUrl(url),
+      {
+        ...options,
+        method: METHODS.DELETE,
+      },
+      options.timeout,
+    )
   );
 
   request = (
     url: string,
-    options: Options = {},
+    options: Options,
     timeout = 5000,
   ) => {
-    const { headers = {}, method, data } = options;
+    const { headers = {}, method, body } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
@@ -62,8 +87,8 @@ class HTTPTransport {
 
       xhr.open(
         method,
-        isGet && !!data
-          ? `${url}${queryStringify(data)}`
+        isGet && !!body
+          ? `${url}${getQueryString(body)}`
           : url,
       );
 
@@ -80,14 +105,20 @@ class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+      xhr.withCredentials = true;
 
-      if (isGet || !data) {
+      if (isGet || !body) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.send(body);
       }
     });
   };
+
+  private getUrl(url: string): string {
+    if (!url) return `${BASE_HOST}/${this.baseUrl}`;
+    return `${BASE_HOST}/${this.baseUrl}/${url}`;
+  }
 }
 
-export default HTTPTransport;
+export default Requester;

@@ -9,6 +9,7 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "skipLibCheck": true,
   },
   "include": [
     "./src/**/*.ts",
@@ -20,7 +21,7 @@
     "dist",
     ".parcel-cache",
     ".github",
-    "public"
+    "public",
   ],
   "paths": {
     "@common/*": ["src/common/*"],

@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
 import template from './input.hbs';
 
 type FormItemProps = {
@@ -14,7 +14,8 @@ type FormItemProps = {
   invalidMessage?: string,
   isValid?: boolean,
   isDisabled?: boolean,
-  validator?: (value: string) => boolean,
+  validator?: (value: string, repeatValue?: string) => boolean,
+  repeatInputName?: string,
 };
 
 const defaultClasses = ['form__input', 'input'];
@@ -60,12 +61,14 @@ class Input extends Block {
 
   onBlur(ev: Event) {
     const input = ev.target as HTMLInputElement;
+    const repeatInput = document.querySelector(`[name="${this.props.repeatInputName}"]`) as HTMLInputElement;
+    const repeatInputValue = repeatInput?.value;
     const { value } = input;
     const { validator } = this.getProps();
 
     // Валидируем введённое значение при Blur
     if (validator) {
-      this.setProps({ isValid: validator(value), value });
+      this.setProps({ isValid: validator(value, repeatInputValue), value });
     } else {
       // Если валидатора нет, сохраняем введённое пользователем значение в пропсах компонента
       this.setProps({ value });

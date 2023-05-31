@@ -1,18 +1,8 @@
 <div class="header__chat-info">
   {{{AvatarComponent}}}
-  <h2 class="header__title">Вадим</h2>
+  <h2 class="header__title">{{title}}</h2>
 </div>
-<div class="header__dropdown dropdown dropdown--open">
-  <button class="dropdown__btn" type="button"></button>
-  <list class="dropdown__list">
-    <li class="dropdown__item">
-      <button class="dropdown__item-btn dropdown__item-btn--add">Добавить пользователя</button>
-    </li>
-    <li class="dropdown__item">
-      <button class="dropdown__item-btn dropdown__item-btn--delete">Удалить пользователя</button>
-    </li>
-    <li class="dropdown__item">
-      <button class="dropdown__item-btn dropdown__item-btn--exit">Выйти из чата</button>
-    </li>
-  </list>
-</div>
+{{{DropDownComponent}}}
+{{{ModalDeleteUser}}}
+{{{ModalAddUser}}}
+{{{ModalExitChat}}}

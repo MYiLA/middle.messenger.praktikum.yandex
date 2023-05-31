@@ -1,7 +1,8 @@
 import {
   Button, Form, FormProps, Input,
 } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
+import ActionName from '../../../../services/Store/constant';
 import template from './demo-form.hbs';
 
 const Input1 = new Input({
@@ -30,6 +31,7 @@ const FormDemo = new Form({
     action: 'POST',
   },
   inputs: [Input1, Input2],
+  actionName: ActionName.log,
 });
 
 const Submit = new Button({

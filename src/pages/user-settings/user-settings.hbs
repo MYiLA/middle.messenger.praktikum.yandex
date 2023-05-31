@@ -1,5 +1,5 @@
 <div class="user-settings__left-wrap">
-  <a class="user-settings__link-back" href="#/home" ></a>
+  <a class="user-settings__link-back" href="#/messenger" ></a>
 </div>
 
 <div class="user-settings__right-wrap">
@@ -8,7 +8,7 @@
       {{{AvatarComponent}}}
       {{{FormAvatar}}}
     </div>
-    <h1 class="user-settings__name">Иван</h1>
+    <h1 class="user-settings__name">{{first_name}}</h1>
     <div class="user-settings__form-wrap">
       {{{FormData}}}
       {{{FormPassword}}}
@@ -17,10 +17,10 @@
     <div class="user-settings__button-wrap">
       {{{ChangePasswordBtn}}}
       {{{ChangeDataBtn}}}
-      <a class="user-settings__button button button--dark" href="#/">Выйти</a>
+      {{{LogoutBtn}}}
       {{{SubmitData}}}
       {{{SubmitPassword}}}
     </div>
   </div>
 </div>
-
+{{{ModalAvatarSubmit}}}

@@ -1,8 +1,79 @@
-.cover-wrap {
+.modal {
 
   @include content-center;
 
-  width: 100%;
+  z-index: 100;
+  width: 100vw;
   height: 100vh;
-  background-color: rgba($white-1, 0.15)
+  background-color: rgba($white-1, 0.15);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &__wrap {
+    position: relative;
+    width: 340px;
+    height: 260px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: $black-1;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: $white-1;
+  }
+  
+  &__desc {
+    margin: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $white-3;
+  }
+
+  &__buttons-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    flex-shrink: 0;
+
+    &:not(:first-child) {
+      padding-left: 10px;
+    }
+  }
+
+  &__form {
+    text-align: left;
+  }
+
+  &__close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-image: url("../public/images/svg/cross-gold.svg");
+    opacity: 1;
+    transition: opacity 0.5s;
+    
+    &:hover, &:active, &:focus {
+      background-color: transparent;
+      opacity: 0.7;
+    }
+  }
 }

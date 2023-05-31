@@ -1,19 +1,7 @@
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
+import formatDate from '../../../../utils/formatDate';
+import { MessageItemProps } from '../../types';
 import template from './message-item.hbs';
-
-type MessageItemProps = {
-  time: string,
-  text?: string,
-  image?: string,
-  events?: {
-    click?: (ev: Event) => void,
-  }
-  isViewed?: boolean,
-  isMy?: boolean,
-  attr?: {
-    classes?: string[],
-  }
-};
 
 class MessageItem extends Block {
   constructor(props: MessageItemProps) {
@@ -35,7 +23,7 @@ class MessageItem extends Block {
 
   render() {
     return this.compile(template, {
-      time: this.props.time,
+      time: formatDate(this.props.time),
       text: this.props.text,
       image: this.props.image,
       isViewed: this.props.isViewed,

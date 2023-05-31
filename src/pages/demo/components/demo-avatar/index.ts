@@ -1,5 +1,5 @@
 import { Avatar } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
 import template from './demo-avatar.hbs';
 import imageHorizontalBlack from '../../pictures/horizontal-black.jpg';
 import imageVerticalWhite from '../../pictures/vertical-white.jpg';

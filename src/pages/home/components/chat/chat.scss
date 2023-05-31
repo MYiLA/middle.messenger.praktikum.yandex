@@ -1,0 +1,13 @@
+.chat {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &__info {
+
+    @include content-center;
+
+    width: 100%;
+    height: 100%;
+    color: $white-4;
+  }
+}

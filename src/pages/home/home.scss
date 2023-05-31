@@ -2,9 +2,13 @@
 
 @import "./components/footer/footer.scss";
 
+@import "./components/body/body.scss";
+
 @import "./components/chat-brick/chat-brick.scss";
 
 @import "./components/message-item/message-item.scss";
+
+@import "./components/chat/chat.scss";
 
 .home {
   display: flex;
@@ -24,50 +28,28 @@
 
 .chat-list {
   width: 310px;
-  padding: 20px 10px;
+  height: 100vh;
+  overflow-y: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-right: solid 1px $white-6;
   background-color: $black-2;
 
-  &__link-wrap {
-    display: flex;
-    justify-content: space-between;
+  &__info {
+    padding-left: 10px;
+    padding-right: 20px;
   }
 
-  &__link {
-    position: relative;
-    margin-bottom: 23px;
-    padding-right: 16px;
-    color: $white-4;
-    transition: opacity 0.5s;
+  &__list {
+    overflow-y: scroll;
+    height: calc(100vh - 127px);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-    &::after {
-      content: '';
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      background-image: url("../public/images/svg/arrow-small.svg");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: right;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    };
-
-    &:hover {
-      opacity: 0.6;
-    };
-  };
-
-  &__link--left {
-    padding-right: 0;
-    padding-left: 16px;
-
-    &::after {
-      right:initial;
-      left: 0;
-      transform: translateY(-50%) rotate(180deg);
-    }
+  &__nav {
+    display: flex;
+    justify-content: space-between;
   }
 
   &__search {
@@ -87,34 +69,3 @@
     }
   };
 }
-
-.chat {
-  padding-left: 20px;
-  padding-right: 20px;
-
-  &__info {
-
-    @include content-center;
-
-    width: 100%;
-    height: 100%;
-    color: $white-4;
-  }
-}
-
-.body {
-  height: calc(100vh - (54px + 54px));
-  padding-right: 10px;
-  overflow-y: scroll;
-
-  &__date {
-    margin-top: 48px;
-    margin-bottom: 27px;
-    text-align: center;
-  }
-
-  &__message-item {
-    margin-bottom: 10px;
-  }
- }
- 

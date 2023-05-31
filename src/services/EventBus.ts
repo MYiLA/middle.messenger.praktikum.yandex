@@ -1,7 +1,7 @@
 class EventBus {
   private readonly listeners: Record<string, Array<() => void>> = {};
 
-  on(event: string, callback: () => void) {
+  attach(event: string, callback: () => void) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -9,7 +9,7 @@ class EventBus {
     this.listeners[event].push(callback);
   }
 
-  off(event: string, callback: () => void) {
+  detach(event: string, callback: () => void) {
     if (!this.listeners[event]) {
       throw new Error(`Нет события ${event}`);
     }
@@ -19,19 +19,15 @@ class EventBus {
     );
   }
 
-  emit(event: string, ...args: any[]) {
+  emit = (event: string, ...args: unknown[]): void => {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
 
     this.listeners[event].forEach((listener) => {
-      /*
-      * TODO: разобраться с типизацией спред оператора.
-      * уйти от apply. listener(...args) Тут возможно пойти через кортеж
-      */
-      listener.apply(null, ...args);
+      listener.call(this, ...args);
     });
-  }
+  };
 }
 
 export default EventBus;

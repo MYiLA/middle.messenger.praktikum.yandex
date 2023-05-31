@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
 import {
   DemoAvatar,
   DemoButton,

@@ -1,24 +1,28 @@
 import { Avatar } from '../../../../components';
-import Block from '../../../../utils/Block';
+import Block from '../../../../services/Block';
+import cropString from '../../../../utils/cropString';
+import formatDate from '../../../../utils/formatDate';
+import getResursePath from '../../../../utils/getResursePath';
 import template from './chat-brick.hbs';
 
 type ChatBrickProps = {
   attr?: {
     classes?: string[],
   }
-  href: string,
   avatarColor?: string,
   title: string,
   lastMessageContent?: string,
   lastMessageTime?: string,
-  unreadCount?: number,
+  unread_count?: number,
   avatar?: string,
+  events?: {
+    click?: (ev: Event) => void,
+  }
 };
 
 const DEFAULT_CLASSES = ['chat-brick'];
 const TEXT_LIMIT = 50;
-
-const cropString = (string: string, symbolLimit: number) => ((string.length > symbolLimit) ? `${string.substring(0, symbolLimit)}...` : string);
+const TITLE_LIMIT = 23;
 
 class ChatBrick extends Block {
   constructor(props: ChatBrickProps) {
@@ -27,7 +31,7 @@ class ChatBrick extends Block {
         classes: ['chat-brick__avatar'],
       },
       color: props.avatarColor,
-      image: props.avatar,
+      image: props.avatar ? getResursePath(props.avatar) : undefined,
     });
 
     super('li', {
@@ -43,12 +47,11 @@ class ChatBrick extends Block {
 
   render() {
     return this.compile(template, {
-      href: this.props.href,
       avatarColor: this.props.avatarColor,
-      title: this.props.title,
-      lastMessageContent: cropString(this.props.lastMessageContent, TEXT_LIMIT),
-      lastMessageTime: this.props.lastMessageTime,
-      unreadCount: this.props.unreadCount > 99 ? '99+' : this.props.unreadCount,
+      title: cropString(this.props.title, TITLE_LIMIT),
+      lastMessageContent: this.props.lastMessageContent ? cropString(this.props.lastMessageContent, TEXT_LIMIT) : '',
+      lastMessageTime: formatDate(this.props.lastMessageTime),
+      unread_count: this.props.unread_count > 99 ? '99+' : this.props.unread_count,
       Avatar: this.children.Avatar,
     });
   }

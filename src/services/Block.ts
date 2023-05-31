@@ -1,7 +1,18 @@
 import { v4 as uuid4 } from 'uuid';
 import { SomeObject } from '../common/types';
+import isArray from '../utils/isArray';
 import EventBus from './EventBus';
 
+/**
+ * Тип конструктора объекта Block
+ */
+export type BlockConstructor = {
+  new (props: SomeObject): Block;
+};
+
+/**
+ * Тип пропсов объекта Block
+ */
 export type BlockProps = {
   [x: string | symbol | number]: any;
   attr?: {
@@ -32,6 +43,8 @@ class Block {
   };
 
   protected children: Record<string, Block | Block[]>;
+
+  private isNeedUpdate = false;
 
   /**
    * @param tagName
@@ -70,10 +83,10 @@ class Block {
   }
 
   private _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.RENDER, this._render.bind(this));
+    eventBus.attach(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.attach(Block.EVENTS.CDM, this._componentDidMount.bind(this));
+    eventBus.attach(Block.EVENTS.CDU, this._componentDidUpdate.bind(this));
+    eventBus.attach(Block.EVENTS.RENDER, this._render.bind(this));
   }
 
   private _createResources() {
@@ -120,8 +133,9 @@ class Block {
   }
 
   private _componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
-      this.eventBus().emit(Block.EVENTS.RENDER);
+    const isReRender = this.componentDidUpdate(oldProps, newProps);
+    if (isReRender) {
+      this._render();
     }
   }
 
@@ -135,11 +149,30 @@ class Block {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    this.isNeedUpdate = false;
+    const oldValues = { ...this.props };
+    const { children, props } = this._getChildrenAndProps(nextProps);
+
+    if (Object.values(children).length) {
+      Object.assign(this.children, children);
+    }
+
+    if (Object.values(props).length) {
+      Object.assign(this.props, props);
+    }
+
+    if (this.isNeedUpdate) {
+      this.eventBus().emit(Block.EVENTS.CDU, oldValues, this.props);
+      this.isNeedUpdate = false;
+    }
   };
 
   getProps(): BlockProps {
     return this.props;
+  }
+
+  getChildren(): BlockProps {
+    return this.children;
   }
 
   get element() {
@@ -150,8 +183,13 @@ class Block {
     const block = this.render();
     // Очищаем события
     this.removeEvents();
+    if (!this._element) {
+      throw new Error(`Block._render: Элемент "${this.constructor.name}" не найден`);
+    }
+
     // Очищаем элемент
     this._element!.innerHTML = '';
+
     // Добавляем элемент
     this._element!.append(block);
     this.addEvents();
@@ -226,10 +264,14 @@ class Block {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
-        const oldTarget = { ...target };
-        target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.CDU, oldTarget, target);
+      set(target, prop, value, receiver) {
+        if (
+          (Reflect.get(target, prop, receiver) !== value)
+          || (isArray(value) && value.find((item) => item?.type === 'message'))
+        ) {
+          Reflect.set(target, prop, value, receiver);
+          self.isNeedUpdate = true;
+        }
         return true;
       },
       deleteProperty() {
@@ -242,7 +284,7 @@ class Block {
     const content = this.getContent();
 
     if (content) {
-      content.style.display = 'block';
+      content.style.display = '';
     } else {
       throw new Error('Элемент не найден. show не отрабатывает');
     }
@@ -250,7 +292,6 @@ class Block {
 
   hide() {
     const content = this.getContent();
-
     if (content) {
       content.style.display = 'none';
     } else {

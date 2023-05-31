@@ -1,0 +1,19 @@
+.body {
+  height: calc(100vh - (54px + 54px));
+  padding-right: 10px;
+  overflow-y: scroll;
+
+  &__date {
+    margin-top: 48px;
+    margin-bottom: 27px;
+    text-align: center;
+  }
+
+  &__messages-list {
+    padding-top: 10px;
+  }
+
+  &__message-item {
+    margin-bottom: 10px;
+  }
+}

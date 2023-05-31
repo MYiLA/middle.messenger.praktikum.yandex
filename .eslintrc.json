@@ -19,16 +19,7 @@
     "no-param-reassign": ["error", { 
       "props": false
     }],
-    "class-methods-use-this": ["error", {
-      "exceptMethods": [
-        "_getChildrenAndProps",
-        "render",
-        "componentDidUpdate",
-        "componentDidMount",
-        "_createDocumentElement",
-        "request"
-      ]
-      }],
-      "no-console": "off"
+    "class-methods-use-this": "off",
+    "no-console": "off"
   }
 }

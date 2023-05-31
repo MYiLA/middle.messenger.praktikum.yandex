@@ -1,8 +1,12 @@
 import { MESSAGES, VALIDATOR } from '../../common/constant';
 import { Button, Form, Input } from '../../components';
-import Block from '../../utils/Block';
+import Block from '../../services/Block';
+import { Router } from '../../services/Router';
+import ActionName from '../../services/Store/constant';
 import template from './authorization.hbs';
 import DEFAULT_SETTING from './constant';
+
+const router = new Router();
 
 const Login = new Input({
   label: 'Логин',
@@ -31,6 +35,7 @@ const FormElement = new Form({
     classes: ['authorization__form'],
   },
   inputs: [Login, Password],
+  actionName: ActionName.signin,
 });
 
 const Enter = new Button({
@@ -38,7 +43,20 @@ const Enter = new Button({
   attr: {
     type: 'submit',
     form: DEFAULT_SETTING.form,
-    classes: ['authorization__button'],
+    classes: ['authorization__button', 'button'],
+  },
+});
+
+const RegisterButton = new Button({
+  label: 'Нет аккаунта?',
+  attr: {
+    type: 'button',
+    classes: ['authorization__button', 'button', 'button--link'],
+  },
+  events: {
+    click: () => {
+      router.go('/sign-up');
+    },
   },
 });
 
@@ -50,12 +68,14 @@ class Authorization extends Block {
       },
       Enter,
       FormElement,
+      RegisterButton,
     });
   }
 
   render() {
     return this.compile(template, {
       Enter: this.children.Enter,
+      RegisterButton: this.children.RegisterButton,
       FormElement: this.children.FormElement,
     });
   }
