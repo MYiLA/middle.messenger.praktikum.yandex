@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import Block from './Block';
 import * as crypto from 'crypto';
 
-const dom = new JSDOM('<!DOCTYPE html><html><body><div id="root"></div></body></html>', { url: 'http://localhost' });
+const Dom = new JSDOM('<!DOCTYPE html><html><body><div id="root"></div></body></html>', { url: 'http://localhost' });
 
 if (!('crypto' in globalThis)) {
   Object.defineProperty(globalThis, 'crypto', {
@@ -16,13 +16,13 @@ if (!('crypto' in globalThis)) {
 
 if (!('document' in globalThis)) {
   Object.defineProperty(globalThis, 'document', {
-    value: dom.window.document
+    value: Dom.window.document
   });
 }
 
 if (!('window' in globalThis)) {
   Object.defineProperty(globalThis, 'window', {
-    value: dom.window
+    value: Dom.window
   });
 }
 
@@ -44,7 +44,7 @@ describe('Проверяем компонент', function () {
   const getTestComponent = () => document.querySelector('[data-test="test-component"]');
 
   beforeEach(() => {
-    document = dom.window.document;
+    document = Dom.window.document;
     root = document.querySelector('#root')!;
     testComponent = new TestFirstComponent();
     const content = testComponent.getContent() as HTMLElement;
@@ -93,7 +93,7 @@ describe('Проверяем компонент', function () {
         }
       }
     });
-    const event = new dom.window.Event('click', { bubbles: true });
+    const event = new Dom.window.Event('click', { bubbles: true });
     const content = testComponent.getContent() as HTMLElement;
     content
       .dispatchEvent(event);

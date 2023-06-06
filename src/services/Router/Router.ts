@@ -8,7 +8,7 @@ class Router {
 
   protected history: History;
 
-  private _currentRoute: Route | null;
+  public currentRoute: Route | null;
 
   private _rootQuery?: string;
 
@@ -22,7 +22,7 @@ class Router {
 
     this.routes = [];
     this.history = window.history;
-    this._currentRoute = null;
+    this.currentRoute = null;
     this._rootQuery = rootQuery || '#app';
 
     Router.instance = this;
@@ -52,10 +52,10 @@ class Router {
       return;
     }
 
-    if (this._currentRoute && this._currentRoute !== route) {
-      this._currentRoute.leave();
+    if (this.currentRoute && this.currentRoute !== route) {
+      this.currentRoute.leave();
     }
-    this._currentRoute = route;
+    this.currentRoute = route;
     route.render();
   }
 

@@ -20,8 +20,8 @@ function isEqual(lhs: unknown, rhs: unknown): boolean {
   for (let i = 0; result === true && i < lhsKeys.length; i += 1) {
     const currentLhsKey = isArray(lhs) ? Number(lhsKeys[i]) : lhsKeys[i];
     const currentRhsKey = isArray(rhs) ? Number(rhsKeys[i]) : rhsKeys[i];
-    const lhsItem = lhs[currentLhsKey];
-    const rhsItem = rhs[currentRhsKey];
+    const lhsItem = lhs[currentLhsKey] as unknown;
+    const rhsItem = rhs[currentRhsKey] as unknown;
     if (isArrayOrObject(lhsItem) && isArrayOrObject(rhsItem)) {
       result = isEqual(lhsItem, rhsItem);
     } else if (lhsItem !== rhsItem) {

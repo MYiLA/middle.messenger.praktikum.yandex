@@ -21,6 +21,7 @@ describe('Тестирование класса Requester. Запросы дол
   before(() => {
     apiInstance = new Requester('', 'https://jsonplaceholder.typicode.com');
   });
+
   it('get', async () => {
     const response = await apiInstance.get('posts/1') as SomeObject;
     const isSuccess = checkIsSuccess(response?.status);
@@ -41,8 +42,8 @@ describe('Тестирование класса Requester. Запросы дол
         'Content-type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify({
-        title: 'foo',
-        body: 'bar',
+        title: 'TestTitle',
+        body: 'TestBody',
         userId: 1,
       })
     }) as SomeObject;
@@ -54,8 +55,9 @@ describe('Тестирование класса Requester. Запросы дол
     const data = await JSON.parse(response.responseText);
     expect(data.title)
       .to
-      .equal('foo');
+      .equal('TestTitle');
   });
+
   it('put', async () => {
     const response = await apiInstance.put('posts/1', {
       headers: {
@@ -63,8 +65,8 @@ describe('Тестирование класса Requester. Запросы дол
       },
       body: JSON.stringify({
         id: 1,
-        title: 'foo',
-        body: 'bar',
+        title: 'TestTitle',
+        body: 'TestBody',
         userId: 1,
       })
     }) as SomeObject;
@@ -76,8 +78,9 @@ describe('Тестирование класса Requester. Запросы дол
     const data = await JSON.parse(response.responseText);
     expect(data.title)
       .to
-      .equal('foo');
+      .equal('TestTitle');
   });
+
   it('delete', async () => {
     const response = await apiInstance.delete('posts/1') as SomeObject;
     expect(response?.status)

@@ -19,8 +19,9 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 Запуск сервера:                       npm run start
 Запуск сборки проекта в браузере:     npm run dev
 Сборка проекта:                       npm run build
-Запуск линтеров:                      npm run check
+Запуск линтеров, тестов и сборки:     npm run check
 Автоматическое исправление ошибок:    npm run fix
+Прогон юнит-тестов:                   npm run test
 ```
 ### **Используемые технологии:**
 ```

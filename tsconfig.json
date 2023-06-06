@@ -10,6 +10,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
   },
   "include": [
     "./src/**/*.ts",

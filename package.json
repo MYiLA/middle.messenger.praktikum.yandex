@@ -6,7 +6,7 @@
     "start": "npm run build && node src/server.js",
     "dev": "parcel ./src/index.html --open --no-cache --target default",
     "build": "parcel build ./src/index.html --no-cache",
-    "check": "npx eslint . --ext .js,.ts && npx stylelint **/*.scss && npm run build",
+    "check": "npx eslint . --ext .js,.ts && npx stylelint **/*.scss && npm run test && npm run build",
     "fix": "npx eslint . --fix && npx stylelint **/*.scss --fix",
     "test": "mocha"
   },
