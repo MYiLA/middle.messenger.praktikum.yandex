@@ -16,7 +16,7 @@ if (!('FormData' in globalThis)) {
   });
 }
 
-describe('Тестирование объекта Requester. Запросы должны работать корректно:', () => {
+describe('Тестирование класса Requester. Запросы должны работать корректно:', () => {
   let apiInstance: Requester;
   before(() => {
     apiInstance = new Requester('', 'https://jsonplaceholder.typicode.com');
