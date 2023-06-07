@@ -5,7 +5,7 @@ class WebSocketService {
   protected socket: WebSocket;
 
   /** Переменная для записи в неё setInterval, который пингует сокет для стабильного соединения */
-  protected pingStart: number;
+  protected pingStart: NodeJS.Timer;
 
   constructor(patch: string) {
     this.socket = new WebSocket(patch);

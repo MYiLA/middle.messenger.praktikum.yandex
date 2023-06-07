@@ -31,17 +31,21 @@ handlebars                https://handlebarsjs.com
 express-server            https://expressjs.com
 googlefonts               https://fonts.google.com
 netlify                   https://app.netlify.com
-typescript                https://www.typescriptlang.org/
-eslint                    https://eslint.org/
-stylelint                 https://stylelint.io/
+typescript                https://www.typescriptlang.org
+eslint                    https://eslint.org
+stylelint                 https://stylelint.io
 stylelint plugins         https://github.com/stylelint/awesome-stylelint#plugins
 swagger                   https://ya-praktikum.tech/api/v2/swagger/#/
-тестирование RegExp       https://regex101.com/
+тестирование RegExp       https://regex101.com
 websocket                 https://learn.javascript.ru/websocket
 mocha                     https://www.npmjs.com/package/mocha
 chai                      https://www.npmjs.com/package/chai
 jsDom                     https://www.npmjs.com/package/jsdom
-тестирование api          https://jsonplaceholder.typicode.com/guide/
+тестирование api          https://jsonplaceholder.typicode.com/guide
+webpack                   https://webpack.js.org
+webpack-loaders           https://webpack.js.org/loaders
+webpack-plugins           https://webpack.js.org/configuration/plugins
+webpack-cli               https://github.com/webpack/webpack-cli
 
 ```
 ### **МР-ы**

@@ -1,22 +1,25 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "allowSyntheticDefaultImports": true,
     "target": "es2021",
     "declaration": false,
     "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,
+    "allowJs": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true,
   },
+  "files": ["src/index.ts"],
   "include": [
     "./src/**/*.ts",
     "index.d.ts",
     "index.d.ts",
     "src/server.js",
+    "webpack",
   ],
   "exclude": [
     "node_modules",
@@ -33,5 +36,12 @@
     "@router": ["src/router.ts"],
     "@src/*": ["src/*"],
     "@packageSrc": ["package.json"],
-  }
+  },
+  "isolatedModules": true,
+  "esModuleInterop": true,
+  "moduleResolution": "node",
+  "ts-node": {
+    "compilerOptions": { "module": "commonjs" },
+    "swc": true
+  },
 }
