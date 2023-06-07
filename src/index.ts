@@ -3,6 +3,7 @@ import {
   PageAuthorization, PageError, PageRegistration, PageHome, PageUserSettings, PageDemo,
 } from './pages';
 import { SomeObject } from './common/types';
+import './styles.scss';
 
 declare global {
   interface Window {
