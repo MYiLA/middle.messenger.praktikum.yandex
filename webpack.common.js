@@ -35,11 +35,15 @@ module.exports = {
       },
       {
         test: /\.hbs$/,
-        use: ["handlebars-loader"],
+        loader: "handlebars-loader",
       },
       {
         test: /\.(jpg|png|svg|ico|.ttf)$/,
         type: "asset/resource",
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },

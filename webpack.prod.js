@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "bundle.[contenthash].js",
   },
   mode: "production",
@@ -14,7 +14,7 @@ module.exports = {
   devServer: {
     compress: false,
     port: 3000,
-    static: path.resolve(__dirname, "dist"),
+    static: path.resolve(__dirname, "./dist"),
   },
   optimization: {
     minimize: true,
@@ -32,17 +32,4 @@ module.exports = {
       minify: true,
     }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.(c|sa|sc)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
-        ],
-      },
-    ],
-  },
 };
