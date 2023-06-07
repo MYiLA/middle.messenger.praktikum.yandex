@@ -49,4 +49,5 @@ jsDom                     https://www.npmjs.com/package/jsdom
 спринт-1   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/2
 спринт-2   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/3
 спринт-3   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/4
+спринт-4   https://github.com/MYiLA/middle.messenger.praktikum.yandex/pull/5
 ```
