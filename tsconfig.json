@@ -13,11 +13,11 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames":true,
   },
   "files": ["src/index.ts"],
   "include": [
     "./src/**/*.ts",
-    "index.d.ts",
     "index.d.ts",
     "src/server.js",
     "webpack",
@@ -25,21 +25,11 @@
   "exclude": [
     "node_modules",
     "dist",
-    ".parcel-cache",
     ".github",
     "public",
   ],
-  "paths": {
-    "@common/*": ["src/common/*"],
-    "@pages/*": ["src/pages/*"],
-    "@components/*": ["src/components/*"],
-    "@utils/*": ["src/utils/*"],
-    "@router": ["src/router.ts"],
-    "@src/*": ["src/*"],
-    "@packageSrc": ["package.json"],
-  },
-  "ts-node": {
-    "compilerOptions": { "module": "commonjs" },
-    "swc": true,
-  },
+  // "ts-node": {
+  //   "compilerOptions": { "module": "commonjs" },
+  //   "swc": true,
+  // },
 }

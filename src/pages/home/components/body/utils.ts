@@ -4,9 +4,9 @@ import MessageItem from '../message-item';
 const getMessages = (
   messages: Message[],
   currentUserId?: number,
-): MessageItem[] => {
+): (MessageItem)[] => {
   if (messages.length === 0) return [];
-  return messages.map((message) => {
+  return messages.filter((item) => !!item).map((message) => {
     const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
       time, content, user_id, is_read,
