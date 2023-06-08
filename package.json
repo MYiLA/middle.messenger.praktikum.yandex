@@ -11,7 +11,8 @@
     "lint:eslint": "eslint . --ext .ts",
     "lint:stylelint": "stylelint **/*.scss",
     "fix": "npx eslint . --fix && npx stylelint **/*.scss --fix",
-    "test": "mocha"
+    "test": "mocha",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.1",
+    "husky": "^8.0.3",
     "jsdom": "21.1.2",
     "mini-css-extract-plugin": "^2.7.6",
     "mocha": "10.2.0",
