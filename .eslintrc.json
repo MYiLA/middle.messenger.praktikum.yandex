@@ -12,9 +12,9 @@
     "airbnb-typescript/base"
   ],
   "root":true,
-  // "parserOptions": {
-  //   "project": "webpack.config.js"
-  // },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "rules": {
     "no-underscore-dangle": ["error", { 
       "allow": ["_bar"],

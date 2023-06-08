@@ -188,7 +188,7 @@ class UserSettings extends Block {
     AvatarInput.setProps({
       events: {
         click: () => {
-          console.log('ModalAvatarSubmit')
+          console.log('ModalAvatarSubmit');
           ModalAvatarSubmit.show();
         },
       },

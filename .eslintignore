@@ -4,3 +4,8 @@ node_modules/*
 src/**/*.test.ts
 server.js
 webpack
+webpack.common.js
+webpack.config.js
+webpack.dev.js
+webpack.prod.js
+index.d.ts

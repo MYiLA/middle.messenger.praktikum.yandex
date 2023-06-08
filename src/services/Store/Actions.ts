@@ -102,7 +102,6 @@ const setProfileData = (props: UserRequest) => {
 
 /** Изменить аватар текущего пользователя */
 const setProfileAvatar = (props: SomeObject) => {
-  console.log('ЭКШН')
   userApi.setProfileAvatar(props.avatar[0])
     .then((response: ResponseChat) => JSON.parse(response.response))
     .then((data) => {
@@ -281,18 +280,16 @@ const connectToChat = ({ id }: { id: number }) => {
         let unsortedMessages = [] as Message[];
 
         if (isArray(newMessage)) {
-          if(isArray(oldMessages)) {
+          if (isArray(oldMessages)) {
             unsortedMessages = [...oldMessages, ...newMessage];
           } else {
             unsortedMessages = [oldMessages, ...newMessage];
           }
+        } else if (isArray(oldMessages)) {
+          oldMessages.push(newMessage);
+          unsortedMessages = oldMessages;
         } else {
-          if(isArray(oldMessages)) {
-            oldMessages.push(newMessage);
-            unsortedMessages = oldMessages;
-          } else {
-            unsortedMessages = [oldMessages, newMessage];
-          }
+          unsortedMessages = [oldMessages, newMessage];
         }
 
         // Сортируем сообщения по дате
