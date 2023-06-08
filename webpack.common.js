@@ -22,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         exclude: /(node_modules)/,
         use: [
           {
@@ -38,16 +38,21 @@ module.exports = {
         loader: "handlebars-loader",
       },
       {
-        test: /\.(jpg|png|svg|ico|.ttf)$/,
+        test: /\.(jpg|png|svg|ico)$/,
         type: "asset/resource",
       },
       {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
+      {
+        test: /\.test.ts$/,
+        exclude: /(node_modules)/,
+        use: 'mocha-loader',
+      }
     ],
   },
   resolve: {
-    extensions: [".ts", ".js", ".png", ".svg"],
+    extensions: [".ts", ".js"],
   },
 };

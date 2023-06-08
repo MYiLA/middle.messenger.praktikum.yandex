@@ -10,7 +10,7 @@ module.exports = {
   mode: "development",
   devtool: "eval-source-map",
   devServer: {
-    compress: false,
+    historyApiFallback: true,
     port: 3000,
     static: path.resolve(__dirname, "./dist"),
   },
