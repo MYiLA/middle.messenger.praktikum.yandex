@@ -12,6 +12,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
   },
   "files": ["src/index.ts"],
   "include": [
@@ -39,6 +40,6 @@
   },
   "ts-node": {
     "compilerOptions": { "module": "commonjs" },
-    "swc": true
+    "swc": true,
   },
 }
