@@ -23,9 +23,17 @@ https://www.figma.com/file/wyj0WN49mrvPCz0E98EPoo/Чат-Я.Практикум?n
 Автоматическое исправление ошибок:    npm run fix
 Прогон юнит-тестов:                   npm run test
 ```
-### **Используемые технологии:**
+
+### **Аудит пакетов**
 ```
-parsel                    https://parceljs.org
+Показать устаревшие версии пакетов:   npm outdated
+Обновить устаревшие версии пакетов:   npm update 
+Найти уязвимости:                     npm audit
+Исправить уязвимости:                 npm audit fix
+```
+
+### **Используемые технологии**
+```
 scss                      https://sass-lang.com
 handlebars                https://handlebarsjs.com
 express-server            https://expressjs.com
@@ -46,6 +54,7 @@ webpack                   https://webpack.js.org
 webpack-loaders           https://webpack.js.org/loaders
 webpack-plugins           https://webpack.js.org/configuration/plugins
 webpack-cli               https://github.com/webpack/webpack-cli
+docker                    https://docs.docker.com/
 
 ```
 ### **МР-ы**
