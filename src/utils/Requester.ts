@@ -7,6 +7,7 @@ type Options = {
   headers?: SomeObject,
   method?: METHODS,
   body?: any,
+  data?: SomeObject | FormData,
 };
 
 enum METHODS {
@@ -21,13 +22,16 @@ type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
 class Requester {
   baseUrl: string;
 
-  constructor(baseUrl: string) {
+  baseHost?: string;
+
+  constructor(baseUrl: string, baseHost?: string) {
     this.baseUrl = baseUrl;
+    this.baseHost = baseHost ?? BASE_HOST;
   }
 
   get: HTTPMethod = (url, options = {}) => (
     this.request(
-      this.getUrl(url),
+      this.getUrl(url, this.baseHost),
       {
         ...options,
         method: METHODS.GET,
@@ -38,7 +42,7 @@ class Requester {
 
   post: HTTPMethod = (url, options = {}) => (
     this.request(
-      this.getUrl(url),
+      this.getUrl(url, this.baseHost),
       {
         ...options,
         method: METHODS.POST,
@@ -49,7 +53,7 @@ class Requester {
 
   put: HTTPMethod = (url, options = {}) => (
     this.request(
-      this.getUrl(url),
+      this.getUrl(url, this.baseHost),
       {
         ...options,
         method: METHODS.PUT,
@@ -60,7 +64,7 @@ class Requester {
 
   delete: HTTPMethod = (url, options = {}) => (
     this.request(
-      this.getUrl(url),
+      this.getUrl(url, this.baseHost),
       {
         ...options,
         method: METHODS.DELETE,
@@ -115,9 +119,11 @@ class Requester {
     });
   };
 
-  private getUrl(url: string): string {
+  private getUrl(url: string, baseHost?: string): string {
+    const baseUrl = baseHost ?? BASE_HOST;
     if (!url) return `${BASE_HOST}/${this.baseUrl}`;
-    return `${BASE_HOST}/${this.baseUrl}/${url}`;
+    if (!this.baseUrl) return `${baseUrl}/${url}`;
+    return `${baseUrl}/${this.baseUrl}/${url}`;
   }
 }
 

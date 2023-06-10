@@ -6,7 +6,7 @@ import clearDOM from '../../utils/clearDOM';
 
 /** Хранит URL и соответствующий ему блок, умеет показывать, скрывать и создавать блоки */
 class Route {
-  private _path: string = '/';
+  public path: string = '/';
 
   private _Component: BlockConstructor | null = null;
 
@@ -18,7 +18,7 @@ class Route {
   };
 
   constructor(path: string, Component: BlockConstructor, props: SomeObject) {
-    this._path = path;
+    this.path = path;
     this._Component = Component;
     this._block = null;
     this._props = props;
@@ -26,7 +26,7 @@ class Route {
 
   navigate(path: string) {
     if (this.match(path)) {
-      this._path = path;
+      this.path = path;
       this.render();
     }
   }
@@ -39,8 +39,8 @@ class Route {
   }
 
   match(path: string) {
-    if (this._props.withId) return path.includes(this._path);
-    return isEqual(path, this._path);
+    if (this._props.withId) return path.includes(this.path);
+    return isEqual(path, this.path);
   }
 
   render() {

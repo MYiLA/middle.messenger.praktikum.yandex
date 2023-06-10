@@ -1,11 +1,9 @@
 declare module '*.hbs' {
-  const template: (param?:any) => string;
-  export default template;
+  export default (param?:any) => string;
 }
 
 declare module '*.module.scss' {
-  const content: Record<string, string>;
-  export default content;
+  export default Record<string, string>;
 }
 
 declare module '*.jpg';

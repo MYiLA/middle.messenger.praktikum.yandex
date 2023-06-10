@@ -3,3 +3,9 @@ node_modules/*
 .parcel-cache/*
 src/**/*.test.ts
 server.js
+webpack
+webpack.common.js
+webpack.config.js
+webpack.dev.js
+webpack.prod.js
+index.d.ts

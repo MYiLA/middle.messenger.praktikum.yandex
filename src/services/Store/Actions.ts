@@ -276,18 +276,24 @@ const connectToChat = ({ id }: { id: number }) => {
         if (newMessage.type === 'pong') return;
 
         // Получаем старые сообщения из стора
-        const oldMessages = store.getState().messages as Message[];
-        let unsortedMessages = [];
+        const oldMessages = store.getState().messages as Message[] | Message;
+        let unsortedMessages = [] as Message[];
 
         if (isArray(newMessage)) {
-          unsortedMessages = [...oldMessages, ...newMessage];
-        } else {
+          if (isArray(oldMessages)) {
+            unsortedMessages = [...oldMessages, ...newMessage];
+          } else {
+            unsortedMessages = [oldMessages, ...newMessage];
+          }
+        } else if (isArray(oldMessages)) {
           oldMessages.push(newMessage);
           unsortedMessages = oldMessages;
+        } else {
+          unsortedMessages = [oldMessages, newMessage];
         }
 
         // Сортируем сообщения по дате
-        const result = unsortedMessages.sort((message1, message2) => {
+        const result = unsortedMessages.filter((item) => !!item).sort((message1, message2) => {
           const date1 = new Date(message1.time).getTime();
           const date2 = new Date(message2.time).getTime();
           return date2 - date1;

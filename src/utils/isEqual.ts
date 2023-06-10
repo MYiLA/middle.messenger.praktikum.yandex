@@ -18,10 +18,20 @@ function isEqual(lhs: unknown, rhs: unknown): boolean {
   // Проходим по значениям, пока не найдено различий
   let result = true;
   for (let i = 0; result === true && i < lhsKeys.length; i += 1) {
-    const currentLhsKey = isArray(lhs) ? Number(lhsKeys[i]) : lhsKeys[i];
-    const currentRhsKey = isArray(rhs) ? Number(rhsKeys[i]) : rhsKeys[i];
-    const lhsItem = lhs[currentLhsKey];
-    const rhsItem = rhs[currentRhsKey];
+    let lhsItem;
+    let rhsItem;
+
+    if (isArray(lhs)) {
+      lhsItem = lhs[Number(lhsKeys[i])];
+    } else {
+      lhsItem = lhs[lhsKeys[i]];
+    }
+    if (isArray(rhs)) {
+      rhsItem = rhs[Number(rhsKeys[i])];
+    } else {
+      rhsItem = rhs[rhsKeys[i]];
+    }
+
     if (isArrayOrObject(lhsItem) && isArrayOrObject(rhsItem)) {
       result = isEqual(lhsItem, rhsItem);
     } else if (lhsItem !== rhsItem) {

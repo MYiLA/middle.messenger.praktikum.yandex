@@ -139,8 +139,8 @@ class Block {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(oldProps: BlockProps, newProps: BlockProps) {
+    console.log(oldProps, newProps);
     return true;
   }
 
